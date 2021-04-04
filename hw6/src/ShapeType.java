@@ -10,7 +10,7 @@ public enum ShapeType {
     this.txt = txt;
   }
 
-  //Need change
+  //Need change usage
   String getTxt() {
     return txt;
   }

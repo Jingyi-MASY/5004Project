@@ -1,9 +1,14 @@
-import java.awt.*;
-import java.awt.geom.Dimension2D;
-import java.util.Arrays;
+import java.awt.Color;
 import java.util.LinkedList;
-import java.util.Objects;
 
+/**
+ * This is an abstract class that implements IShape. This class includes all common fields and
+ * common methods that applies to all shapes. Fields of this AbstractShape class includes: name of
+ * the shape, type of the shape, position (Point2D) of this shape, color of this shape (Color),
+ * appeart time of this shape (int), disappear time of this shape (int), moving status (int[]),
+ * changing color status (int[]), scaling status (int[]), positions timeline, color status timeline,
+ * dimension status timeline (lists)
+ */
 public abstract class AbstractShape implements IShape {
   protected final String name;
   protected final ShapeType type;
@@ -17,11 +22,19 @@ public abstract class AbstractShape implements IShape {
   protected Point2D[] positionTimeline;
   protected Color[] colorTimeline;
   protected LinkedList<Movement> listOfMovements;
-  //protected Dimension2D[] dimensionTimeline; //put this in concrete class and initialize this in constructor
 
-
+  /**
+   * The constructor of AbstractShape create an abstract shape based on the passed in parameters.
+   * @param name  name of this shape, String type.
+   * @param type  tyep of this shape, ShapeType enum.
+   * @param position  the position of this shape, Point2D type.
+   * @param color   color of this shape, Color type.
+   * @param appearTime  appear time of this shape, int.
+   * @param disappearTime   disappear time of this shape, int.
+   * @throws IllegalArgumentException   if the appear time and disappear time is invalid.
+   */
   public AbstractShape(String name, ShapeType type, Point2D position, Color color, int appearTime,
-                       int disappearTime) throws IllegalArgumentException{
+                       int disappearTime) throws IllegalArgumentException {
     if (disappearTime < appearTime || appearTime < 0 || disappearTime > 100) {
       throw new IllegalArgumentException("invalid appearance time range");
     }
@@ -99,14 +112,6 @@ public abstract class AbstractShape implements IShape {
     return isScalingStatus;
   }
 
-  /*
-  //move to concrete class
-  @Override
-  public Dimension2D[] getDimensionTimeline() {
-    return new Dimension2D[0];
-  }
-   */
-
   @Override
   public Color[] getColorTimeline() {
     return colorTimeline;
@@ -177,7 +182,8 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public void addMove(Point2D newPosition, int startTime, int endTime) throws IllegalArgumentException {
+  public void addMove(Point2D newPosition, int startTime, int endTime)
+          throws IllegalArgumentException {
     if (startTime < endTime || startTime < appearTime || endTime > disappearTime) {
       throw new IllegalArgumentException("invalid appearance time range");
     }

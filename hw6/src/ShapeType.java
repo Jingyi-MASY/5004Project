@@ -10,8 +10,8 @@ public enum ShapeType {
     this.txt = txt;
   }
 
-  //Need change usage
-  String getTxt() {
+  @Override
+  public String toString() {
     return txt;
   }
 

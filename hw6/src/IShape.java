@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.geom.Dimension2D;
+import java.util.LinkedList;
 
 public interface IShape {
 
@@ -60,4 +61,8 @@ public interface IShape {
   public void addMove(Point2D newPosition, int startTime, int endTime) throws IllegalArgumentException;
 
   public IShape getCopy(int time);
+
+  public LinkedList<Movement> getAllMovements();
+
+  public Movement getMovementAt(int time);
 }

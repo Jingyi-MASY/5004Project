@@ -1,2 +1,3 @@
-public class Movement {
+public interface Movement {
+  public String display();
 }

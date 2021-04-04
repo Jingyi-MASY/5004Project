@@ -131,7 +131,7 @@ public class AnimationImpl implements IAnimation {
   public void scale(IShape shape, int scalingFactor, int startTime, int endTime) {
     for (IShape x : listOfShapes) {
       if (x.getName().equals(shape.getName())) {
-          x.addScale(scalingFactor, startTime, endTime);
+        x.addScale(scalingFactor, startTime, endTime);
       }
     }
 

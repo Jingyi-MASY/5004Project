@@ -6,7 +6,6 @@ import java.awt.Color;
  * tracks radius status along the time of appearance of this shape.
  */
 public class Circle extends AbstractShape {
-  private int radius;
   private int[] radiusTimeline;
 
   /**
@@ -23,7 +22,6 @@ public class Circle extends AbstractShape {
   public Circle(String name, ShapeType type, Point2D position, Color color, int appearTime,
                 int disappearTime, int radius) throws IllegalArgumentException {
     super(name, type, position, color, appearTime, disappearTime);
-    this.radius = radius;
     int timeRange = disappearTime - appearTime;
     this.radiusTimeline = new int[timeRange];
     for (int r : radiusTimeline) {

@@ -23,11 +23,8 @@ public class Scale implements Movement{
     String str = "";
     str += "Shape " + this.shape.getName() + " ";
     if (this.shape.getType() == ShapeType.CIRCLE) {
-      int oldradius =
-      str += "scales from " + this.shape.get+
-              " to " + " " + " from t=" + startTime + " to t=" + endTime + "\n";
+      str += this.shape.getDimensionChange(startTime, scalingFactor) + " from t=" + startTime + " to t=" + endTime + "\n";
     }
-
     return str;
   }
 }

@@ -84,6 +84,14 @@ public class Oval extends AbstractShape{
   }
 
   @Override
+  public String getDimensionChange(int time, int factor) {
+    int oldXRadius = this.getXRadiusAt(time);
+    int oldYRadius = this.getYRadiusAt(time);
+    return "scales from xRadius: " + oldXRadius + ", yRadius: " + oldYRadius
+            + ", to xRadius: " + oldXRadius * factor + ", yRadius: " + oldYRadius * factor;
+  }
+
+  @Override
   public IShape statusAt(int time) throws IllegalArgumentException {
     return new Oval(this.name, this.type, this.getPositionAt(time), this.getColorAt(time),
             this.appearTime, this.disappearTime, this.getXRadiusAt(time), this.getYRadiusAt(time));

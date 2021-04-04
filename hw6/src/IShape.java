@@ -63,4 +63,6 @@ public interface IShape {
   public IShape getCopy(int time);
 
   public LinkedList<Movement> getMovementList();
+
+  public String getDimensionChange(int time, int factor);
 }

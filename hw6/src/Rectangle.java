@@ -85,6 +85,14 @@ public class Rectangle extends AbstractShape{
   }
 
   @Override
+  public String getDimensionChange(int time, int factor) {
+    int oldWidth = this.getWidthAt(time);
+    int oldHeight = this.getHeightAt(time);
+    return "scales from Width: " + oldWidth + ", Height: " + oldHeight
+            + ", to Width: " + oldWidth * factor + ", Height: " + oldHeight * factor;
+  }
+
+  @Override
   public IShape statusAt(int time) throws IllegalArgumentException {
     return new Oval(this.name, this.type, this.getPositionAt(time), this.getColorAt(time),
             this.appearTime, this.disappearTime, this.getWidthAt(time), this.getHeightAt(time));

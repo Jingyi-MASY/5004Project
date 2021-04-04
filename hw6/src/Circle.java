@@ -69,6 +69,11 @@ public class Circle extends AbstractShape{
   }
 
   @Override
+  public String getDimensionChange(int time, int factor) {
+    return "scales from Radius: " + this.getRadiusAt(time) + ", to Radius: " + this.getRadiusAt(time)*factor;
+  }
+
+  @Override
   public String toString() {
     String str = "";
     str += "Name: " + this.name + "\n";

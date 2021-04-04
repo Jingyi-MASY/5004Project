@@ -63,13 +63,15 @@ public class Oval extends AbstractShape{
         xRadiusTimeline[startTime + i] = oldXRadius + (k / range) * (oldXRadius * factor - oldXRadius);
         yRadiusTimeline[startTime + i] = oldYRadius + (k / range) * (oldYRadius * factor - oldYRadius);
         k++;
-        //anything else needs to be done here?
       }
       //change radius after since
       for (int j = endTime; j < disappearTime; j++) {
         xRadiusTimeline[j] = oldXRadius * factor;
         yRadiusTimeline[j] = oldYRadius * factor;
       }
+      this.listOfMovements.add(new Scale(this, factor, startTime, endTime));
+    } else {
+      throw new IllegalStateException("this shape is not available for a scale");
     }
   }
 

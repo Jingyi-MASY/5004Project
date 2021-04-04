@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.geom.Dimension2D;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Objects;
 
 public abstract class AbstractShape implements IShape {
@@ -15,6 +16,7 @@ public abstract class AbstractShape implements IShape {
   protected int[] isScalingStatus;
   protected Point2D[] positionTimeline;
   protected Color[] colorTimeline;
+  protected LinkedList<Movement> listOfMovements;
   //protected Dimension2D[] dimensionTimeline; //put this in concrete class and initialize this in constructor
 
 
@@ -41,6 +43,7 @@ public abstract class AbstractShape implements IShape {
     for (Color c : colorTimeline) {
       c = color;
     }
+    this.listOfMovements = new LinkedList<Movement>();
   }
 
   @Override
@@ -141,13 +144,16 @@ public abstract class AbstractShape implements IShape {
         int newRGB = (k / range) * (color.getRGB() - oldColor.getRGB());//difference
         colorTimeline[startTime + i] = new Color(oldColor.getRGB() + newRGB);
         k++;
-        //anything else needs to be done here??
       }
       //change color since after
       for (int j = endTime; j < disappearTime; j++) {
         colorTimeline[j] = color;
       }
+      this.listOfMovements.add(new ColorChange(this, color, startTime, endTime));
+    } else {
+      throw new IllegalStateException("this shape is not available for a color change");
     }
+
   }
 
   @Override
@@ -186,12 +192,19 @@ public abstract class AbstractShape implements IShape {
         int newY = (k / range) * (newPosition.getY() - oldY);
         positionTimeline[startTime + i] = new Point2D(oldX + newX, oldY + newY);
         k++;
-        //anything else needs to be done here??
       }
       //change position since after
       for (int j = endTime; j < disappearTime; j++) {
         positionTimeline[j] = newPosition;
       }
+      this.listOfMovements.add(new Move(this, newPosition, startTime, endTime));
+    } else {
+      throw new IllegalStateException("this shape is not available for moving");
     }
+  }
+
+  @Override
+  public LinkedList<Movement> getMovementList() {
+    return listOfMovements;
   }
 }

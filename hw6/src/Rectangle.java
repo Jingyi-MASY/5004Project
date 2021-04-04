@@ -70,6 +70,9 @@ public class Rectangle extends AbstractShape{
         widthTimeline[j] = oldwidth * factor;
         heightTimeline[j] = oldheight * factor;
       }
+      this.listOfMovements.add(new Scale(this, factor, startTime, endTime));
+    } else {
+      throw new IllegalStateException("this shape is not available for a scale");
     }
   }
 

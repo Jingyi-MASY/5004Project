@@ -1,5 +1,7 @@
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -112,7 +114,14 @@ public class AnimationImpl implements IAnimation{
 
   @Override
   public LinkedList<Movement> getAllMovement() {
-    return null;
+    LinkedList<Movement> result = new LinkedList<Movement>();
+    for (IShape x : listOfShapes) {
+      if (x.getMovementList() != null) {
+        result.addAll(x.getMovementList());
+      }
+    }
+    result.sort(Comparator.comparingInt(Movement::getStartTime));
+    return result;
   }
 
   @Override

@@ -56,6 +56,9 @@ public class Circle extends AbstractShape{
       for (int j = endTime; j < disappearTime; j++) {
         radiusTimeline[j]= oldRadius * factor;
       }
+      this.listOfMovements.add(new Scale(this, factor, startTime, endTime));
+    } else {
+      throw new IllegalStateException("this shape is not available for a scale");
     }
   }
 

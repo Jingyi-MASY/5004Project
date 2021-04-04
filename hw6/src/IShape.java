@@ -62,7 +62,5 @@ public interface IShape {
 
   public IShape getCopy(int time);
 
-  public LinkedList<Movement> getAllMovements();
-
-  public Movement getMovementAt(int time);
+  public LinkedList<Movement> getMovementList();
 }

@@ -83,13 +83,14 @@ public class AnimationImpl implements IAnimation {
   }
 
   @Override
-  public void addCircle (String name, ShapeType type, Point2D position, Color color, int appearTime,
+  public void addCircle(String name, ShapeType type, Point2D position, Color color, int appearTime,
                          int disappearTime, int radius) throws IllegalArgumentException {
     //check validity
     checkShapeValidity(name, type, position, color, appearTime, disappearTime);
     checkCircleRadius(radius);
     this.listOfNames.add(name);
-    this.listOfShapes.add(new Circle(name, type, position, color, appearTime, disappearTime, radius));
+    this.listOfShapes.add(new Circle(name, type, position, color, appearTime,
+            disappearTime, radius));
 
   }
 
@@ -137,13 +138,12 @@ public class AnimationImpl implements IAnimation {
   }
 
   @Override
-  public void Move(IShape shape, Point2D targetPosition, int startTime, int endTime) {
+  public void move(IShape shape, Point2D targetPosition, int startTime, int endTime) {
     for (IShape x : listOfShapes) {
       if (x.getName().equals(shape.getName())) {
         x.addMove(targetPosition, startTime, endTime);
       }
     }
-
   }
 
   @Override

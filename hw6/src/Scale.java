@@ -3,7 +3,7 @@
  * includes all the fields and methods that are specific to a a Scale movement.
  * The fields of this class includes a shape, a scaling factor, a start time, and an end time.
  */
-public class Scale implements Movement{
+public class Scale implements Movement {
   IShape shape;
   int scalingFactor;
   int startTime;
@@ -33,7 +33,8 @@ public class Scale implements Movement{
     String str = "";
     str += "Shape " + this.shape.getName() + " ";
     if (this.shape.getType() == ShapeType.CIRCLE) {
-      str += this.shape.getDimensionChange(startTime, scalingFactor) + " from t=" + startTime + " to t=" + endTime + "\n";
+      str += this.shape.getDimensionChange(startTime, scalingFactor) + " from t=" + startTime
+              + " to t=" + endTime + "\n";
     }
     return str;
   }

@@ -70,7 +70,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public Point2D getPositionAt(int time) throws IllegalArgumentException{
+  public Point2D getPositionAt(int time) throws IllegalArgumentException {
     if (time < appearTime || time > disappearTime) {
       throw new IllegalArgumentException("At this time the shape is not appeared.");
     }
@@ -79,7 +79,7 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public Color getColorAt(int time) throws IllegalArgumentException{
+  public Color getColorAt(int time) throws IllegalArgumentException {
     if (time < appearTime || time > disappearTime) {
       throw new IllegalArgumentException("At this time the shape is not appeared.");
     }

@@ -5,7 +5,7 @@ import java.awt.Color;
  * includes all the fields and methods that are specific to a a ColorChange movement.
  * The fields of this class includes a shape, a target color, a start time, and an end time.
  */
-public class ColorChange implements Movement{
+public class ColorChange implements Movement {
   IShape shape;
   Color targetColor;
   int startTime;
@@ -30,8 +30,8 @@ public class ColorChange implements Movement{
   public String display() {
     String str = "";
     str += "Shape " + this.shape.getName() + " ";
-    str += "changes color from " + this.shape.getColorAt(startTime).getRGB() +
-            " to " +targetColor.getRGB() + " from t=" + startTime + " to t=" + endTime + "\n";
+    str += "changes color from " + this.shape.getColorAt(startTime).getRGB()
+            + " to " + targetColor.getRGB() + " from t=" + startTime + " to t=" + endTime + "\n";
     return str;
   }
 

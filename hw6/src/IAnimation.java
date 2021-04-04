@@ -1,4 +1,4 @@
-import java.awt.*;
+import java.awt.Color;
 import java.util.LinkedList;
 
 /**
@@ -42,7 +42,8 @@ public interface IAnimation {
    *                                   is not unique or the any parameter that passed in is null.
    */
   public void addOval(String name, ShapeType type, Point2D position, Color color, int appearTime,
-                        int disappearTime, int xRadius, int yRadius) throws IllegalArgumentException;
+                        int disappearTime, int xRadius, int yRadius)
+          throws IllegalArgumentException;
 
   /**
    * This method initialize and adds a rectangle shape into this animation. The shaped to be added
@@ -60,8 +61,9 @@ public interface IAnimation {
    * @throws IllegalArgumentException  if the appearance time is out of range or the shape name
    *                                   is not unique or the any parameter that passed in is null.
    */
-  public void addRectangle(String name, ShapeType type, Point2D position, Color color, int appearTime,
-                      int disappearTime, int width, int height) throws IllegalArgumentException;
+  public void addRectangle(String name, ShapeType type, Point2D position, Color color,
+                           int appearTime, int disappearTime, int width, int height)
+          throws IllegalArgumentException;
 
   /**
    * This method allows certain shape in this animation changes its color to the target color, and
@@ -91,7 +93,7 @@ public interface IAnimation {
    * @param startTime   the start time point of this moving movement, int type.
    * @param endTime   the end time point of this moving movement, int type.
    */
-  public void Move(IShape shape, Point2D targetPosition, int startTime, int endTime);
+  public void move(IShape shape, Point2D targetPosition, int startTime, int endTime);
 
   /**
    * This method displays in text description of the initial status of all the shapes that are in
@@ -102,7 +104,7 @@ public interface IAnimation {
 
   /**
    * This method generates a list of all movements that applies to all shapes in this animation.
-   * @return  list of all movements in this animation, LinkedList<Movement> type.
+   * @return  list of all movements in this animation, LinkedList type.
    */
   public LinkedList<Movement> getAllMovement();
 
@@ -116,7 +118,7 @@ public interface IAnimation {
   /**
    * This method generate a list of all shapes that are appeared at certain point of time.
    * @param time  this is the time point that the list of shapes will be created based on, int type.
-   * @return  a list of all shapes that are appeared at the passed in time, LinkedList<IShape> type.
+   * @return  a list of all shapes that are appeared at the passed in time, LinkedList type.
    */
   public LinkedList<IShape> getShapeStatusAtTime(int time);
 

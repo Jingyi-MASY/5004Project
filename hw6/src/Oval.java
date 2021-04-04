@@ -5,7 +5,7 @@ import java.awt.Color;
  * an oval shape. The fields of this class includes xRadius, yRadius, xRadiusTimeline,
  * and yRadiusTimeline.
  */
-public class Oval extends AbstractShape{
+public class Oval extends AbstractShape {
   int xRadius;
   int yRadius;
   int[] xRadiusTimeline;

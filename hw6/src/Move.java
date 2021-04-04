@@ -3,7 +3,7 @@
  * fields and methods that are specific for this class.
  * the fields of this class includes a shape, a target position, a start time and an end time.
  */
-public class Move implements Movement{
+public class Move implements Movement {
   IShape shape;
   Point2D targetPosition;
   int startTime;
@@ -33,8 +33,8 @@ public class Move implements Movement{
   public String display() {
     String str = "";
     str += "Shape " + this.shape.getName() + " ";
-    str += "moves from " + this.shape.getPositionAt(startTime) +
-            " to " + this.targetPosition + " from t=" + startTime + " to t=" + endTime + "\n";
+    str += "moves from " + this.shape.getPositionAt(startTime)
+            + " to " + this.targetPosition + " from t=" + startTime + " to t=" + endTime + "\n";
     return str;
   }
 }

@@ -5,7 +5,7 @@ import java.awt.Color;
  * to Circle class. Fields of this class include radius(int) and radius timeline (list of int) that
  * tracks radius status along the time of appearance of this shape.
  */
-public class Circle extends AbstractShape{
+public class Circle extends AbstractShape {
   private int radius;
   private int[] radiusTimeline;
 
@@ -31,7 +31,7 @@ public class Circle extends AbstractShape{
     }
   }
 
-  /**
+  /*
    * This method returns a list of radius status of this circle to track the radius status during
    * the appearance time of this circle.
    * @return  radius of this circle at every moment of the appearance time.
@@ -57,7 +57,9 @@ public class Circle extends AbstractShape{
   @Override
   public Circle getCopy(int time) {
     if (time > appearTime && time < disappearTime) {
-      return new Circle(this.name, ShapeType.CIRCLE, this.getPositionAt(time), this.getColorAt(time), this.getAppearTime(), this.disappearTime, this.getRadiusAt(time));
+      return new Circle(this.name, ShapeType.CIRCLE, this.getPositionAt(time),
+              this.getColorAt(time), this.getAppearTime(), this.disappearTime,
+              this.getRadiusAt(time));
     }
     return null;
   }
@@ -85,7 +87,7 @@ public class Circle extends AbstractShape{
       }
       //change radius after since
       for (int j = endTime; j < disappearTime; j++) {
-        radiusTimeline[j]= oldRadius * factor;
+        radiusTimeline[j] = oldRadius * factor;
       }
       this.listOfMovements.add(new Scale(this, factor, startTime, endTime));
     } else {
@@ -101,7 +103,8 @@ public class Circle extends AbstractShape{
 
   @Override
   public String getDimensionChange(int time, int factor) {
-    return "scales from Radius: " + this.getRadiusAt(time) + ", to Radius: " + this.getRadiusAt(time)*factor;
+    return "scales from Radius: " + this.getRadiusAt(time) + ", to Radius: "
+            + this.getRadiusAt(time) * factor;
   }
 
   /**

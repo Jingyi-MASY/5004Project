@@ -47,7 +47,7 @@ public interface IShape {
   public int getDisappearTime();
 
   /**
-   * This method returns the moving status of every unit of time in a list.
+   * This method gets and returns the moving status of every unit of time in a list.
    * @return  list of 1 or 0 indicating whether if the shape is in certain moving movement.
    *          1 indicates moving in progress, NOT available to add new move.
    *          0 indicates moving not in progress, available for new move.
@@ -55,7 +55,7 @@ public interface IShape {
   public int[] getMovingStatus();
 
   /**
-   * This method returns the color-changing status of every unit of time in a list.
+   * This method gets and returns the color-changing status of every unit of time in a list.
    * @return  list of 1 or 0 indicating whether if the shape is in certain color-changing movement.
    *          1 indicates color changing in progress, NOT available to add new color change.
    *          0 indicates color changing not in progress, available for new color change.
@@ -63,7 +63,7 @@ public interface IShape {
   public int[] getColorChangingStatus();
 
   /**
-   * This method returns the scaling status of every unit of time in a list.
+   * This method gets and returns the scaling status of every unit of time in a list.
    * @return   list of 1 or 0 indicating whether if the shape is in certain scaling movement.
    *           1 indicates scaling in progress, NOT available to add new scaling.
    *           0 indicates scaling not in progress, available for new scaling.
@@ -105,13 +105,13 @@ public interface IShape {
   /**
    * This method add a color change movement to this shape to a target color, starting at a start
    * time and completes at an end time.
-   * @param Color   target color after color change movement, Color type.
+   * @param color   target color after color change movement, Color type.
    * @param startTime   start time of this color change movement, int type.
    * @param endTime   end time of this color change movement, int type.
    * @throws IllegalStateException  if the target time range is not available for this shape to
    *                                take a color change move.
    */
-  public void addChangeColor(Color Color, int startTime, int endTime) throws IllegalStateException;
+  public void addChangeColor(Color color, int startTime, int endTime) throws IllegalStateException;
 
   /**
    * This method checks if scaling movement is available for this shape from start time to end time,
@@ -151,13 +151,14 @@ public interface IShape {
    * @throws IllegalArgumentException   if the target time range is not available for this shape to
    *                                    take a moving movement.
    */
-  public void addMove(Point2D newPosition, int startTime, int endTime) throws IllegalArgumentException;
+  public void addMove(Point2D newPosition, int startTime, int endTime)
+          throws IllegalArgumentException;
 
   /**
    * This method generates a copy of this shape for all its status at certain point of time.
    * @param time  time that is looking for, int type.
    * @return  a new shape that has the same status of this shape at certain time, or return null
-   * if the time is invalid for this shap.
+   *          if the time is invalid for this shap.
    */
   public IShape getCopy(int time);
 

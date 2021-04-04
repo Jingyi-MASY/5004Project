@@ -5,7 +5,7 @@ import java.awt.Color;
  * methods that are specific to the rectangle class. The fields of this class includes height, 
  * width, heightTimeline and widthTimeline.
  */
-public class Rectangle extends AbstractShape{
+public class Rectangle extends AbstractShape {
   int height;
   int width;
   int[] heightTimeline;

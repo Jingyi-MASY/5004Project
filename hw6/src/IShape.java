@@ -53,10 +53,11 @@ public interface IShape {
 
   public boolean checkIfScalingAvailable(int startTime, int endTime);
 
-  //public void addScale(int factor, int startTime, int endTime) throws IllegalArgumentException;
+  public void addScale(int factor, int startTime, int endTime) throws IllegalArgumentException;
 
   public boolean checkIfMovingAvailable(int startTime, int endTime);
 
   public void addMove(Point2D newPosition, int startTime, int endTime) throws IllegalArgumentException;
 
+  public IShape getCopy(int time);
 }

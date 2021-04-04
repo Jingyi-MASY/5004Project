@@ -22,12 +22,20 @@ public class Circle extends AbstractShape{
     return radiusTimeline;
   }
 
-  public int getRadiusAt(int time) throws IllegalArgumentException{
+  public int getRadiusAt(int time) throws IllegalArgumentException {
     if (time < appearTime || time > disappearTime) {
       throw new IllegalArgumentException("At this time the shape is not appeared.");
     }
     int timeIndex = time - appearTime;
     return this.radiusTimeline[timeIndex];
+  }
+
+  @Override
+  public Circle getCopy(int time) {
+    if (time > appearTime && time < disappearTime) {
+      return new Circle(this.name, ShapeType.CIRCLE, this.getPositionAt(time), this.getColorAt(time), this.getAppearTime(), this.disappearTime, this.getRadiusAt(time));
+    }
+    return null;
   }
 
   public void addScale(int factor, int startTime, int endTime) throws IllegalArgumentException {

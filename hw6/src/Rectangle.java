@@ -32,7 +32,7 @@ public class Rectangle extends AbstractShape{
     return heightTimeline;
   }
 
-  public int getwidthAt(int time) throws IllegalArgumentException{
+  public int getWidthAt(int time) throws IllegalArgumentException {
     if (time < appearTime || time > disappearTime) {
       throw new IllegalArgumentException("At this time the shape is not appeared.");
     }
@@ -40,7 +40,7 @@ public class Rectangle extends AbstractShape{
     return this.widthTimeline[timeIndex];
   }
 
-  public int getheightAt(int time) throws IllegalArgumentException{
+  public int getHeightAt(int time) throws IllegalArgumentException {
     if (time < appearTime || time > disappearTime) {
       throw new IllegalArgumentException("At this time the shape is not appeared.");
     }
@@ -55,8 +55,8 @@ public class Rectangle extends AbstractShape{
     if (checkIfScalingAvailable(startTime, endTime)) {
       int range = endTime - startTime;
       int k = 1;
-      int oldwidth = this.getwidthAt(startTime);
-      int oldheight = this.getheightAt(startTime);
+      int oldwidth = this.getWidthAt(startTime);
+      int oldheight = this.getHeightAt(startTime);
 
       for (int i = 0; i < endTime - startTime; i++) {
         isScalingStatus[startTime + i] = 1;
@@ -74,9 +74,17 @@ public class Rectangle extends AbstractShape{
   }
 
   @Override
+  public Rectangle getCopy(int time) {
+    if (time > appearTime && time < disappearTime) {
+      return new Rectangle(this.name, ShapeType.CIRCLE, this.getPositionAt(time), this.getColorAt(time), this.getAppearTime(), this.disappearTime, this.getWidthAt(time), this.getHeightAt(time));
+    }
+    return null;
+  }
+
+  @Override
   public IShape statusAt(int time) throws IllegalArgumentException {
     return new Oval(this.name, this.type, this.getPositionAt(time), this.getColorAt(time),
-            this.appearTime, this.disappearTime, this.getwidthAt(time), this.getheightAt(time));
+            this.appearTime, this.disappearTime, this.getWidthAt(time), this.getHeightAt(time));
   }
   
   @Override

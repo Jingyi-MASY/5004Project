@@ -32,7 +32,7 @@ public class Oval extends AbstractShape{
     return yRadiusTimeline;
   }
 
-  public int getXRadiusAt(int time) throws IllegalArgumentException{
+  public int getXRadiusAt(int time) throws IllegalArgumentException {
     if (time < appearTime || time > disappearTime) {
       throw new IllegalArgumentException("At this time the shape is not appeared.");
     }
@@ -40,7 +40,7 @@ public class Oval extends AbstractShape{
     return this.xRadiusTimeline[timeIndex];
   }
 
-  public int getYRadiusAt(int time) throws IllegalArgumentException{
+  public int getYRadiusAt(int time) throws IllegalArgumentException {
     if (time < appearTime || time > disappearTime) {
       throw new IllegalArgumentException("At this time the shape is not appeared.");
     }
@@ -71,6 +71,14 @@ public class Oval extends AbstractShape{
         yRadiusTimeline[j] = oldYRadius * factor;
       }
     }
+  }
+
+  @Override
+  public Oval getCopy(int time) {
+    if (time > appearTime && time < disappearTime) {
+      return new Oval(this.name, ShapeType.CIRCLE, this.getPositionAt(time), this.getColorAt(time), this.getAppearTime(), this.disappearTime, this.getXRadiusAt(time), this.getYRadiusAt(time));
+    }
+    return null;
   }
 
   @Override

@@ -1,15 +1,18 @@
 public enum ShapeType {
-  RECTANGLE, OVAL, TRIANGLE, CIRCLE;
+  RECTANGLE("rectangle"),
+  OVAL("oval"),
+  TRIANGLE("triangle"),
+  CIRCLE("circle");
 
-  @Override
-  public String toString() {
-    if (this == ShapeType.OVAL) {
-      return "oval";
-    } else if (this == CIRCLE) {
-      return "circle";
-    } else if (this == RECTANGLE) {
-      return "rectangle";
-    }
-    throw new IllegalArgumentException("Invalid ShapeType");
+  private final String txt;
+
+  ShapeType(String txt) {
+    this.txt = txt;
   }
+
+  //Need change
+  String getTxt() {
+    return txt;
+  }
+
 }

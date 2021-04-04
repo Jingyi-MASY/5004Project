@@ -14,7 +14,7 @@ public class AnimationImpl implements IAnimation{
     this.listOfNames = new LinkedList<String>();
   }
 
-  protected boolean checkShapeValid(String name, ShapeType type, Point2D position, Color color, int appearTime, int disappearTime) {
+  protected boolean checkShapeValidity(String name, ShapeType type, Point2D position, Color color, int appearTime, int disappearTime) {
     if (name == null) {
       throw new IllegalArgumentException("invalid name");
     } else if (type == null) {
@@ -58,7 +58,7 @@ public class AnimationImpl implements IAnimation{
   @Override
   public void addCircle (String name, ShapeType type, Point2D position, Color color, int appearTime, int disappearTime, int radius) throws IllegalArgumentException {
     //check validity
-    checkShapeValid(name, type, position, color, appearTime, disappearTime);
+    checkShapeValidity(name, type, position, color, appearTime, disappearTime);
     checkCircleRadius(radius);
     this.listOfNames.add(name);
     this.listOfShapes.add(new Circle(name, type, position, color, appearTime, disappearTime, radius));
@@ -68,7 +68,7 @@ public class AnimationImpl implements IAnimation{
   @Override
   public void addOval(String name, ShapeType type, Point2D position, Color color, int appearTime, int disappearTime, int xRadius, int yRadius) throws IllegalArgumentException {
     //check validity
-    checkShapeValid(name, type, position, color, appearTime, disappearTime);
+    checkShapeValidity(name, type, position, color, appearTime, disappearTime);
     checkOvalRadius(xRadius, yRadius);
     this.listOfNames.add(name);
     this.listOfShapes.add(new Oval(name, type, position, color, appearTime, disappearTime, xRadius, yRadius));
@@ -77,7 +77,7 @@ public class AnimationImpl implements IAnimation{
   @Override
   public void addRectangle(String name, ShapeType type, Point2D position, Color color, int appearTime, int disappearTime, int width, int height) throws IllegalArgumentException {
     //check validity
-    checkShapeValid(name, type, position, color, appearTime, disappearTime);
+    checkShapeValidity(name, type, position, color, appearTime, disappearTime);
     checkRectangleWH(width, height);
     this.listOfNames.add(name);
     this.listOfShapes.add(new Oval(name, type, position, color, appearTime, disappearTime, width, height));
@@ -125,6 +125,17 @@ public class AnimationImpl implements IAnimation{
   }
 
   @Override
+  public String displayAll() {
+    StringBuilder str = new StringBuilder();
+    if (getAllMovement() != null) {
+      for (Movement m : getAllMovement()) {
+        str.append(m.display());
+      }
+    }
+    return str.toString();
+  }
+
+  @Override
   public LinkedList<IShape> getShapeStatusAtTime(int time) {
     if (time < 0 || time > 100) {
       throw new IllegalArgumentException("invalid time");
@@ -138,5 +149,30 @@ public class AnimationImpl implements IAnimation{
       }
     }
     return result;
+  }
+
+  @Override
+  public String showStatusAt(int time) {
+    if (time < 0 || time > 100) {
+      throw new IllegalArgumentException("invalid time");
+    }
+    StringBuilder str = new StringBuilder();
+    if (this.getShapeStatusAtTime(time) != null) {
+      for (IShape s : getShapeStatusAtTime(time)) {
+        str.append(s.toString());
+      }
+    }
+    return str.toString();
+  }
+
+  @Override
+  public String showAllShapes() {
+    StringBuilder str = new StringBuilder();
+    if (listOfShapes != null) {
+      for (IShape s : listOfShapes) {
+        str.append(s.toString());
+      }
+    }
+    return str.toString();
   }
 }

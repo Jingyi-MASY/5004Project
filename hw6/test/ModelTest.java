@@ -32,7 +32,7 @@ public class ModelTest {
 
     //Check null
     try {
-      anime.addShape("c1", null, new Point2D(0,0), Color.BLACK, 20, 10);
+      anime.addCircle("c1", null, new Point2D(0,0), Color.BLACK, 20, 10, 10);
       fail("Accepting null");
     } catch (IllegalArgumentException ignored) {
     }

@@ -10,13 +10,14 @@ public class Circle extends AbstractShape {
 
   /**
    * This Circle class constructor initialize a circle object based on the passed in info.
-   * @param name  name of the shape, String type.
-   * @param type  type of the shape, ShapeType enum type.
-   * @param position  position of the center of the circle, Point2D type.
-   * @param color   color of this circle, Color type.
-   * @param appearTime  time that this circle shows up in certain animation, int type.
+   *
+   * @param name          name of the shape, String type.
+   * @param type          type of the shape, ShapeType enum type.
+   * @param position      position of the center of the circle, Point2D type.
+   * @param color         color of this circle, Color type.
+   * @param appearTime    time that this circle shows up in certain animation, int type.
    * @param disappearTime time that this circle disappears in certain animation, int type.
-   * @param radius  initial radius of this circle, int type.
+   * @param radius        initial radius of this circle, int type.
    * @throws IllegalArgumentException if the appearance time range is invalid.
    */
   public Circle(String name, ShapeType type, Point2D position, Color color, int appearTime,
@@ -40,8 +41,9 @@ public class Circle extends AbstractShape {
 
   /**
    * This method gets and returns the radius of this circle at certain point of time.
-   * @param time  time that is looking for, int type.
-   * @return  the radius of this circle at the passed in time.
+   *
+   * @param time time that is looking for, int type.
+   * @return the radius of this circle at the passed in time.
    * @throws IllegalArgumentException if the time is out of the appearance time range.
    */
   public int getRadiusAt(int time) throws IllegalArgumentException {
@@ -64,11 +66,12 @@ public class Circle extends AbstractShape {
 
   /**
    * This method adds a scaling movement to this circle.
-   * @param factor   factor to use to measure dimension. new dimension = old dimension * factor.
-   * @param startTime   target start time of this scaling movement, int type.
+   *
+   * @param factor    factor to use to measure dimension. new dimension = old dimension * factor.
+   * @param startTime target start time of this scaling movement, int type.
    * @param endTime   target end time of this scaling movement, int type.
-   * @throws IllegalArgumentException   if the start time and end time stays out of the appearance
-   *                                    time range.
+   * @throws IllegalArgumentException if the start time and end time stays out of the appearance
+   *                                  time range.
    */
   public void addScale(int factor, int startTime, int endTime) throws IllegalArgumentException {
     if (startTime < endTime || startTime < appearTime || endTime > disappearTime) {
@@ -107,7 +110,8 @@ public class Circle extends AbstractShape {
 
   /**
    * This gets and returns a specific string representation desired for this circle.
-   * @return  a string representation of this circle.
+   *
+   * @return a string representation of this circle.
    */
   @Override
   public String toString() {

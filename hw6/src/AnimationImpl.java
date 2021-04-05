@@ -4,11 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * This class is an implementation of the Animation interface, it implements all operations from
- * the Animation interface.
- * The fields of this AnimationImpl includes a listOfShapes that includes all shapes that have ever
- * appeared in this animation, and a listOfNames that includes all names of all shapes that is used
- * to verify if a name of certain new shape to be added to this animation is valid.
+ * This class is an implementation of the Animation interface, it implements all operations from the
+ * Animation interface. The fields of this AnimationImpl includes a listOfShapes that includes all
+ * shapes that have ever appeared in this animation, and a listOfNames that includes all names of
+ * all shapes that is used to verify if a name of certain new shape to be added to this animation is
+ * valid.
  */
 public class AnimationImpl implements IAnimation {
   private List<IShape> listOfShapes;
@@ -84,8 +84,8 @@ public class AnimationImpl implements IAnimation {
 //  }
 
 
-  public void addShape(String name, IShape shape) throws IllegalArgumentException{
-    if(shape == null) {
+  public void addShape(String name, IShape shape) throws IllegalArgumentException {
+    if (shape == null) {
       throw new IllegalArgumentException("Null shape input.");
     }
     for (IShape n : listOfShapes) {

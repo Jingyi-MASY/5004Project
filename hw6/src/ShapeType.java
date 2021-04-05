@@ -11,7 +11,8 @@ public enum ShapeType {
 
   /**
    * This constructor creates an ShapeType based on passed in txt.
-   * @param txt   passed in text indicating which type of enum it would be.
+   *
+   * @param txt passed in text indicating which type of enum it would be.
    */
   ShapeType(String txt) {
     this.txt = txt;
@@ -19,7 +20,8 @@ public enum ShapeType {
 
   /**
    * a String format representation of this ShapeType enum.
-   * @return  the txt String (field) as desired.
+   *
+   * @return the txt String (field) as desired.
    */
   @Override
   public String toString() {

@@ -2,7 +2,7 @@ import java.awt.Color;
 
 /**
  * this Rectangle class represents a rectangle shape, and this class includes all the fields and
- * methods that are specific to the rectangle class. The fields of this class includes height, 
+ * methods that are specific to the rectangle class. The fields of this class includes height,
  * width, heightTimeline and widthTimeline.
  */
 public class Rectangle extends AbstractShape {
@@ -13,17 +13,18 @@ public class Rectangle extends AbstractShape {
 
   /**
    * This rectangle class constructor initialize a rectangle object based on the passed in info.
-   * @param name  name of the shape, String type. 
-   * @param type  type of the shape, ShapeType enum type.
-   * @param position  position of the lower left corner of the rectangle, Point2D type.
-   * @param color   color of this rectangle, Color type.
-   * @param appearTime  time that this rectangle shows up in certain animation, int type.
+   *
+   * @param name          name of the shape, String type.
+   * @param type          type of the shape, ShapeType enum type.
+   * @param position      position of the lower left corner of the rectangle, Point2D type.
+   * @param color         color of this rectangle, Color type.
+   * @param appearTime    time that this rectangle shows up in certain animation, int type.
    * @param disappearTime time that this rectangle disappears in certain animation, int type.
-   * @param width  initial width of this rectangle, int type.
-   * @param height  initial height of this rectangle, int type.
+   * @param width         initial width of this rectangle, int type.
+   * @param height        initial height of this rectangle, int type.
    * @throws IllegalArgumentException if the appearance time range is invalid.
    */
-  public Rectangle(String name, ShapeType type, Point2D position, Color color, int appearTime, 
+  public Rectangle(String name, ShapeType type, Point2D position, Color color, int appearTime,
                    int disappearTime, int width, int height) {
     super(name, type, position, color, appearTime, disappearTime, width, height);
     this.width = width;
@@ -39,18 +40,20 @@ public class Rectangle extends AbstractShape {
   }
 
   /**
-   * this method gets and returns a list of width of this rectangle during the entire time of 
-   * its appearance.
-   * @return  width of this rectangle at every moment of the timeline
+   * this method gets and returns a list of width of this rectangle during the entire time of its
+   * appearance.
+   *
+   * @return width of this rectangle at every moment of the timeline
    */
   public int[] getWidthTimeline() {
     return widthTimeline;
   }
 
   /**
-   * this method gets and returns a list of height of this rectangle during the entire time of
-   * its appearance.
-   * @return  height of this rectangle at every moment of the timeline
+   * this method gets and returns a list of height of this rectangle during the entire time of its
+   * appearance.
+   *
+   * @return height of this rectangle at every moment of the timeline
    */
   public int[] getHeightTimeline() {
     return heightTimeline;
@@ -58,8 +61,9 @@ public class Rectangle extends AbstractShape {
 
   /**
    * this methods returns the width value at certain point of time.
-   * @param time  time that is looking for.
-   * @return  the width of this rectangle at the passed in time.
+   *
+   * @param time time that is looking for.
+   * @return the width of this rectangle at the passed in time.
    * @throws IllegalArgumentException if the passed in time if out of range.
    */
   public int getWidthAt(int time) throws IllegalArgumentException {
@@ -72,7 +76,8 @@ public class Rectangle extends AbstractShape {
 
   /**
    * this method returns the height value at certain point of time.
-   * @param time  time that is looking for
+   *
+   * @param time time that is looking for
    * @return height of this rectangle at the passed in time.
    * @throws IllegalArgumentException if the passed in time if out of range.
    */
@@ -86,11 +91,12 @@ public class Rectangle extends AbstractShape {
 
   /**
    * This method adds a scaling movement to this circle.
-   * @param factor   factor to use to measure dimension. new dimension = old dimension * factor.
-   * @param startTime   target start time of this scaling movement, int type.
+   *
+   * @param factor    factor to use to measure dimension. new dimension = old dimension * factor.
+   * @param startTime target start time of this scaling movement, int type.
    * @param endTime   target end time of this scaling movement, int type.
-   * @throws IllegalArgumentException   if the start time and end time stays out of the appearance
-   *                                    time range.
+   * @throws IllegalArgumentException if the start time and end time stays out of the appearance
+   *                                  time range.
    */
   public void addScale(int factor, int startTime, int endTime) throws IllegalArgumentException {
     if (startTime < endTime || startTime < appearTime || endTime > disappearTime) {
@@ -146,7 +152,8 @@ public class Rectangle extends AbstractShape {
 
   /**
    * This gets and returns a specific string representation desired for this rectangle.
-   * @return  a string representation of this rectangle.
+   *
+   * @return a string representation of this rectangle.
    */
   @Override
   public String toString() {

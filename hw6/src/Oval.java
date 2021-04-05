@@ -2,8 +2,8 @@ import java.awt.Color;
 
 /**
  * this class represents an oval shape, and it includes all fields and methods that are specific to
- * an oval shape. The fields of this class includes xRadius, yRadius, xRadiusTimeline,
- * and yRadiusTimeline.
+ * an oval shape. The fields of this class includes xRadius, yRadius, xRadiusTimeline, and
+ * yRadiusTimeline.
  */
 public class Oval extends AbstractShape {
   int xRadius;
@@ -13,14 +13,15 @@ public class Oval extends AbstractShape {
 
   /**
    * This Oval class constructor initialize a Oval object based on the passed in info.
-   * @param name  name of the shape, String type. 
-   * @param type  type of the shape, ShapeType enum type.
-   * @param position  position of the center of the Oval, Point2D type.
-   * @param color   color of this Oval, Color type.
-   * @param appearTime  time that this Oval shows up in certain animation, int type.
+   *
+   * @param name          name of the shape, String type.
+   * @param type          type of the shape, ShapeType enum type.
+   * @param position      position of the center of the Oval, Point2D type.
+   * @param color         color of this Oval, Color type.
+   * @param appearTime    time that this Oval shows up in certain animation, int type.
    * @param disappearTime time that this Oval disappears in certain animation, int type.
-   * @param xRadius  initial radius on x-axis of this Oval, int type.
-   * @param yRadius  initial radius on y-axis of this oval, int type.
+   * @param xRadius       initial radius on x-axis of this Oval, int type.
+   * @param yRadius       initial radius on y-axis of this oval, int type.
    * @throws IllegalArgumentException if the appearance time range is invalid.
    */
   public Oval(String name, ShapeType type, Point2D position, Color color, int appearTime,
@@ -40,18 +41,20 @@ public class Oval extends AbstractShape {
   }
 
   /**
-   * this method gets and returns a list of xRadius of this oval during the entire time of
-   * its appearance.
-   * @return  xRadius of this oval at every moment of the timeline
+   * this method gets and returns a list of xRadius of this oval during the entire time of its
+   * appearance.
+   *
+   * @return xRadius of this oval at every moment of the timeline
    */
   public int[] getXRadiusTimeline() {
     return xRadiusTimeline;
   }
 
   /**
-   * this method gets and returns a list of yRadius of this oval during the entire time of
-   * its appearance.
-   * @return  yRadius of this oval at every moment of the timeline
+   * this method gets and returns a list of yRadius of this oval during the entire time of its
+   * appearance.
+   *
+   * @return yRadius of this oval at every moment of the timeline
    */
   public int[] getYRadiusTimeline() {
     return yRadiusTimeline;
@@ -59,8 +62,9 @@ public class Oval extends AbstractShape {
 
   /**
    * this methods returns the xRadius value at certain point of time.
-   * @param time  time that is looking for.
-   * @return  the xRadius of this oval at the passed in time.
+   *
+   * @param time time that is looking for.
+   * @return the xRadius of this oval at the passed in time.
    * @throws IllegalArgumentException if the passed in time if out of range.
    */
   public int getXRadiusAt(int time) throws IllegalArgumentException {
@@ -73,7 +77,8 @@ public class Oval extends AbstractShape {
 
   /**
    * this method returns the yRadius value at certain point of time.
-   * @param time  time that is looking for
+   *
+   * @param time time that is looking for
    * @return yRadius of this oval at the passed in time.
    * @throws IllegalArgumentException if the passed in time if out of range.
    */
@@ -87,11 +92,12 @@ public class Oval extends AbstractShape {
 
   /**
    * This method adds a scaling movement to this oval shape.
-   * @param factor   factor to use to measure dimension. new dimension = old dimension * factor.
-   * @param startTime   target start time of this scaling movement, int type.
+   *
+   * @param factor    factor to use to measure dimension. new dimension = old dimension * factor.
+   * @param startTime target start time of this scaling movement, int type.
    * @param endTime   target end time of this scaling movement, int type.
-   * @throws IllegalArgumentException   if the start time and end time stays out of the appearance
-   *                                    time range.
+   * @throws IllegalArgumentException if the start time and end time stays out of the appearance
+   *                                  time range.
    */
   public void addScale(int factor, int startTime, int endTime) throws IllegalArgumentException {
     if (startTime < endTime || startTime < appearTime || endTime > disappearTime) {
@@ -148,7 +154,8 @@ public class Oval extends AbstractShape {
 
   /**
    * This gets and returns a specific string representation desired for this oval.
-   * @return  a string representation of this oval.
+   *
+   * @return a string representation of this oval.
    */
   @Override
   public String toString() {

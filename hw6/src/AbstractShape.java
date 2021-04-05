@@ -25,18 +25,19 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * The constructor of AbstractShape create an abstract shape based on the passed in parameters.
-   * @param name  name of this shape, String type.
-   * @param type  type of this shape, ShapeType enum.
-   * @param position  the position of this shape, Point2D type.
-   * @param color   color of this shape, Color type.
-   * @param appearTime  appear time of this shape, int.
-   * @param disappearTime   disappear time of this shape, int.
-   * @param para   parameter of a given shape
-   * @throws IllegalArgumentException   if the appear time and disappear time is invalid.
+   *
+   * @param name          name of this shape, String type.
+   * @param type          type of this shape, ShapeType enum.
+   * @param position      the position of this shape, Point2D type.
+   * @param color         color of this shape, Color type.
+   * @param appearTime    appear time of this shape, int.
+   * @param disappearTime disappear time of this shape, int.
+   * @param para          parameter of a given shape
+   * @throws IllegalArgumentException if the appear time and disappear time is invalid.
    */
   public AbstractShape(String name, ShapeType type, Point2D position, Color color, int appearTime,
                        int disappearTime, int para) throws IllegalArgumentException {
-    if(para <= 0) {
+    if (para <= 0) {
       throw new IllegalArgumentException("invalid shape parameter");
     }
     ShapeBuilder(name, type, position, color, appearTime, disappearTime);
@@ -44,19 +45,20 @@ public abstract class AbstractShape implements IShape {
 
   /**
    * The constructor of AbstractShape create an abstract shape based on the passed in parameters.
-   * @param name  name of this shape, String type.
-   * @param type  type of this shape, ShapeType enum.
-   * @param position  the position of this shape, Point2D type.
-   * @param color   color of this shape, Color type.
-   * @param appearTime  appear time of this shape, int.
-   * @param disappearTime   disappear time of this shape, int.
-   * @param para1   first parameter of a given shape
-   * @param para2   second parameter of a given shape
-   * @throws IllegalArgumentException   if the appear time and disappear time is invalid.
+   *
+   * @param name          name of this shape, String type.
+   * @param type          type of this shape, ShapeType enum.
+   * @param position      the position of this shape, Point2D type.
+   * @param color         color of this shape, Color type.
+   * @param appearTime    appear time of this shape, int.
+   * @param disappearTime disappear time of this shape, int.
+   * @param para1         first parameter of a given shape
+   * @param para2         second parameter of a given shape
+   * @throws IllegalArgumentException if the appear time and disappear time is invalid.
    */
   public AbstractShape(String name, ShapeType type, Point2D position, Color color, int appearTime,
                        int disappearTime, int para1, int para2) throws IllegalArgumentException {
-    if(para1 <= 0 || para2 <= 0) {
+    if (para1 <= 0 || para2 <= 0) {
       throw new IllegalArgumentException("invalid shape parameter");
     }
     ShapeBuilder(name, type, position, color, appearTime, disappearTime);
@@ -64,7 +66,7 @@ public abstract class AbstractShape implements IShape {
 
 
   private void ShapeBuilder(String name, ShapeType type, Point2D position, Color color, int appearTime,
-                       int disappearTime) throws IllegalArgumentException {
+                            int disappearTime) throws IllegalArgumentException {
     if (name == null) {
       throw new IllegalArgumentException("invalid name");
     } else if (type == null) {

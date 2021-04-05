@@ -87,6 +87,7 @@ public abstract class AbstractShape implements IShape {
     this.position = position;
     this.appearTime = appearTime;
     this.disappearTime = disappearTime;
+    this.color = color;
     this.isMovingStatus = new int[timeRange];
     this.isChangingColorStatus = new int[timeRange];
     this.isScalingStatus = new int[timeRange];

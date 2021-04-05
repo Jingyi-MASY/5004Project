@@ -110,9 +110,9 @@ public class Rectangle extends AbstractShape {
       int oldHeight = this.getHeightAt(startTime);
 
       for (int i = 0; i < endTime - startTime; i++) {
-        isScalingStatus[startTime + i] = 1;
-        widthTimeline[startTime + i] = oldWidth + (k / range) * (oldWidth * factor - oldWidth);
-        heightTimeline[startTime + i] = oldHeight + (k / range) * (oldHeight * factor - oldHeight);
+        isScalingStatus[startTime - appearTime + i] = 1;
+        widthTimeline[startTime - appearTime + i] = oldWidth + (k / range) * (oldWidth * factor - oldWidth);
+        heightTimeline[startTime - appearTime + i] = oldHeight + (k / range) * (oldHeight * factor - oldHeight);
         k++;
         //anything else needs to be done here?
       }

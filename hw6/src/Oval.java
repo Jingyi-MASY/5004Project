@@ -111,10 +111,10 @@ public class Oval extends AbstractShape {
       int oldYRadius = this.getYRadiusAt(startTime);
 
       for (int i = 0; i < endTime - startTime; i++) {
-        isScalingStatus[startTime + i] = 1;
-        xRadiusTimeline[startTime + i] =
+        isScalingStatus[startTime - appearTime + i] = 1;
+        xRadiusTimeline[startTime - appearTime + i] =
                 oldXRadius + (k / range) * (oldXRadius * factor - oldXRadius);
-        yRadiusTimeline[startTime + i] =
+        yRadiusTimeline[startTime - appearTime + i] =
                 oldYRadius + (k / range) * (oldYRadius * factor - oldYRadius);
         k++;
       }

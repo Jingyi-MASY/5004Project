@@ -224,7 +224,7 @@ public abstract class AbstractShape implements IShape {
       for (int i = 0; i < range; i++) {
         isChangingColorStatus[startTime - appearTime + i] = 1;
         int newRGB = (k / range) * (color.getRGB() - oldColor.getRGB());//difference
-        colorTimeline[startTime + i] = new Color(oldColor.getRGB() + newRGB);
+        colorTimeline[startTime - appearTime + i] = new Color(oldColor.getRGB() + newRGB);
         k++;
       }
       //change color since after
@@ -284,10 +284,10 @@ public abstract class AbstractShape implements IShape {
       int oldX = this.getPositionAt(startTime).getX();
       int oldY = this.getPositionAt(startTime).getY();
       for (int i = 0; i < endTime - startTime; i++) {
-        isMovingStatus[startTime + i] = 1;
+        isMovingStatus[startTime - appearTime + i] = 1;
         int newX = (k / range) * (newPosition.getX() - oldX);
         int newY = (k / range) * (newPosition.getY() - oldY);
-        positionTimeline[startTime + i] = new Point2D(oldX + newX, oldY + newY);
+        positionTimeline[startTime - appearTime + i] = new Point2D(oldX + newX, oldY + newY);
         k++;
       }
       //change position since after

@@ -218,8 +218,6 @@ public abstract class AbstractShape implements IShape {
       throw new IllegalArgumentException("invalid appearance time range");
     }
     if (checkIfChangingColorAvailable(startTime, endTime)) {
-      int fromIndex = startTime - appearTime;
-      int toIndex = endTime - appearTime;
       int range = endTime - startTime;
       int k = 1;
       Color oldColor = this.getColorAt(startTime);

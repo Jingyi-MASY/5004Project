@@ -54,14 +54,14 @@ public class ModelTest {
             "Disappears at t=20" + System.lineSeparator()
             + "Name: o1" + System.lineSeparator() +
             "Type: oval" + System.lineSeparator() +
-            "Lower left corner: (15, -15), xRadius: 4, yRadius: 26 "
+            "Lower left corner: (15, -15), x Radius: 4, y Radius: 6 "
             + "Color: java.awt.Color[r=255,g=255,b=255]"
             + System.lineSeparator() +
             "Appears at: t=5" + System.lineSeparator() +
             "Disappears at t=25" + System.lineSeparator(), anime.showAllShapes());
     assertEquals("Name: o1" + System.lineSeparator() +
             "Type: oval" + System.lineSeparator() +
-            "Lower left corner: (15, -15), xRadius: 4, yRadius: 26 "
+            "Lower left corner: (15, -15), x Radius: 4, y Radius: 6 "
             + "Color: java.awt.Color[r=255,g=255,b=255]"
             + System.lineSeparator() +
             "Appears at: t=23" + System.lineSeparator() +

@@ -1,7 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
+import java.awt.Color;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;

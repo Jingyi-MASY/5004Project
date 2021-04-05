@@ -1,7 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
+import java.awt.Color;
 
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
@@ -45,7 +45,7 @@ public class ModelTest {
             "Disappears at t=20" + System.lineSeparator(), anime.showAllShapes());
     anime.addShape(new Oval("o1", ShapeType.OVAL, new Point2D(15, -15),
             Color.WHITE, 5, 25, 4, 6));
-    assertEquals( "Name: r1" + System.lineSeparator() +
+    assertEquals("Name: r1" + System.lineSeparator() +
             "Type: rectangle" + System.lineSeparator() +
             "Lower left corner: (50, 50), Width: 30, Height: 20 "
             + "Color: java.awt.Color[r=255,g=255,b=255]"
@@ -65,7 +65,7 @@ public class ModelTest {
             + "Color: java.awt.Color[r=255,g=255,b=255]"
             + System.lineSeparator() +
             "Appears at: t=23" + System.lineSeparator() +
-            "Disappears at t=23" + System.lineSeparator(),anime.showStatusAt(23));
+            "Disappears at t=23" + System.lineSeparator(), anime.showStatusAt(23));
   }
 
   @Test
@@ -115,10 +115,10 @@ public class ModelTest {
             + "Color: java.awt.Color[r=255,g=255,b=255]"
             + System.lineSeparator() +
             "Appears at: t=10" + System.lineSeparator() +
-            "Disappears at t=10" + System.lineSeparator(),anime.showStatusAt(10));
+            "Disappears at t=10" + System.lineSeparator(), anime.showStatusAt(10));
 
-    anime.move("o1", new Point2D(70,70), 20, 25);
-    anime.move("o1", new Point2D(-30,30), 0, 15);
+    anime.move("o1", new Point2D(70, 70), 20, 25);
+    anime.move("o1", new Point2D(-30, 30), 0, 15);
     assertEquals("Name: r1" + System.lineSeparator() +
             "Type: rectangle" + System.lineSeparator() +
             "Lower left corner: 30, 30), Width: 30, Height: 20"
@@ -132,7 +132,7 @@ public class ModelTest {
             + "Color: java.awt.Color[r=255,g=255,b=255]"
             + System.lineSeparator() +
             "Appears at: t=10" + System.lineSeparator() +
-            "Disappears at t=10" + System.lineSeparator(),anime.showStatusAt(10));
+            "Disappears at t=10" + System.lineSeparator(), anime.showStatusAt(10));
     try {
       anime.move("r1", new Point2D(60, 60), 5, 10);
       fail("Movement conflict");
@@ -170,7 +170,7 @@ public class ModelTest {
   @Test
   public void testScale() {
     anime.addShape(r1);
-    anime.scale("r1",5, 3,5);
+    anime.scale("r1", 5, 3, 5);
     anime.move("r1", new Point2D(30, 30), 7, 10);
     anime.addShape(new Oval("o1", ShapeType.OVAL, new Point2D(15, -15),
             Color.WHITE, 0, 40, 4, 6));
@@ -187,8 +187,8 @@ public class ModelTest {
             + "Color: java.awt.Color[r=255,g=255,b=255]"
             + System.lineSeparator() +
             "Appears at: t=5" + System.lineSeparator() +
-            "Disappears at t=5" + System.lineSeparator(),anime.showStatusAt(5));
-    anime.scale("o1",5, 0,5);
+            "Disappears at t=5" + System.lineSeparator(), anime.showStatusAt(5));
+    anime.scale("o1", 5, 0, 5);
     try {
       anime.scale("r0", 1, 10, 25);
       fail("Invalid name");
@@ -215,7 +215,7 @@ public class ModelTest {
     assertEquals(1, anime.getShapeStatusAtTime(10).size());
     assertEquals(0, anime.getShapeStatusAtTime(50).size());
     assertEquals(r1.toString(), anime.getShapeStatusAtTime(10).get(0).toString());
-    assertEquals("",anime.showStatusAt(50));
+    assertEquals("", anime.showStatusAt(50));
 
     IShape o1 = new Oval("o1", ShapeType.OVAL, new Point2D(15, -15),
             Color.WHITE, 0, 40, 4, 6);
@@ -225,10 +225,10 @@ public class ModelTest {
 
 
     //Need to extend the boundary
-    try{
+    try {
       anime.showStatusAt(150);
       fail("Out of boundary");
-    } catch(IllegalArgumentException ignored){
+    } catch (IllegalArgumentException ignored) {
     }
   }
 

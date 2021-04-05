@@ -161,8 +161,10 @@ public class Oval extends AbstractShape {
     String str = "";
     str += "Name: " + this.name + System.lineSeparator();
     str += "Type: " + this.type.toString() + System.lineSeparator();
-    str += "Center: " + this.getPositionAt(appearTime).toString() + ", x Radius: " + this.getXRadiusAt(appearTime)
-            + ", y Radius: " + this.getYRadiusAt(appearTime) + "Color: " + this.getColorAt(appearTime).toString() + System.lineSeparator();
+    str += "Center: " + this.getPositionAt(appearTime).toString() + ", x Radius: "
+            + this.getXRadiusAt(appearTime)
+            + ", y Radius: " + this.getYRadiusAt(appearTime) + "Color: "
+            + this.getColorAt(appearTime).toString() + System.lineSeparator();
     str += "Appears at: t=" + this.appearTime + System.lineSeparator();
     str += "Disappears at t=" + this.disappearTime + System.lineSeparator();
     return str;

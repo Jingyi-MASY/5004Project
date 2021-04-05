@@ -40,7 +40,7 @@ public abstract class AbstractShape implements IShape {
     if (para <= 0) {
       throw new IllegalArgumentException("invalid shape parameter");
     }
-    ShapeBuilder(name, type, position, color, appearTime, disappearTime);
+    shapeBuilder(name, type, position, color, appearTime, disappearTime);
   }
 
   /**
@@ -61,12 +61,12 @@ public abstract class AbstractShape implements IShape {
     if (para1 <= 0 || para2 <= 0) {
       throw new IllegalArgumentException("invalid shape parameter");
     }
-    ShapeBuilder(name, type, position, color, appearTime, disappearTime);
+    shapeBuilder(name, type, position, color, appearTime, disappearTime);
   }
 
 
-  private void ShapeBuilder(String name, ShapeType type, Point2D position, Color color, int appearTime,
-                            int disappearTime) throws IllegalArgumentException {
+  private void shapeBuilder(String name, ShapeType type, Point2D position, Color color,
+                            int appearTime, int disappearTime) throws IllegalArgumentException {
     if (name == null) {
       throw new IllegalArgumentException("invalid name");
     } else if (type == null) {
@@ -93,7 +93,7 @@ public abstract class AbstractShape implements IShape {
     this.isScalingStatus = new int[timeRange];
     this.positionTimeline = new Point2D[timeRange];
     for (int i = 0; i < timeRange; i++) {
-     positionTimeline[i] = position;
+      positionTimeline[i] = position;
     }
     this.colorTimeline = new Color[timeRange];
     for (int i = 0; i < timeRange; i++) {
@@ -145,8 +145,8 @@ public abstract class AbstractShape implements IShape {
    * This method gets and returns the moving status of every unit of time in a list.
    *
    * @return list of 1 or 0 indicating whether if the shape is in certain moving movement. 1
-   * indicates moving in progress, NOT available to add new move. 0 indicates moving not in
-   * progress, available for new move.
+   *         indicates moving in progress, NOT available to add new move. 0 indicates moving not in
+   *         progress, available for new move.
    */
   protected int[] getMovingStatus() {
     return isMovingStatus;
@@ -156,8 +156,8 @@ public abstract class AbstractShape implements IShape {
    * This method gets and returns the color-changing status of every unit of time in a list.
    *
    * @return list of 1 or 0 indicating whether if the shape is in certain color-changing movement. 1
-   * indicates color changing in progress, NOT available to add new color change. 0 indicates color
-   * changing not in progress, available for new color change.
+   *         indicates color changing in progress, NOT available to add new color change. 0 indicates color
+   *         changing not in progress, available for new color change.
    */
   protected int[] getColorChangingStatus() {
     return isChangingColorStatus;
@@ -167,8 +167,8 @@ public abstract class AbstractShape implements IShape {
    * This method gets and returns the scaling status of every unit of time in a list.
    *
    * @return list of 1 or 0 indicating whether if the shape is in certain scaling movement. 1
-   * indicates scaling in progress, NOT available to add new scaling. 0 indicates scaling not in
-   * progress, available for new scaling.
+   *         indicates scaling in progress, NOT available to add new scaling. 0 indicates scaling not in
+   *         progress, available for new scaling.
    */
   protected int[] getScalingStatus() {
     return isScalingStatus;
@@ -178,7 +178,7 @@ public abstract class AbstractShape implements IShape {
    * This method gets and returns the Color status of this shape at all time of its appearance.
    *
    * @return a list of Color elements that indicates the color status of this shape at every time
-   * unit of its appearance time.
+   *         unit of its appearance time.
    */
   protected Color[] getColorTimeline() {
     return colorTimeline;
@@ -188,7 +188,7 @@ public abstract class AbstractShape implements IShape {
    * This method gets and returns the position status of this shape at all time of its appearance.
    *
    * @return a list of Position2D elements that indicates the position of this shape at every time
-   * unit of its appearance time.
+   *         unit of its appearance time.
    */
   protected Point2D[] getMovingTimeline() {
     return positionTimeline;

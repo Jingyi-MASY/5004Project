@@ -28,7 +28,7 @@ public class Circle extends AbstractShape {
     }
     int timeRange = disappearTime - appearTime;
     this.radiusTimeline = new int[timeRange];
-    for (int i = 0; i < timeRange; i ++) {
+    for (int i = 0; i < timeRange; i++) {
       radiusTimeline[i] = radius;
     }
   }
@@ -86,7 +86,8 @@ public class Circle extends AbstractShape {
       int oldRadius = this.getRadiusAt(startTime);
       for (int i = 0; i < endTime - startTime; i++) {
         isScalingStatus[startTime - appearTime + i] = 1;
-        radiusTimeline[startTime -appearTime + i] = oldRadius + (k / range) * (oldRadius * factor - oldRadius);
+        radiusTimeline[startTime - appearTime + i] = oldRadius + (k / range)
+                * (oldRadius * factor - oldRadius);
         k++;
       }
       //change radius after since

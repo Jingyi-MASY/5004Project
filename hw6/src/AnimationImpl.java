@@ -22,7 +22,7 @@ public class AnimationImpl implements IAnimation {
     this.listOfShapes = new LinkedList<>();
   }
 
-
+  @Override
   public void addShape(IShape shape) throws IllegalArgumentException {
     if (shape == null) {
       throw new IllegalArgumentException("Null shape input.");

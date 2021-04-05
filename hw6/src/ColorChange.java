@@ -32,7 +32,8 @@ public class ColorChange implements Movement {
     String str = "";
     str += "Shape " + this.shape.getName() + " ";
     str += "changes color from " + this.shape.getColorAt(startTime).getRGB()
-            + " to " + targetColor.getRGB() + " from t=" + startTime + " to t=" + endTime + System.lineSeparator();
+            + " to " + targetColor.getRGB() + " from t=" + startTime + " to t="
+            + endTime + System.lineSeparator();
     return str;
   }
 

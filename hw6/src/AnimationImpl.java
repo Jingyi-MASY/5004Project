@@ -12,7 +12,8 @@ import java.util.List;
  */
 public class AnimationImpl implements IAnimation {
   private List<IShape> listOfShapes;
-  private List<String> listOfNames;
+//  private List<String> listOfNames;
+
 
   /**
    * This is the constructor of this AnimationImpl class. It initialize an animation implementation
@@ -20,7 +21,7 @@ public class AnimationImpl implements IAnimation {
    */
   public AnimationImpl() {
     this.listOfShapes = new LinkedList<>();
-    this.listOfNames = new LinkedList<>();
+//    this.listOfNames = new LinkedList<>();
   }
 
   /*
@@ -84,12 +85,14 @@ public class AnimationImpl implements IAnimation {
 
 
   public void addShape(String name, IShape shape) throws IllegalArgumentException{
-    for (String n : listOfNames) {
-      if (n.equals(name)) {
+    if(shape == null) {
+      throw new IllegalArgumentException("Null shape input.");
+    }
+    for (IShape n : listOfShapes) {
+      if (n.getName().equals(name)) {
         throw new IllegalArgumentException("Name of this shape exists.");
       }
     }
-    this.listOfNames.add(name);
     this.listOfShapes.add(shape);
   }
 
@@ -131,18 +134,18 @@ public class AnimationImpl implements IAnimation {
 //  }
 
   @Override
-  public void changeColor(IShape shape, Color targetColor, int startTime, int endTime) {
+  public void changeColor(String name, Color targetColor, int startTime, int endTime) {
     for (IShape x : listOfShapes) {
-      if (x.getName().equals(shape.getName())) {
+      if (x.getName().equals(name)) {
         x.addChangeColor(targetColor, startTime, endTime);
       }
     }
   }
 
   @Override
-  public void scale(IShape shape, int scalingFactor, int startTime, int endTime) {
+  public void scale(String name, int scalingFactor, int startTime, int endTime) {
     for (IShape x : listOfShapes) {
-      if (x.getName().equals(shape.getName())) {
+      if (x.getName().equals(name)) {
         x.addScale(scalingFactor, startTime, endTime);
       }
     }
@@ -150,9 +153,9 @@ public class AnimationImpl implements IAnimation {
   }
 
   @Override
-  public void move(IShape shape, Point2D targetPosition, int startTime, int endTime) {
+  public void move(String name, Point2D targetPosition, int startTime, int endTime) {
     for (IShape x : listOfShapes) {
-      if (x.getName().equals(shape.getName())) {
+      if (x.getName().equals(name)) {
         x.addMove(targetPosition, startTime, endTime);
       }
     }

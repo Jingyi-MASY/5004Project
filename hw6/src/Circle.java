@@ -112,13 +112,13 @@ public class Circle extends AbstractShape {
   @Override
   public String toString() {
     String str = "";
-    str += "Name: " + this.name + "\n";
-    str += "Type: " + this.type.toString() + "\n";
+    str += "Name: " + this.name + System.lineSeparator();
+    str += "Type: " + this.type.toString() + System.lineSeparator();
     str += "Center: " + this.getPositionAt(appearTime);
     str += ", Radius: " + this.getRadiusAt(appearTime);
-    str += ", Color: " + this.getColorAt(appearTime).toString() + "\n";
-    str += "Appears at t=" + this.appearTime + "\n";
-    str += "Disappears at t=" + this.disappearTime + "\n";
+    str += ", Color: " + this.getColorAt(appearTime).toString() + System.lineSeparator();
+    str += "Appears at t=" + this.appearTime + System.lineSeparator();
+    str += "Disappears at t=" + this.disappearTime + System.lineSeparator();
     return str;
   }
 }

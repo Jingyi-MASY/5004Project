@@ -65,37 +65,46 @@ public interface IAnimation {
 //                           int appearTime, int disappearTime, int width, int height)
 //          throws IllegalArgumentException;
 
+  /**
+   * This method adds a shape into this animation. The shaped to be added
+   * must appears within time range [0, 100], and the name of the rectangle must be unique.
+   *
+   * @param name   name of the shape, String type; must be unique comparing to all shapes names in
+   *               this animation.
+   * @param shape  a shape object to be added to the list
+   * @throws IllegalArgumentException  if the name already exists, or shape invalid
+   */
   void addShape(String name, IShape shape);
 
   /**
    * This method allows certain shape in this animation changes its color to the target color, and
    * this animation starts at the a start time point, and complete at another time point.
-   * @param shape   shape to complete this color change movement, IShape type.
+   * @param name   name of shape to complete this color change movement, String type.
    * @param targetColor  the target color that the shape is changing to, Color type.
    * @param startTime   the start time point of this color changing movement, int type.
    * @param endTime   the end time point of this color changing movement, int type.
    */
-  void changeColor(IShape shape, Color targetColor, int startTime, int endTime);
+  void changeColor(String name, Color targetColor, int startTime, int endTime);
 
   /**
    * This method allows certain shape in this animation scales its dimension by certain scaling
    * factor, and this animation starts at a start time point, and ends at another time point.
-   * @param shape   shape to complete this scaling movement, IShape type.
+   * @param name   name of shape to complete this scaling movement, String type.
    * @param scalingFactor  the factor that the shape is scaling based on, int type.
    * @param startTime   the start time point of this scaling movement, int type.
    * @param endTime   the end time point of this scaling movement, int type.
    */
-  void scale(IShape shape, int scalingFactor, int startTime, int endTime);
+  void scale(String name, int scalingFactor, int startTime, int endTime);
 
   /**
    * This method allows certain shape in this animation to move its position to a new position, and
    * this animation starts at a start time point and ends at another time point.
-   * @param shape   shape that complete this moving movement, IShape type.
+   * @param name   name of shape that complete this moving movement, String type.
    * @param targetPosition   the target position to be move to, Point2D type.
    * @param startTime   the start time point of this moving movement, int type.
    * @param endTime   the end time point of this moving movement, int type.
    */
-  void move(IShape shape, Point2D targetPosition, int startTime, int endTime);
+  void move(String name, Point2D targetPosition, int startTime, int endTime);
 
   /**
    * This method displays in text description of the initial status of all the shapes that are in
@@ -126,7 +135,7 @@ public interface IAnimation {
 
   /**
    * This method display and show status of all the shapes that are appeared at certain point of
-   * time, the status including thire name, type, color, dimension, position, appearance time.
+   * time, the status including their name, type, color, dimension, position, appearance time.
    * @param time  the time point that the list of shapes will be created based on, int type.
    * @return  a text description of the status of all the shapes that are appeared at the passed in
    *          point of time.

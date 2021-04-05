@@ -181,7 +181,7 @@ public class ShapeTest {
   }
 
   @Test
-  void testMove() {
+  public void testMove() {
     IShape r1Copy = r1.getCopy(5);
     r1.addMove(new Point2D(10, 10), 11, 16);
     r1.addMove(new Point2D(70, 90), 0, 10);

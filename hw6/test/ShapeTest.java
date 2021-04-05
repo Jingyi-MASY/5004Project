@@ -123,6 +123,16 @@ public class ShapeTest {
       fail("Out of copy time boundary");
     } catch (IllegalArgumentException ignored) {
     }
+
+    assertEquals("Name: o1" + System.lineSeparator() +
+            "Type: oval" + System.lineSeparator() +
+            "Lower left corner: (15, -15), xRadius: 4, yRadius: 26 "
+            + "Color: java.awt.Color[r=255,g=255,b=255]"
+            + System.lineSeparator() +
+            "Appears at: t=5" + System.lineSeparator() +
+            "Disappears at t=5" + System.lineSeparator(), o1.toString());
+
+    //Check Model test
   }
 
   @Test

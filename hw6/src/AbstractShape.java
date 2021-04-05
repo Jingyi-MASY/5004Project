@@ -214,15 +214,15 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public void addChangeColor(Color color, int startTime, int endTime) throws IllegalStateException {
-    if (startTime < endTime || startTime < appearTime || endTime > disappearTime) {
-      throw new IllegalArgumentException("invalid appearance time range");
+    if (startTime > endTime || startTime < appearTime || endTime > disappearTime) {
+      throw new IllegalArgumentException("invalid color change time range");
     }
     if (checkIfChangingColorAvailable(startTime, endTime)) {
       int range = endTime - startTime;
       int k = 1;
       Color oldColor = this.getColorAt(startTime);
-      for (int i = 0; i < endTime - startTime; i++) {
-        isChangingColorStatus[startTime + i] = 1;
+      for (int i = 0; i < range; i++) {
+        isChangingColorStatus[startTime - appearTime + i] = 1;
         int newRGB = (k / range) * (color.getRGB() - oldColor.getRGB());//difference
         colorTimeline[startTime + i] = new Color(oldColor.getRGB() + newRGB);
         k++;

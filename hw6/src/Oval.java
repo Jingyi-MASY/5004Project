@@ -120,8 +120,8 @@ public class Oval extends AbstractShape {
       }
       //change radius after since
       for (int j = endTime; j < disappearTime; j++) {
-        xRadiusTimeline[j] = oldXRadius * factor;
-        yRadiusTimeline[j] = oldYRadius * factor;
+        xRadiusTimeline[j - appearTime] = oldXRadius * factor;
+        yRadiusTimeline[j - appearTime] = oldYRadius * factor;
       }
       this.listOfMovements.add(new Scale(this, factor, startTime, endTime));
     } else {

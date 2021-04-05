@@ -88,7 +88,7 @@ public class Circle extends AbstractShape {
       }
       //change radius after since
       for (int j = endTime; j < disappearTime; j++) {
-        radiusTimeline[j] = oldRadius * factor;
+        radiusTimeline[j - appearTime] = oldRadius * factor;
       }
       this.listOfMovements.add(new Scale(this, factor, startTime, endTime));
     } else {

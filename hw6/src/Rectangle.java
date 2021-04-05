@@ -118,8 +118,8 @@ public class Rectangle extends AbstractShape {
       }
       //change radius after since
       for (int j = endTime; j < disappearTime; j++) {
-        widthTimeline[j] = oldWidth * factor;
-        heightTimeline[j] = oldHeight * factor;
+        widthTimeline[j - appearTime] = oldWidth * factor;
+        heightTimeline[j - appearTime] = oldHeight * factor;
       }
       this.listOfMovements.add(new Scale(this, factor, startTime, endTime));
     } else {

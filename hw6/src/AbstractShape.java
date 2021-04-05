@@ -229,7 +229,7 @@ public abstract class AbstractShape implements IShape {
       }
       //change color since after
       for (int j = endTime; j < disappearTime; j++) {
-        colorTimeline[j] = color;
+        colorTimeline[j - appearTime] = color;
       }
       this.listOfMovements.add(new ColorChange(this, color, startTime, endTime));
     } else {
@@ -292,7 +292,7 @@ public abstract class AbstractShape implements IShape {
       }
       //change position since after
       for (int j = endTime; j < disappearTime; j++) {
-        positionTimeline[j] = newPosition;
+        positionTimeline[j - appearTime] = newPosition;
       }
       this.listOfMovements.add(new Move(this, newPosition, startTime, endTime));
     } else {

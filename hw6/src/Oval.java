@@ -30,8 +30,9 @@ public class Oval extends AbstractShape {
     super(name, type, position, color, appearTime, disappearTime, xRadius, yRadius);
     this.xRadius = xRadius;
     this.yRadius = yRadius;
-    int timeRange = disappearTime - appearTime;
+    int timeRange = disappearTime - appearTime + 1;
     this.xRadiusTimeline = new int[timeRange];
+    this.yRadiusTimeline = new int[timeRange];
     for (int r : xRadiusTimeline) {
       r = xRadius;
     }

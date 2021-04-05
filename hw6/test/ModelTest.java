@@ -12,7 +12,6 @@ public class ModelTest {
   @Before
   public void setup() {
     anime = new AnimationImpl();
-
   }
 
   @Test
@@ -24,7 +23,7 @@ public class ModelTest {
       fail("Accepting Null");
     } catch (IllegalArgumentException ignored) {
     }
-    String str = anime.showAllShapes();
+    assertEquals(" ", anime.showAllShapes());
   }
 
   @Test

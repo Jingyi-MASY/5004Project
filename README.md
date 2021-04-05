@@ -11,7 +11,9 @@ In this application, there are 3 interfaces in total, they are: IAnimation, ISha
 
 ## Purpose behind each interface and each class
 
+
 ### IAnimation and AnimationImpl
+
 #### IAnimation
 IAnimation interface contains all the operations that apply to all animations. This interface allows an user:
 -	to add a shape to the animation by passing in a shape; 
@@ -23,7 +25,9 @@ IAnimation interface contains all the operations that apply to all animations. T
 #### AnimationImpl
 This IAnimation interface is implemented in AnimationImpl class, where it has list of all shapes that ever existed in the animation to keep and track data to achieve all the above operations in an animation. 
 
+
 ### IShape, AbstractShape and concrete shape classes 
+
 #### IShape
 IShape interface contains operations that applies to all shapes. As mentioned above, a shape can have zero to many movements as long as 1, the shape is appearing during the desired movement time, and 2, the shape is available for certain move during the desired movement time, which means the shape is not occupied with the same type of movement during the desired movement time. Therefore, a shape should be able to operate the following on itself:
 -	to make a movement on itself. Possible change includes to change its color, to change its dimension, to move its position;
@@ -39,7 +43,9 @@ This IShape interface is implemented in many specific concrete shape classes, su
 #### AbstractShape
 As there are many common operations and fields that all the these concrete shapes share, we created an abstract class called AbstractedShape that implements IShape interface to represent all the common fields and common methods, and all concrete shape classes extend the AbstractShape.
 
+
 ### Movement and concrete movement classes
+
 #### Movement
 Movement interface includes operations that applies to all movement classes. The only operations included in a Movement interface is to display itself and get the start time of when the movement starts. As for now we are using a text description to display animations, so the display operation in Movement also returns a text description in String. 
 
@@ -49,7 +55,9 @@ Concrete movement classes includes Move, ColorChange and Scale. Each of them per
 -	ColorChange: it changes the color of a shape to a target color by the end of the movement;
 -	Scale: it scales the dimensions of a shape by multiplying its current dimension to a scaling factor by the end of the movement.
 
+
 ### Other classes
+
 #### Point2D
 To represent the position of a shape, we need a x value and y value which represents the shape’s position on x axis and y axis. As x value and y value are always showing or using in a pair, we created a Point2D class that represents the position of (x, y). 
 

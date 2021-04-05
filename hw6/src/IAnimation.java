@@ -69,12 +69,10 @@ public interface IAnimation {
    * This method adds a shape into this animation. The shaped to be added must appears within time
    * range [0, 100], and the name of the rectangle must be unique.
    *
-   * @param name  name of the shape, String type; must be unique comparing to all shapes names in
-   *              this animation.
    * @param shape a shape object to be added to the list
    * @throws IllegalArgumentException if the name already exists, or shape invalid
    */
-  void addShape(String name, IShape shape);
+  void addShape(IShape shape);
 
   /**
    * This method allows certain shape in this animation changes its color to the target color, and

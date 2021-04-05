@@ -34,7 +34,7 @@ public interface IShape {
    *
    * @param time time that is looking for, int type.
    * @return the color of this shape that at the passed in point of time, Color type.
-   * @throws IllegalArgumentException if the passed in time if outr of this shape's appearance
+   * @throws IllegalArgumentException if the passed in time if out of this shape's appearance
    *                                  time.
    */
   Color getColorAt(int time) throws IllegalArgumentException;
@@ -97,26 +97,6 @@ public interface IShape {
   Point2D[] getMovingTimeline();
 
   /**
-   * This method gets and returns the status of all aspects of this shape at certain point of time.
-   *
-   * @param time time that is looking for, int type.
-   * @return a new shape object that is created based on the status of all aspect of this shape at
-   * passed in time, IShape type.
-   * @throws IllegalArgumentException if the time if out of this shape's appearance time.
-   */
-  IShape statusAt(int time) throws IllegalArgumentException;
-
-  /**
-   * This method checks if changing color movement is available for this shape from start time to
-   * end time, which means check if the time range has been occupied for color changing movement.
-   *
-   * @param startTime target start time to have a color change movement, int type.
-   * @param endTime   target end time to have a color change movement, int type.
-   * @return true if this shape is available for this color change move, false otherwise.
-   */
-  boolean checkIfChangingColorAvailable(int startTime, int endTime);
-
-  /**
    * This method add a color change movement to this shape to a target color, starting at a start
    * time and completes at an end time.
    *
@@ -129,16 +109,6 @@ public interface IShape {
   void addChangeColor(Color color, int startTime, int endTime) throws IllegalStateException;
 
   /**
-   * This method checks if scaling movement is available for this shape from start time to end time,
-   * which means to check if the time range has been occupied for scaling movement.
-   *
-   * @param startTime target start time to have a scaling scaling movement, int type.
-   * @param endTime   target end time to have a scaling movement, int type.
-   * @return true if the shape if available for a scaling movement, false otherwise.
-   */
-  boolean checkIfScalingAvailable(int startTime, int endTime);
-
-  /**
    * This method adds a scaling movement to this shape to a certain new dimension, starting at a
    * start time and completes at an end time.
    *
@@ -149,16 +119,6 @@ public interface IShape {
    *                                  take a scaling movement.
    */
   void addScale(int factor, int startTime, int endTime) throws IllegalArgumentException;
-
-  /**
-   * This method checks if moving movement is available for this shape form start time to end time,
-   * which means to check if the time range has been occupied for moving movement.
-   *
-   * @param startTime target start time to have a moving movement, int type.
-   * @param endTime   target end time to have a moving movement, int type.
-   * @return true if the shape is available for a moving movement, false otherwise.
-   */
-  boolean checkIfMovingAvailable(int startTime, int endTime);
 
   /**
    * This method adds a moving movement to this shape so that it moves to a new position, starting
@@ -178,7 +138,7 @@ public interface IShape {
    *
    * @param time time that is looking for, int type.
    * @return a new shape that has the same status of this shape at certain time, or return null if
-   * the time is invalid for this shap.
+   * the time is invalid for this shape.
    */
   IShape getCopy(int time);
 

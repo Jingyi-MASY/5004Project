@@ -97,12 +97,6 @@ public class Circle extends AbstractShape {
   }
 
   @Override
-  public IShape statusAt(int time) throws IllegalArgumentException {
-    return new Circle(this.name, this.type, this.getPositionAt(time), this.getColorAt(time),
-            this.appearTime, this.disappearTime, this.getRadiusAt(time));
-  }
-
-  @Override
   public String getDimensionChange(int time, int factor) {
     return "scales from Radius: " + this.getRadiusAt(time) + ", to Radius: "
             + this.getRadiusAt(time) * factor;

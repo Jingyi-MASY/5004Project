@@ -146,11 +146,6 @@ public class Oval extends AbstractShape {
             + ", to xRadius: " + oldXRadius * factor + ", yRadius: " + oldYRadius * factor;
   }
 
-  @Override
-  public IShape statusAt(int time) throws IllegalArgumentException {
-    return new Oval(this.name, this.type, this.getPositionAt(time), this.getColorAt(time),
-            this.appearTime, this.disappearTime, this.getXRadiusAt(time), this.getYRadiusAt(time));
-  }
 
   /**
    * This gets and returns a specific string representation desired for this oval.

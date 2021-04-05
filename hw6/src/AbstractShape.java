@@ -166,8 +166,15 @@ public abstract class AbstractShape implements IShape {
   }
 
 
-  @Override
-  public boolean checkIfChangingColorAvailable(int startTime, int endTime) {
+  /**
+   * This method checks if changing color movement is available for this shape from start time to
+   * end time, which means check if the time range has been occupied for color changing movement.
+   *
+   * @param startTime target start time to have a color change movement, int type.
+   * @param endTime   target end time to have a color change movement, int type.
+   * @return true if this shape is available for this color change move, false otherwise.
+   */
+  protected boolean checkIfChangingColorAvailable(int startTime, int endTime) {
     for (int i = 0; i < endTime - startTime; i++) {
       if (isChangingColorStatus[i] == 1) {
         return false;
@@ -204,8 +211,15 @@ public abstract class AbstractShape implements IShape {
 
   }
 
-  @Override
-  public boolean checkIfScalingAvailable(int startTime, int endTime) {
+  /**
+   * This method checks if scaling movement is available for this shape from start time to end time,
+   * which means to check if the time range has been occupied for scaling movement.
+   *
+   * @param startTime target start time to have a scaling scaling movement, int type.
+   * @param endTime   target end time to have a scaling movement, int type.
+   * @return true if the shape if available for a scaling movement, false otherwise.
+   */
+  protected boolean checkIfScalingAvailable(int startTime, int endTime) {
     for (int i = 0; i < endTime - startTime; i++) {
       if (isScalingStatus[startTime + i] == 1) {
         return false;
@@ -214,8 +228,15 @@ public abstract class AbstractShape implements IShape {
     return true;
   }
 
-  @Override
-  public boolean checkIfMovingAvailable(int startTime, int endTime) {
+  /**
+   * This method checks if moving movement is available for this shape form start time to end time,
+   * which means to check if the time range has been occupied for moving movement.
+   *
+   * @param startTime target start time to have a moving movement, int type.
+   * @param endTime   target end time to have a moving movement, int type.
+   * @return true if the shape is available for a moving movement, false otherwise.
+   */
+  protected boolean checkIfMovingAvailable(int startTime, int endTime) {
     for (int i = 0; i < endTime - startTime; i++) {
       if (isMovingStatus[startTime + i] == 1) {
         return false;

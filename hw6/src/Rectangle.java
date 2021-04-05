@@ -29,8 +29,9 @@ public class Rectangle extends AbstractShape {
     super(name, type, position, color, appearTime, disappearTime, width, height);
     this.width = width;
     this.height = height;
-    int timeRange = disappearTime - appearTime;
+    int timeRange = disappearTime - appearTime + 1;
     this.widthTimeline = new int[timeRange];
+    this.heightTimeline = new int[timeRange];
     for (int r : widthTimeline) {
       r = width;
     }

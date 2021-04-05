@@ -208,4 +208,28 @@ public class ModelTest {
             + System.lineSeparator(), anime.displayAll());
   }
 
+  @Test
+  public void testShow() {
+    assertEquals(0, anime.getShapeStatusAtTime(5).size());
+    anime.addShape(r1);
+    assertEquals(1, anime.getShapeStatusAtTime(10).size());
+    assertEquals(0, anime.getShapeStatusAtTime(50).size());
+    assertEquals(r1.toString(), anime.getShapeStatusAtTime(10).get(0).toString());
+    assertEquals("",anime.showStatusAt(50));
+
+    IShape o1 = new Oval("o1", ShapeType.OVAL, new Point2D(15, -15),
+            Color.WHITE, 0, 40, 4, 6);
+    anime.addShape(o1);
+    assertEquals(2, anime.getShapeStatusAtTime(15).size());
+    assertEquals(o1.toString(), anime.getShapeStatusAtTime(15).get(1).toString());
+
+
+    //Need to extend the boundary
+    try{
+      anime.showStatusAt(150);
+      fail("Out of boundary");
+    } catch(IllegalArgumentException ignored){
+    }
+  }
+
 }

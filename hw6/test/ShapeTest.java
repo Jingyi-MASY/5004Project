@@ -3,9 +3,20 @@ import org.junit.Test;
 
 import java.awt.*;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
 
 public class ShapeTest {
+  private IShape o1;
+  private IShape c1;
+  private IShape r1;
+
+  @Before
+  public void setup() {
+    c1 = new Circle("c1", ShapeType.CIRCLE, new Point2D(0,0), Color.BLACK, 30, 50, 10);
+    o1 = new Oval("o1", ShapeType.OVAL, new Point2D(15, -15), Color.WHITE, 5, 5, 4, 6);
+    r1 = new Rectangle("r1", ShapeType.TRIANGLE, new Point2D(50, 50), Color.WHITE, 0, 20, 30, 20);
+  }
 
   @Test
   public void testShapeConstructor() {
@@ -85,6 +96,42 @@ public class ShapeTest {
     IShape c1 = new Circle("c1", ShapeType.CIRCLE, new Point2D(0,0), Color.BLACK, 30, 50, 10);
     IShape o1 = new Oval("o1", ShapeType.OVAL, new Point2D(15, -15), Color.WHITE, 5, 5, 4, 6);
     IShape r1 = new Rectangle("r1", ShapeType.TRIANGLE, new Point2D(50, 50), Color.WHITE, 0, 20, 30, 20);
+    assertEquals("c1", c1.getName());
+    assertEquals(ShapeType.RECTANGLE, r1.getType());
+  }
+
+  @Test
+  public void testPosition() {
+    //getPosition
+    assertEquals(new Point2D(50, 50), r1.getPositionAt(10));
+    try {
+      r1.getPositionAt(30);
+      fail("Accepting invalid time");
+    } catch (IllegalArgumentException ignored) {
+    }
+    try {
+      r1.getPositionAt(-5);
+      fail("Accepting invalid time");
+    } catch (IllegalArgumentException ignored) {
+    }
+  }
+
+  @Test
+  public void testColor() {
+    //getColor
+    assertEquals(Color.BLACK, c1.getColorAt(30));
+    try {
+      c1.getColorAt(20);
+      fail("Accepting invalid time");
+    } catch (IllegalArgumentException ignored) {
+    }
+    try {
+      c1.getColorAt(-5);
+      fail("Accepting invalid time");
+    } catch (IllegalArgumentException ignored) {
+    }
+
+    c1.addChangeColor(Color.WHITE, 30, 35);
 
 
   }

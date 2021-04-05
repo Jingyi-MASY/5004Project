@@ -114,4 +114,5 @@ public interface IShape {
    * @return the text description of how the dimensions have changes during a scaling movement.
    */
   String getDimensionChange(int time, int factor);
+
 }

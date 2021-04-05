@@ -92,12 +92,12 @@ public abstract class AbstractShape implements IShape {
     this.isChangingColorStatus = new int[timeRange];
     this.isScalingStatus = new int[timeRange];
     this.positionTimeline = new Point2D[timeRange];
-    for (Point2D p : positionTimeline) {
-      p = position;
+    for (int i = 0; i < timeRange; i++) {
+     positionTimeline[i] = position;
     }
     this.colorTimeline = new Color[timeRange];
-    for (Color c : colorTimeline) {
-      c = color;
+    for (int i = 0; i < timeRange; i++) {
+      colorTimeline[i] = color;
     }
     this.listOfMovements = new LinkedList<>();
   }

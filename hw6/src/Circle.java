@@ -25,8 +25,8 @@ public class Circle extends AbstractShape {
     super(name, type, position, color, appearTime, disappearTime, radius);
     int timeRange = disappearTime - appearTime;
     this.radiusTimeline = new int[timeRange];
-    for (int r : radiusTimeline) {
-      r = radius;
+    for (int i = 0; i < timeRange; i ++) {
+      radiusTimeline[i] = radius;
     }
   }
 

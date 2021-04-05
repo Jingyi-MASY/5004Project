@@ -248,7 +248,7 @@ public abstract class AbstractShape implements IShape {
    */
   protected boolean checkIfScalingAvailable(int startTime, int endTime) {
     for (int i = 0; i < endTime - startTime; i++) {
-      if (isScalingStatus[startTime + i] == 1) {
+      if (isScalingStatus[startTime - appearTime + i] == 1) {
         return false;
       }
     }
@@ -265,7 +265,7 @@ public abstract class AbstractShape implements IShape {
    */
   protected boolean checkIfMovingAvailable(int startTime, int endTime) {
     for (int i = 0; i < endTime - startTime; i++) {
-      if (isMovingStatus[startTime + i] == 1) {
+      if (isMovingStatus[startTime - appearTime + i] == 1) {
         return false;
       }
     }

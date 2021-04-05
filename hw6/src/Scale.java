@@ -16,7 +16,10 @@ public class Scale implements Movement {
    * @param startTime   the start time of this movement, int type.
    * @param endTime   the end time of this movement, int type.
    */
-  public Scale(IShape shape, int scalingFactor, int startTime, int endTime) {
+  public Scale(IShape shape, int scalingFactor, int startTime, int endTime) throws IllegalArgumentException {
+    if (scalingFactor <= 0) {
+      throw new IllegalArgumentException("Scaling factor cannot be zero or negative");
+    }
     this.shape = shape;
     this.scalingFactor = scalingFactor;
     this.startTime = startTime;

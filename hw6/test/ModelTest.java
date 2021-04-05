@@ -91,7 +91,7 @@ public class ModelTest {
       fail("Movement invalid position");
     } catch (IllegalArgumentException ignored) {
     }
-    assertEquals();
+    //assertEquals();
   }
 
 

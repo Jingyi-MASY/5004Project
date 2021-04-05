@@ -77,7 +77,7 @@ public class Circle extends AbstractShape {
    *                                  time range.
    */
   public void addScale(int factor, int startTime, int endTime) throws IllegalArgumentException {
-    if (startTime < endTime || startTime < appearTime || endTime > disappearTime) {
+    if (startTime > endTime || startTime < appearTime || endTime > disappearTime) {
       throw new IllegalArgumentException("invalid appearance time range");
     }
     if (checkIfScalingAvailable(startTime, endTime)) {

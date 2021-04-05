@@ -32,11 +32,11 @@ public class Rectangle extends AbstractShape {
     int timeRange = disappearTime - appearTime + 1;
     this.widthTimeline = new int[timeRange];
     this.heightTimeline = new int[timeRange];
-    for (int r : widthTimeline) {
-      r = width;
+    for (int i = 0; i < timeRange; i++) {
+      widthTimeline[i] = width;
     }
-    for (int r : heightTimeline) {
-      r = height;
+    for (int i = 0; i < timeRange; i++) {
+      heightTimeline[i] = height;
     }
   }
 

@@ -155,9 +155,9 @@ public abstract class AbstractShape implements IShape {
   /**
    * This method gets and returns the color-changing status of every unit of time in a list.
    *
-   * @return list of 1 or 0 indicating whether if the shape is in certain color-changing movement. 1
-   *         indicates color changing in progress, NOT available to add new color change. 0 indicates color
-   *         changing not in progress, available for new color change.
+   * @return list of 1 or 0 indicating whether if the shape is in certain color-changing movement.
+   *         1 indicates color changing in progress, NOT available to add new color change.
+   *         0 indicates color changing not in progress, available for new color change.
    */
   protected int[] getColorChangingStatus() {
     return isChangingColorStatus;
@@ -167,8 +167,8 @@ public abstract class AbstractShape implements IShape {
    * This method gets and returns the scaling status of every unit of time in a list.
    *
    * @return list of 1 or 0 indicating whether if the shape is in certain scaling movement. 1
-   *         indicates scaling in progress, NOT available to add new scaling. 0 indicates scaling not in
-   *         progress, available for new scaling.
+   *         indicates scaling in progress, NOT available to add new scaling.
+   *         0 indicates scaling not in progress, available for new scaling.
    */
   protected int[] getScalingStatus() {
     return isScalingStatus;

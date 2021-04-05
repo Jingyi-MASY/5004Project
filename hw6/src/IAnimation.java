@@ -86,7 +86,7 @@ public interface IAnimation {
    *
    * @param time the time point that the list of shapes will be created based on, int type.
    * @return a text description of the status of all the shapes that are appeared at the passed in
-   * point of time.
+   *         point of time.
    */
   String showStatusAt(int time);
 }

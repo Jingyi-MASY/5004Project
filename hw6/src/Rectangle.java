@@ -157,8 +157,7 @@ public class Rectangle extends AbstractShape {
     str += "Name: " + this.getName() + System.lineSeparator();
     str += "Type: " + this.type.toString() + System.lineSeparator();
     str += "Lower left corner: " + this.position.toString() + ", Width: " + this.width
-            + ", Height: " + this.height + System.lineSeparator()
-            + "Color: " + String.valueOf(this.color.getRGB()) + System.lineSeparator();
+            + ", Height: " + this.height + "Color: " + this.color.toString() + System.lineSeparator();
     str += "Appears at: t=" + this.appearTime + System.lineSeparator();
     str += "Disappears at t=" + this.disappearTime + System.lineSeparator();
     return str;

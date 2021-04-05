@@ -54,49 +54,6 @@ public interface IShape {
   int getDisappearTime();
 
   /**
-   * This method gets and returns the moving status of every unit of time in a list.
-   *
-   * @return list of 1 or 0 indicating whether if the shape is in certain moving movement. 1
-   * indicates moving in progress, NOT available to add new move. 0 indicates moving not in
-   * progress, available for new move.
-   */
-  int[] getMovingStatus();
-
-  /**
-   * This method gets and returns the color-changing status of every unit of time in a list.
-   *
-   * @return list of 1 or 0 indicating whether if the shape is in certain color-changing movement. 1
-   * indicates color changing in progress, NOT available to add new color change. 0 indicates color
-   * changing not in progress, available for new color change.
-   */
-  int[] getColorChangingStatus();
-
-  /**
-   * This method gets and returns the scaling status of every unit of time in a list.
-   *
-   * @return list of 1 or 0 indicating whether if the shape is in certain scaling movement. 1
-   * indicates scaling in progress, NOT available to add new scaling. 0 indicates scaling not in
-   * progress, available for new scaling.
-   */
-  int[] getScalingStatus();
-
-  /**
-   * This method gets and returns the Color status of this shape at all time of its appearance.
-   *
-   * @return a list of Color elements that indicates the color status of this shape at every time
-   * unit of its appearance time.
-   */
-  Color[] getColorTimeline();
-
-  /**
-   * This method gets and returns the position status of this shape at all time of its appearance.
-   *
-   * @return a list of Position2D elements that indicates the position of this shape at every time
-   * unit of its appearance time.
-   */
-  Point2D[] getMovingTimeline();
-
-  /**
    * This method add a color change movement to this shape to a target color, starting at a start
    * time and completes at an end time.
    *

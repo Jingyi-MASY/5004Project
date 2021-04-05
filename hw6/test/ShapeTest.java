@@ -126,7 +126,7 @@ public class ShapeTest {
 
     assertEquals("Name: o1" + System.lineSeparator() +
             "Type: oval" + System.lineSeparator() +
-            "Lower left corner: (15, -15), xRadius: 4, yRadius: 26 "
+            "Lower left corner: (15, -15), xRadius: 4, yRadius: 6 "
             + "Color: java.awt.Color[r=255,g=255,b=255]"
             + System.lineSeparator() +
             "Appears at: t=5" + System.lineSeparator() +

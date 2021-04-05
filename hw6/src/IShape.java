@@ -34,8 +34,7 @@ public interface IShape {
    *
    * @param time time that is looking for, int type.
    * @return the color of this shape that at the passed in point of time, Color type.
-   * @throws IllegalArgumentException if the passed in time if out of this shape's appearance
-   *                                  time.
+   * @throws IllegalArgumentException if the passed in time if out of this shape's appearance time.
    */
   Color getColorAt(int time) throws IllegalArgumentException;
 
@@ -94,8 +93,8 @@ public interface IShape {
    * This method generates a copy of this shape for all its status at certain point of time.
    *
    * @param time time that is looking for, int type.
-   * @return a new shape that has the same status of this shape at certain time, or return null if
-   * the time is invalid for this shape.
+   * @return a new shape that has the same status of this shape at certain time,
+   *         or return null if the time is invalid for this shape.
    */
   IShape getCopy(int time);
 

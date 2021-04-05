@@ -7,64 +7,6 @@ import java.util.LinkedList;
  */
 public interface IAnimation {
 
-//  /**
-//   * This method initialize and adds a Circle shape into this animation. The shape to be added
-//   * must appears within time range [0, 100], and the name of the circle must be unique.
-//   *
-//   * @param name   name of the shape, String type; must be unique comparing to all shapes names in
-//   *               this animation.
-//   * @param type   shape type of the shape to be added, it should always be a ShapeType.CIRCLE.
-//   * @param position  position of (x, y) of the center of the circle to be added, Point2D type.
-//   * @param color   the color of the circle to be added to the animation, Color class type.
-//   * @param appearTime  time that this shape would appear in this animation, int type.
-//   * @param disappearTime   time that this shape would disappear in this animation, int type.
-//   * @param radius  radius of the circle to be added to this animation, int type.
-//   * @throws IllegalArgumentException  if the appearance time is out of range or the shape name
-//   *                                   is not unique or the any parameter that passed in is null.
-//   */
-//  public void addCircle(String name, ShapeType type, Point2D position, Color color, int appearTime,
-//                                     int disappearTime, int radius) throws IllegalArgumentException;
-//
-//  /**
-//   * This method initialize and adds a Oval shape into this animation. The shaped to be added
-//   * must appears within time range [0, 100], and the name of the oval must be unique.
-//   *
-//   * @param name   name of the shape, String type; must be unique comparing to all shapes names in
-//   *               this animation.
-//   * @param type   shape type of the shape to be added, it should always be a ShapeType.OVAL.
-//   * @param position  position of (x, y) of the center of the oval to be added, Point2D.
-//   * @param color   the color of the oval to be added to the animation, Color class type.
-//   * @param appearTime  time that this oval shape would appear in this animation, int type.
-//   * @param disappearTime   time that this oval shape would disappear in this animation, int type.
-//   * @param xRadius  radius on x-axis of the oval shape to be added to this animation, int type.
-//   * @param yRadius  radius on y-axis of the oval shape to be added to this animation, int type.
-//   * @throws IllegalArgumentException  if the appearance time is out of range or the shape name
-//   *                                   is not unique or the any parameter that passed in is null.
-//   */
-//  public void addOval(String name, ShapeType type, Point2D position, Color color, int appearTime,
-//                        int disappearTime, int xRadius, int yRadius)
-//          throws IllegalArgumentException;
-//
-//  /**
-//   * This method initialize and adds a rectangle shape into this animation. The shaped to be added
-//   * must appears within time range [0, 100], and the name of the rectangle must be unique.
-//   *
-//   * @param name   name of the shape, String type; must be unique comparing to all shapes names in
-//   *               this animation.
-//   * @param type   shape type of the shape to be added, it should always be a ShapeType.RECTANGLE.
-//   * @param position  position of (x, y) of lower left corner the rectangle to be added, Point2D.
-//   * @param color   the color of the rectangle to be added to the animation, Color class type.
-//   * @param appearTime  time that this rectangle shape would appear in this animation, int type.
-//   * @param disappearTime   time that this rectangle would disappear in this animation, int type.
-//   * @param width  width of the rectangle shape to be added to this animation, int type.
-//   * @param height  height of the rectangle shape to be added to this animation, int type.
-//   * @throws IllegalArgumentException  if the appearance time is out of range or the shape name
-//   *                                   is not unique or the any parameter that passed in is null.
-//   */
-//  public void addRectangle(String name, ShapeType type, Point2D position, Color color,
-//                           int appearTime, int disappearTime, int width, int height)
-//          throws IllegalArgumentException;
-
   /**
    * This method adds a shape into this animation. The shaped to be added must appears within time
    * range [0, 100], and the name of the rectangle must be unique.
@@ -144,7 +86,7 @@ public interface IAnimation {
    *
    * @param time the time point that the list of shapes will be created based on, int type.
    * @return a text description of the status of all the shapes that are appeared at the passed in
-   * point of time.
+   *         point of time.
    */
   String showStatusAt(int time);
 }

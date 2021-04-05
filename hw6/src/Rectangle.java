@@ -114,8 +114,10 @@ public class Rectangle extends AbstractShape {
 
       for (int i = 0; i < endTime - startTime; i++) {
         isScalingStatus[startTime - appearTime + i] = 1;
-        widthTimeline[startTime - appearTime + i] = oldWidth + (k / range) * (oldWidth * factor - oldWidth);
-        heightTimeline[startTime - appearTime + i] = oldHeight + (k / range) * (oldHeight * factor - oldHeight);
+        widthTimeline[startTime - appearTime + i] = oldWidth
+                + (k / range) * (oldWidth * factor - oldWidth);
+        heightTimeline[startTime - appearTime + i] = oldHeight
+                + (k / range) * (oldHeight * factor - oldHeight);
         k++;
         //anything else needs to be done here?
       }
@@ -159,8 +161,10 @@ public class Rectangle extends AbstractShape {
     String str = "";
     str += "Name: " + this.getName() + System.lineSeparator();
     str += "Type: " + this.type.toString() + System.lineSeparator();
-    str += "Lower left corner: " + this.getPositionAt(appearTime).toString() + ", Width: " + this.getWidthAt(appearTime)
-            + ", Height: " + this.getHeightAt(appearTime) + "Color: " + this.getColorAt(appearTime).toString() + System.lineSeparator();
+    str += "Lower left corner: " + this.getPositionAt(appearTime).toString() + ", Width: "
+            + this.getWidthAt(appearTime)
+            + ", Height: " + this.getHeightAt(appearTime) + " Color: "
+            + this.getColorAt(appearTime).toString() + System.lineSeparator();
     str += "Appears at: t=" + this.appearTime + System.lineSeparator();
     str += "Disappears at t=" + this.disappearTime + System.lineSeparator();
     return str;

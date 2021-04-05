@@ -149,6 +149,11 @@ public class ModelTest {
     } catch (IllegalArgumentException ignored) {
     }
     try {
+      anime.move(null, new Point2D(60, 60), 10, 25);
+      fail("Invalid name");
+    } catch (IllegalArgumentException ignored) {
+    }
+    try {
       anime.move("r1", null, 10, 15);
       fail("Movement invalid position");
     } catch (IllegalArgumentException ignored) {
@@ -164,7 +169,43 @@ public class ModelTest {
 
   @Test
   public void testScale() {
-
+    anime.addShape(r1);
+    anime.scale("r1",5, 3,5);
+    anime.move("r1", new Point2D(30, 30), 7, 10);
+    anime.addShape(new Oval("o1", ShapeType.OVAL, new Point2D(15, -15),
+            Color.WHITE, 0, 40, 4, 6));
+    assertEquals("Name: r1" + System.lineSeparator() +
+            "Type: rectangle" + System.lineSeparator() +
+            "Lower left corner: 30, 30), Width: 150, Height: 100"
+            + "Color: java.awt.Color[r=255,g=255,b=255]"
+            + System.lineSeparator() +
+            "Appears at: t=5" + System.lineSeparator() +
+            "Disappears at t=5" + System.lineSeparator()
+            + "Name: o1" + System.lineSeparator() +
+            "Type: oval" + System.lineSeparator() +
+            "Lower left corner: (15, -15), xRadius: 4, yRadius: 26 "
+            + "Color: java.awt.Color[r=255,g=255,b=255]"
+            + System.lineSeparator() +
+            "Appears at: t=5" + System.lineSeparator() +
+            "Disappears at t=5" + System.lineSeparator(),anime.showStatusAt(5));
+    anime.scale("o1",5, 0,5);
+    try {
+      anime.scale("r0", 1, 10, 25);
+      fail("Invalid name");
+    } catch (IllegalArgumentException ignored) {
+    }
+    try {
+      anime.scale(null, 3, 10, 25);
+      fail("Invalid name");
+    } catch (IllegalArgumentException ignored) {
+    }
+    assertEquals("Shape o1 scales from xRadius:4 yRadius:6 "
+            + "to xRadius:20 yRadius:30 from t= 0 to t= 5"
+            + System.lineSeparator() + "Shape r1 scales from Weight:30 Height:20 "
+            + "to Weight:150 Height:100 from t= 3 to t= 5"
+            + System.lineSeparator()
+            + "Shape r1 moves from (50, 50) to (30, 30) from t= 7 to t= 10"
+            + System.lineSeparator(), anime.displayAll());
   }
 
 }

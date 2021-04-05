@@ -15,14 +15,14 @@ public class ShapeTest {
   public void setup() {
     c1 = new Circle("c1", ShapeType.CIRCLE, new Point2D(0,0), Color.BLACK, 30, 50, 10);
     o1 = new Oval("o1", ShapeType.OVAL, new Point2D(15, -15), Color.WHITE, 5, 5, 4, 6);
-    r1 = new Rectangle("r1", ShapeType.TRIANGLE, new Point2D(50, 50), Color.WHITE, 0, 20, 30, 20);
+    r1 = new Rectangle("r1", ShapeType.RECTANGLE, new Point2D(50, 50), Color.WHITE, 0, 20, 30, 20);
   }
 
   @Test
   public void testShapeConstructor() {
     IShape c1 = new Circle("c1", ShapeType.CIRCLE, new Point2D(0,0), Color.BLACK, 30, 50, 10);
     IShape o1 = new Oval("o1", ShapeType.OVAL, new Point2D(15, -15), Color.WHITE, 5, 5, 4, 6);
-    IShape r1 = new Rectangle("r1", ShapeType.TRIANGLE, new Point2D(50, 50), Color.WHITE, 0, 20, 30, 20);
+    IShape r1 = new Rectangle("r1", ShapeType.RECTANGLE, new Point2D(50, 50), Color.WHITE, 0, 20, 30, 20);
 
     //appear after disappear
     try {
@@ -95,7 +95,7 @@ public class ShapeTest {
   public void testGet() {
     IShape c1 = new Circle("c1", ShapeType.CIRCLE, new Point2D(0,0), Color.BLACK, 30, 50, 10);
     IShape o1 = new Oval("o1", ShapeType.OVAL, new Point2D(15, -15), Color.WHITE, 5, 5, 4, 6);
-    IShape r1 = new Rectangle("r1", ShapeType.TRIANGLE, new Point2D(50, 50), Color.WHITE, 0, 20, 30, 20);
+    IShape r1 = new Rectangle("r1", ShapeType.RECTANGLE, new Point2D(50, 50), Color.WHITE, 0, 20, 30, 20);
     assertEquals("c1", c1.getName());
     assertEquals(ShapeType.RECTANGLE, r1.getType());
   }

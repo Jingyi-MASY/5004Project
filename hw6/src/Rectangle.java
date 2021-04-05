@@ -27,6 +27,9 @@ public class Rectangle extends AbstractShape {
   public Rectangle(String name, ShapeType type, Point2D position, Color color, int appearTime,
                    int disappearTime, int width, int height) {
     super(name, type, position, color, appearTime, disappearTime, width, height);
+    if (type != ShapeType.RECTANGLE) {
+      throw new IllegalArgumentException("This should be a rectangle");
+    }
     this.width = width;
     this.height = height;
     int timeRange = disappearTime - appearTime + 1;

@@ -23,6 +23,9 @@ public class Circle extends AbstractShape {
   public Circle(String name, ShapeType type, Point2D position, Color color, int appearTime,
                 int disappearTime, int radius) throws IllegalArgumentException {
     super(name, type, position, color, appearTime, disappearTime, radius);
+    if (type != ShapeType.CIRCLE) {
+      throw new IllegalArgumentException("This should be a circle");
+    }
     int timeRange = disappearTime - appearTime;
     this.radiusTimeline = new int[timeRange];
     for (int i = 0; i < timeRange; i ++) {

@@ -28,6 +28,9 @@ public class Oval extends AbstractShape {
               int disappearTime, int xRadius, int yRadius) {
 
     super(name, type, position, color, appearTime, disappearTime, xRadius, yRadius);
+    if (type != ShapeType.OVAL) {
+      throw new IllegalArgumentException("This should be an oval");
+    }
     this.xRadius = xRadius;
     this.yRadius = yRadius;
     int timeRange = disappearTime - appearTime + 1;

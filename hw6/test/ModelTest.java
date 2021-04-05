@@ -1,15 +1,14 @@
-import junit.framework.TestCase;
-
-import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
-import java.util.Arrays;
 
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * A junit test for model.
+ */
 public class ModelTest {
   private AnimationImpl anime;
   private IShape r1;

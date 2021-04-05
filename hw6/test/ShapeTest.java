@@ -83,12 +83,12 @@ public class ShapeTest {
     } catch (IllegalArgumentException ignored) {
     }
 
-//    //Wrong Shape Type
-//    try {
-//      new Rectangle("r1", ShapeType.CIRCLE, new Point2D(0,0), Color.BLACK, 10, 20, 5, 5);
-//      fail("Accepting wrong type");
-//    } catch (IllegalArgumentException ignored) {
-//    }
+    //Wrong Shape Type
+    try {
+      new Rectangle("r1", ShapeType.CIRCLE, new Point2D(0,0), Color.BLACK, 10, 20, 5, 5);
+      fail("Accepting wrong type");
+    } catch (IllegalArgumentException ignored) {
+    }
   }
 
   @Test
@@ -98,6 +98,10 @@ public class ShapeTest {
     IShape r1 = new Rectangle("r1", ShapeType.RECTANGLE, new Point2D(50, 50), Color.WHITE, 0, 20, 30, 20);
     assertEquals("c1", c1.getName());
     assertEquals(ShapeType.RECTANGLE, r1.getType());
+    assertEquals(30, c1.getAppearTime());
+    assertEquals(5, o1.getDisappearTime());
+
+
   }
 
   @Test
@@ -132,8 +136,27 @@ public class ShapeTest {
     }
 
     c1.addChangeColor(Color.WHITE, 30, 35);
+    assertEquals(Color.WHITE, c1.getColorAt(30));
+    //Valid input test in ModelTest
+  }
 
-
+  @Test
+  public void testScale() {
+    c1 = new Circle("c1", ShapeType.CIRCLE, new Point2D(0,0), Color.BLACK, 30, 50, 10);
+    o1 = new Oval("o1", ShapeType.OVAL, new Point2D(15, -15), Color.WHITE, 5, 5, 4, 6);
+    r1 = new Rectangle("r1", ShapeType.RECTANGLE, new Point2D(50, 50), Color.WHITE, 0, 20, 30, 20);
+    c1.addScale(2, 40, 50);
+    try{
+      c1.addScale(3, 40, 50);
+      fail("Conflict Move");
+    } catch (IllegalArgumentException ignored) {
+    }
+    try{
+      c1.addScale(0, 39, 39);
+      fail("Accepting Invalid scale factor");
+    } catch (IllegalArgumentException ignored) {
+    }
+    assertEquals(" ", c1.getDimensionChange());
   }
 
 

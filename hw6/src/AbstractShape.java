@@ -5,17 +5,17 @@ import java.util.LinkedList;
  * This is an abstract class that implements IShape. This class includes all common fields and
  * common methods that applies to all shapes. Fields of this AbstractShape class includes: name of
  * the shape, type of the shape, position (Point2D) of this shape, color of this shape (Color),
- * appeart time of this shape (int), disappear time of this shape (int), moving status (int[]),
+ * appear time of this shape (int), disappear time of this shape (int), moving status (int[]),
  * changing color status (int[]), scaling status (int[]), positions timeline, color status timeline,
  * dimension status timeline (lists)
  */
 public abstract class AbstractShape implements IShape {
-  protected final String name;
-  protected final ShapeType type;
+  protected String name;
+  protected ShapeType type;
   protected Point2D position;
   protected Color color;
-  protected final int appearTime;
-  protected final int disappearTime;
+  protected int appearTime;
+  protected int disappearTime;
   protected int[] isMovingStatus;
   protected int[] isChangingColorStatus;
   protected int[] isScalingStatus;
@@ -26,15 +26,55 @@ public abstract class AbstractShape implements IShape {
   /**
    * The constructor of AbstractShape create an abstract shape based on the passed in parameters.
    * @param name  name of this shape, String type.
-   * @param type  tyep of this shape, ShapeType enum.
+   * @param type  type of this shape, ShapeType enum.
    * @param position  the position of this shape, Point2D type.
    * @param color   color of this shape, Color type.
    * @param appearTime  appear time of this shape, int.
    * @param disappearTime   disappear time of this shape, int.
+   * @param para   parameter of a given shape
    * @throws IllegalArgumentException   if the appear time and disappear time is invalid.
    */
   public AbstractShape(String name, ShapeType type, Point2D position, Color color, int appearTime,
+                       int disappearTime, int para) throws IllegalArgumentException {
+    if(para <= 0) {
+      throw new IllegalArgumentException("invalid shape parameter");
+    }
+    ShapeBuilder(name, type, position, color, appearTime, disappearTime);
+  }
+
+  /**
+   * The constructor of AbstractShape create an abstract shape based on the passed in parameters.
+   * @param name  name of this shape, String type.
+   * @param type  type of this shape, ShapeType enum.
+   * @param position  the position of this shape, Point2D type.
+   * @param color   color of this shape, Color type.
+   * @param appearTime  appear time of this shape, int.
+   * @param disappearTime   disappear time of this shape, int.
+   * @param para1   first parameter of a given shape
+   * @param para2   second parameter of a given shape
+   * @throws IllegalArgumentException   if the appear time and disappear time is invalid.
+   */
+  public AbstractShape(String name, ShapeType type, Point2D position, Color color, int appearTime,
+                       int disappearTime, int para1, int para2) throws IllegalArgumentException {
+    if(para1 <= 0 || para2 <= 0) {
+      throw new IllegalArgumentException("invalid shape parameter");
+    }
+    ShapeBuilder(name, type, position, color, appearTime, disappearTime);
+  }
+
+
+  private void ShapeBuilder(String name, ShapeType type, Point2D position, Color color, int appearTime,
                        int disappearTime) throws IllegalArgumentException {
+    if (name == null) {
+      throw new IllegalArgumentException("invalid name");
+    } else if (type == null) {
+      throw new IllegalArgumentException("invalid shape type");
+    } else if (position == null) {
+      throw new IllegalArgumentException("invalid position");
+    } else if (color == null) {
+      throw new IllegalArgumentException("invalid color");
+    }
+
     if (disappearTime < appearTime || appearTime < 0 || disappearTime > 100) {
       throw new IllegalArgumentException("invalid appearance time range");
     }
@@ -56,8 +96,9 @@ public abstract class AbstractShape implements IShape {
     for (Color c : colorTimeline) {
       c = color;
     }
-    this.listOfMovements = new LinkedList<Movement>();
+    this.listOfMovements = new LinkedList<>();
   }
+
 
   @Override
   public String getName() {

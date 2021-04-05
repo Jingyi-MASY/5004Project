@@ -25,7 +25,7 @@ public class Rectangle extends AbstractShape {
    */
   public Rectangle(String name, ShapeType type, Point2D position, Color color, int appearTime, 
                    int disappearTime, int width, int height) {
-    super(name, type, position, color, appearTime, disappearTime);
+    super(name, type, position, color, appearTime, disappearTime, width, height);
     this.width = width;
     this.height = height;
     int timeRange = disappearTime - appearTime;
@@ -43,7 +43,7 @@ public class Rectangle extends AbstractShape {
    * its appearance.
    * @return  width of this rectangle at every moment of the timeline
    */
-  public int[] getwidthTimeline() {
+  public int[] getWidthTimeline() {
     return widthTimeline;
   }
 
@@ -52,7 +52,7 @@ public class Rectangle extends AbstractShape {
    * its appearance.
    * @return  height of this rectangle at every moment of the timeline
    */
-  public int[] getheightTimeline() {
+  public int[] getHeightTimeline() {
     return heightTimeline;
   }
 
@@ -99,20 +99,20 @@ public class Rectangle extends AbstractShape {
     if (checkIfScalingAvailable(startTime, endTime)) {
       int range = endTime - startTime;
       int k = 1;
-      int oldwidth = this.getWidthAt(startTime);
-      int oldheight = this.getHeightAt(startTime);
+      int oldWidth = this.getWidthAt(startTime);
+      int oldHeight = this.getHeightAt(startTime);
 
       for (int i = 0; i < endTime - startTime; i++) {
         isScalingStatus[startTime + i] = 1;
-        widthTimeline[startTime + i] = oldwidth + (k / range) * (oldwidth * factor - oldwidth);
-        heightTimeline[startTime + i] = oldheight + (k / range) * (oldheight * factor - oldheight);
+        widthTimeline[startTime + i] = oldWidth + (k / range) * (oldWidth * factor - oldWidth);
+        heightTimeline[startTime + i] = oldHeight + (k / range) * (oldHeight * factor - oldHeight);
         k++;
         //anything else needs to be done here?
       }
       //change radius after since
       for (int j = endTime; j < disappearTime; j++) {
-        widthTimeline[j] = oldwidth * factor;
-        heightTimeline[j] = oldheight * factor;
+        widthTimeline[j] = oldWidth * factor;
+        heightTimeline[j] = oldHeight * factor;
       }
       this.listOfMovements.add(new Scale(this, factor, startTime, endTime));
     } else {
@@ -151,12 +151,12 @@ public class Rectangle extends AbstractShape {
   @Override
   public String toString() {
     String str = "";
-    str += "Name: " + this.getName() + "\n";
-    str += "Type: " + this.type.toString() + "\n";
+    str += "Name: " + this.getName() + System.lineSeparator();
+    str += "Type: " + this.type.toString() + System.lineSeparator();
     str += "Lower left corner: " + this.position.toString() + ", Width: " + this.width
-            + ", Height: " + this.height + "Color: " + this.color.toString() + "\n";
-    str += "Appears at: t=" + this.appearTime + "\n";
-    str += "Disappears at t=" + this.disappearTime + "\n";
+            + ", Height: " + this.height + "Color: " + this.color.toString() + System.lineSeparator();
+    str += "Appears at: t=" + this.appearTime + System.lineSeparator();
+    str += "Disappears at t=" + this.disappearTime + System.lineSeparator();
     return str;
   }
 }

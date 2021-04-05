@@ -21,7 +21,7 @@ public class Circle extends AbstractShape {
    */
   public Circle(String name, ShapeType type, Point2D position, Color color, int appearTime,
                 int disappearTime, int radius) throws IllegalArgumentException {
-    super(name, type, position, color, appearTime, disappearTime);
+    super(name, type, position, color, appearTime, disappearTime, radius);
     int timeRange = disappearTime - appearTime;
     this.radiusTimeline = new int[timeRange];
     for (int r : radiusTimeline) {

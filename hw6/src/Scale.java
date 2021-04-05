@@ -34,7 +34,7 @@ public class Scale implements Movement {
     str += "Shape " + this.shape.getName() + " ";
     if (this.shape.getType() == ShapeType.CIRCLE) {
       str += this.shape.getDimensionChange(startTime, scalingFactor) + " from t=" + startTime
-              + " to t=" + endTime + "\n";
+              + " to t=" + endTime + System.lineSeparator();
     }
     return str;
   }

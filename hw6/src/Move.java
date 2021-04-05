@@ -34,7 +34,7 @@ public class Move implements Movement {
     String str = "";
     str += "Shape " + this.shape.getName() + " ";
     str += "moves from " + this.shape.getPositionAt(startTime)
-            + " to " + this.targetPosition + " from t=" + startTime + " to t=" + endTime + "\n";
+            + " to " + this.targetPosition + " from t=" + startTime + " to t=" + endTime + System.lineSeparator();
     return str;
   }
 }

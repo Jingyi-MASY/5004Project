@@ -20,12 +20,13 @@ public class Oval extends AbstractShape {
    * @param appearTime  time that this Oval shows up in certain animation, int type.
    * @param disappearTime time that this Oval disappears in certain animation, int type.
    * @param xRadius  initial radius on x-axis of this Oval, int type.
-   * @param yRadius  initial radius on y-acis of this oval, int type.
+   * @param yRadius  initial radius on y-axis of this oval, int type.
    * @throws IllegalArgumentException if the appearance time range is invalid.
    */
   public Oval(String name, ShapeType type, Point2D position, Color color, int appearTime,
               int disappearTime, int xRadius, int yRadius) {
-    super(name, type, position, color, appearTime, disappearTime);
+
+    super(name, type, position, color, appearTime, disappearTime, xRadius, yRadius);
     this.xRadius = xRadius;
     this.yRadius = yRadius;
     int timeRange = disappearTime - appearTime;
@@ -152,12 +153,12 @@ public class Oval extends AbstractShape {
   @Override
   public String toString() {
     String str = "";
-    str += "Name: " + this.name + "\n";
-    str += "Type: " + this.type.toString() + "\n";
+    str += "Name: " + this.name + System.lineSeparator();
+    str += "Type: " + this.type.toString() + System.lineSeparator();
     str += "Center: " + this.position.toString() + ", x Radius: " + this.xRadius
-            + ", y Radius: " + this.yRadius + "Color: " + this.color.toString() + "\n";
-    str += "Appears at: t=" + this.appearTime + "\n";
-    str += "Disappears at t=" + this.disappearTime + "\n";
+            + ", y Radius: " + this.yRadius + "Color: " + this.color.toString() + System.lineSeparator();
+    str += "Appears at: t=" + this.appearTime + System.lineSeparator();
+    str += "Disappears at t=" + this.disappearTime + System.lineSeparator();
     return str;
   }
 }

@@ -6,6 +6,9 @@ import java.awt.*;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
 
+/**
+ * A junit test for IShape Interface and all its subclass.
+ */
 public class ShapeTest {
   private IShape o1;
   private IShape c1;

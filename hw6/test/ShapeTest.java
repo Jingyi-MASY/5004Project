@@ -117,7 +117,7 @@ public class ShapeTest {
     assertEquals(30, c1.getAppearTime());
     assertEquals(5, o1.getDisappearTime());
     assertEquals("c1", c1.getCopy(40).getName());
-    assertEquals(new Point2D(30, 50), c1.getCopy(40).getPositionAt(40));
+    assertEquals(new Point2D(0, 0), c1.getCopy(40).getPositionAt(40));
     try {
       c1.getCopy(40).getPositionAt(30);
       fail("Out of copy time boundary");

@@ -275,7 +275,7 @@ public abstract class AbstractShape implements IShape {
   @Override
   public void addMove(Point2D newPosition, int startTime, int endTime)
           throws IllegalArgumentException {
-    if (startTime < endTime || startTime < appearTime || endTime > disappearTime) {
+    if (startTime > endTime || startTime < appearTime || endTime > disappearTime) {
       throw new IllegalArgumentException("invalid appearance time range");
     }
     if (checkIfMovingAvailable(startTime, endTime)) {

@@ -1,8 +1,11 @@
+import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.Color;
 
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
 
@@ -138,7 +141,8 @@ public class ShapeTest {
   @Test
   public void testPosition() {
     //getPosition
-    assertEquals(new Point2D(50, 50), r1.getPositionAt(10));
+    assertEquals(50, r1.getPositionAt(10).getX());
+    assertEquals(50, r1.getPositionAt(10).getY());
     try {
       r1.getPositionAt(30);
       fail("Accepting invalid time");

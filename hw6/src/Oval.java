@@ -135,7 +135,7 @@ public class Oval extends AbstractShape {
   @Override
   public Oval getCopy(int time) {
     if (time > appearTime && time < disappearTime) {
-      return new Oval(this.name, ShapeType.CIRCLE, this.getPositionAt(time),
+      return new Oval(this.name, ShapeType.OVAL, this.getPositionAt(time),
               this.getColorAt(time), this.getAppearTime(), this.disappearTime,
               this.getXRadiusAt(time), this.getYRadiusAt(time));
     }

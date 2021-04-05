@@ -38,7 +38,7 @@ public class Circle extends AbstractShape {
    * the appearance time of this circle.
    * @return  radius of this circle at every moment of the appearance time.
    */
-  public int[] getRadiusTimeline() {
+  protected int[] getRadiusTimeline() {
     return radiusTimeline;
   }
 

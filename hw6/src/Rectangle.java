@@ -27,7 +27,7 @@ public class Rectangle extends AbstractShape {
   public Rectangle(String name, ShapeType type, Point2D position, Color color, int appearTime,
                    int disappearTime, int width, int height) {
     super(name, type, position, color, appearTime, disappearTime, width, height);
-    if (type != ShapeType.RECTANGLE) {
+    if (!type.equals(ShapeType.RECTANGLE)) {
       throw new IllegalArgumentException("This should be a rectangle");
     }
     this.width = width;
@@ -49,7 +49,7 @@ public class Rectangle extends AbstractShape {
    *
    * @return width of this rectangle at every moment of the timeline
    */
-  public int[] getWidthTimeline() {
+  protected int[] getWidthTimeline() {
     return widthTimeline;
   }
 
@@ -59,7 +59,7 @@ public class Rectangle extends AbstractShape {
    *
    * @return height of this rectangle at every moment of the timeline
    */
-  public int[] getHeightTimeline() {
+  protected int[] getHeightTimeline() {
     return heightTimeline;
   }
 
@@ -135,7 +135,7 @@ public class Rectangle extends AbstractShape {
   @Override
   public Rectangle getCopy(int time) {
     if (time > appearTime && time < disappearTime) {
-      return new Rectangle(this.name, ShapeType.CIRCLE, this.getPositionAt(time),
+      return new Rectangle(this.name, ShapeType.RECTANGLE, this.getPositionAt(time),
               this.getColorAt(time), this.getAppearTime(), this.disappearTime,
               this.getWidthAt(time), this.getHeightAt(time));
     }

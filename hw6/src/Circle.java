@@ -86,8 +86,8 @@ public class Circle extends AbstractShape {
       int oldRadius = this.getRadiusAt(startTime);
       for (int i = 0; i < endTime - startTime; i++) {
         isScalingStatus[startTime - appearTime + i] = 1;
-        radiusTimeline[startTime - appearTime + i] = oldRadius + (k / range)
-                * (oldRadius * factor - oldRadius);
+        radiusTimeline[startTime - appearTime + i] = oldRadius
+                + (k * (oldRadius * factor - oldRadius)) / range;
         k++;
       }
       //change radius after since

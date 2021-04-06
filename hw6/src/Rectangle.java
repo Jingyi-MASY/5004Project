@@ -115,9 +115,9 @@ public class Rectangle extends AbstractShape {
       for (int i = 0; i < endTime - startTime; i++) {
         isScalingStatus[startTime - appearTime + i] = 1;
         widthTimeline[startTime - appearTime + i] = oldWidth
-                + (k / range) * (oldWidth * factor - oldWidth);
+                + (k * (oldWidth * factor - oldWidth)) / range;
         heightTimeline[startTime - appearTime + i] = oldHeight
-                + (k / range) * (oldHeight * factor - oldHeight);
+                + (k * (oldHeight * factor - oldHeight)) / range;
         k++;
         //anything else needs to be done here?
       }

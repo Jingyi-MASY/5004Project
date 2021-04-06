@@ -116,9 +116,9 @@ public class Oval extends AbstractShape {
       for (int i = 0; i < endTime - startTime; i++) {
         isScalingStatus[startTime - appearTime + i] = 1;
         xRadiusTimeline[startTime - appearTime + i] =
-                oldXRadius + (k / range) * (oldXRadius * factor - oldXRadius);
+                oldXRadius + (k * (oldXRadius * factor - oldXRadius)) / range;
         yRadiusTimeline[startTime - appearTime + i] =
-                oldYRadius + (k / range) * (oldYRadius * factor - oldYRadius);
+                oldYRadius + (k * (oldYRadius * factor - oldYRadius)) / range;
         k++;
       }
       //change radius after since

@@ -108,10 +108,8 @@ public class AnimationImpl implements IAnimation {
       throw new IllegalArgumentException("invalid time");
     }
     StringBuilder str = new StringBuilder();
-    if (this.getShapeStatusAtTime(time) != null) {
-      for (IShape s : getShapeStatusAtTime(time)) {
-        str.append(s.toString());
-      }
+    for (int i = 0; i <= listOfShapes.size(); i++) {
+      str.append(listOfShapes.get(i).toString());
     }
     return str.toString();
   }
@@ -119,10 +117,8 @@ public class AnimationImpl implements IAnimation {
   @Override
   public String showAllShapes() {
     StringBuilder str = new StringBuilder();
-    if (listOfShapes != null) {
-      for (IShape s : listOfShapes) {
-        str.append(s.toString());
-      }
+    for (int i = 0; i < listOfShapes.size(); i++) {
+      str.append(listOfShapes.get(i).toString());
     }
     return str.toString();
   }

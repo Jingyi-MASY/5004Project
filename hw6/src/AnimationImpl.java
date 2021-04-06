@@ -135,7 +135,7 @@ public class AnimationImpl implements IAnimation {
     }
     StringBuilder str = new StringBuilder();
     for (int i = 0; i < listOfShapes.size(); i++) {
-      if(time >= listOfShapes.get(i).getAppearTime()
+      if (time >= listOfShapes.get(i).getAppearTime()
               && time < listOfShapes.get(i).getDisappearTime()) {
         str.append(listOfShapes.get(i).getCopy(time).toString());
       }

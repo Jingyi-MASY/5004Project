@@ -104,6 +104,9 @@ public class Oval extends AbstractShape {
    *                                  time range.
    */
   public void addScale(int factor, int startTime, int endTime) throws IllegalArgumentException {
+    if (factor <= 0) {
+      throw new IllegalArgumentException("scaling factor cannot be zero or negative number");
+    }
     if (startTime > endTime || startTime < appearTime || endTime > disappearTime) {
       throw new IllegalArgumentException("invalid appearance time range");
     }

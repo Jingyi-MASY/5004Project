@@ -180,12 +180,12 @@ public class ShapeTest {
     } catch (IllegalStateException ignored) {
     }
     try {
-      c1.addScale(0, 38, 39);
+      c1.addScale(0, 35, 39);
       fail("Accepting Invalid scale factor");
     } catch (IllegalArgumentException ignored) {
     }
-    assertEquals("scales from Radius: 10 to Radius: 15",
-            c1.getDimensionChange(45, 2));
+    assertEquals("scales from Radius: 10, to Radius: 20",
+            c1.getDimensionChange(40, 2));
 
   }
 

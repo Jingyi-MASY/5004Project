@@ -77,33 +77,35 @@ public class Circle extends AbstractShape {
    *                                  time range.
    */
   public void addScale(int factor, int startTime, int endTime) throws IllegalArgumentException {
+    if (factor <= 0) {
+      throw new IllegalArgumentException("scaling factor cannot be zero or negative number");
+    }
     if (startTime > endTime || startTime < appearTime || endTime > disappearTime) {
       throw new IllegalArgumentException("invalid appearance time range");
     }
-    if (checkIfScalingAvailable(startTime, endTime)) {
-      int range = endTime - startTime;
-      int k = 1;
-      int oldRadius = this.getRadiusAt(startTime);
-      for (int i = 0; i < endTime - startTime; i++) {
-        isScalingStatus[startTime - appearTime + i] = 1;
-        radiusTimeline[startTime - appearTime + i] = oldRadius
-                + ((k * (oldRadius * factor - oldRadius)) / range);
-        k++;
-      }
-      //change radius after since
-      for (int j = endTime; j < disappearTime; j++) {
-        radiusTimeline[j - appearTime] = oldRadius * factor;
-      }
-      this.listOfMovements.add(new Scale(this, factor, startTime, endTime));
-    } else {
+    if (!checkIfScalingAvailable(startTime, endTime)) {
       throw new IllegalStateException("this shape is not available for a scale");
     }
+    int range = endTime - startTime;
+    int k = 1;
+    int oldRadius = this.getRadiusAt(startTime);
+    for (int i = 0; i < endTime - startTime; i++) {
+      isScalingStatus[startTime - appearTime + i] = 1;
+      radiusTimeline[startTime - appearTime + i] = oldRadius
+              + ((k * (oldRadius * factor - oldRadius)) / range);
+      k++;
+    }
+    //change radius after since
+    for (int j = endTime; j < disappearTime; j++) {
+      radiusTimeline[j - appearTime] = oldRadius * factor;
+    }
+    this.listOfMovements.add(new Scale(this, factor, startTime, endTime));
   }
 
   @Override
   public String getDimensionChange(int time, int factor) {
-    return "scales from Radius: " + this.getRadiusAt(time) + ", to Radius: "
-            + this.getRadiusAt(time) * factor;
+    return "scales from Radius: " + this.getRadiusAt(time - 1) + ", to Radius: "
+            + this.getRadiusAt(time - 1) * factor;
   }
 
   /**

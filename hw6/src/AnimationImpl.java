@@ -91,7 +91,6 @@ public class AnimationImpl implements IAnimation {
   @Override
   public LinkedList<Movement> getAllMovement() {
     LinkedList<Movement> result = new LinkedList<>();
-
     for (IShape x : listOfShapes) {
       if (x.getMovementList() != null) {
         result.addAll(x.getMovementList());
@@ -120,7 +119,8 @@ public class AnimationImpl implements IAnimation {
     LinkedList<IShape> result = new LinkedList<>();
     for (int i = 0; i < listOfShapes.size(); i++) {
       //filter all shapes that are appeared at moment time
-      if (listOfShapes.get(i).getCopy(time) != null) {
+      if (time >= listOfShapes.get(i).getAppearTime()
+              && time < listOfShapes.get(i).getDisappearTime()) {
         //copy a shape at moment time to result list
         listOfShapes.add(listOfShapes.get(i).getCopy(time));
       }

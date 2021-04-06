@@ -204,12 +204,13 @@ public class ShapeTest {
       fail("Accepting Invalid scale factor");
     } catch (IllegalArgumentException ignored) {
     }
-    assertTrue(r1Copy.getPositionAt(5).equals(new Point2D(50, 50)));
-    assertTrue(r1.getPositionAt(5).equals(new Point2D(60, 70)));
-    assertTrue(r1.getPositionAt(18).equals(new Point2D(50, 50)));
-    assertEquals("Shape r1 moves from (50, 50) to (70, 90) from t= 0 to t= 10"
-            + System.lineSeparator()
-            + "Shape r1 moves from (50, 50) to (10, 10) from t= 11 to t= 16"
-            + System.lineSeparator(), c1.getMovementList().get(0).display());
+    assertEquals(r1Copy.getPositionAt(5), new Point2D(50, 50));
+    assertEquals(r1.getPositionAt(4), new Point2D(60, 70));
+    assertEquals(r1.getPositionAt(18), new Point2D(70, 90));
+    assertEquals("Shape r1 moves from (70, 90) to (10, 10) from t=11 to t=16"
+            + System.lineSeparator(), r1.getMovementList().get(0).display());
+    assertEquals("Shape r1 moves from (52, 54) to (70, 90) from t=0 to t=10\n",
+            r1.getMovementList().get(1).display());
+    assertEquals(2, r1.getMovementList().size());
   }
 }

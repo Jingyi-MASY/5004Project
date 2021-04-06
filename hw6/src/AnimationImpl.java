@@ -37,29 +37,54 @@ public class AnimationImpl implements IAnimation {
 
   @Override
   public void changeColor(String name, Color targetColor, int startTime, int endTime) {
+    if (targetColor == null) {
+      throw new IllegalArgumentException("target color is invalid");
+    }
+    boolean found = false;
     for (IShape x : listOfShapes) {
       if (x.getName().equals(name)) {
+        found = true;
         x.addChangeColor(targetColor, startTime, endTime);
       }
+    }
+    if (!found) {
+      throw new IllegalArgumentException("not found shape name");
     }
   }
 
   @Override
   public void scale(String name, int scalingFactor, int startTime, int endTime) {
+    if (scalingFactor <= 0) {
+      throw new IllegalArgumentException("invalid scaling factor");
+    }
+    boolean found = false;
     for (IShape x : listOfShapes) {
       if (x.getName().equals(name)) {
+        found = true;
         x.addScale(scalingFactor, startTime, endTime);
       }
     }
+    if (!found) {
+      throw new IllegalArgumentException("not found shape name");
+    }
+
 
   }
 
   @Override
   public void move(String name, Point2D targetPosition, int startTime, int endTime) {
+    if (targetPosition == null) {
+      throw new IllegalArgumentException("invalid target position");
+    }
+    boolean found = false;
     for (IShape x : listOfShapes) {
       if (x.getName().equals(name)) {
+        found = true;
         x.addMove(targetPosition, startTime, endTime);
       }
+    }
+    if (!found) {
+      throw new IllegalArgumentException("not found shape name");
     }
   }
 

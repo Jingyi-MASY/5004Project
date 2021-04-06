@@ -37,11 +37,16 @@ public class Point2D {
   }
 
 
-  public boolean equals(Point2D another) {
+  @Override
+  public boolean equals(Object another) {
     if (this == another) {
       return true;
     }
-    return this.getY() == another.getY() && this.getX() == another.getX();
+    if(!(another instanceof Point2D)) {
+      return false;
+    }
+    Point2D other = (Point2D) another;
+    return this.getY() == other.getY() && this.getX() == other.getX();
   }
 
   /**

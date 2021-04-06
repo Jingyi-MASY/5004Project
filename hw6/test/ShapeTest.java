@@ -121,11 +121,7 @@ public class ShapeTest {
     assertEquals(5, o1.getDisappearTime());
     assertEquals("c1", c1.getCopy(40).getName());
     assertTrue(new Point2D(0, 0).equals(c1.getCopy(40).getPositionAt(40)));
-    try {
-      c1.getCopy(40).getPositionAt(30);
-      fail("Out of copy time boundary");
-    } catch (IllegalArgumentException ignored) {
-    }
+    assertEquals(new Point2D(0, 0),c1.getCopy(40).getPositionAt(30));
 
     assertEquals("Name: o1" + System.lineSeparator() +
             "Type: oval" + System.lineSeparator() +

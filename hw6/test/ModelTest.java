@@ -33,7 +33,7 @@ public class ModelTest {
     try {
       anime.addShape(new Oval("r1", ShapeType.OVAL, new Point2D(50, 50),
               Color.WHITE, 0, 20, 30, 20));
-      fail("Accepting Null");
+      fail("Accepting Same name");
     } catch (IllegalArgumentException ignored) {
     }
     assertEquals("Name: r1" + System.lineSeparator() +

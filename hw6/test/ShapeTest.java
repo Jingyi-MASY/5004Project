@@ -117,7 +117,7 @@ public class ShapeTest {
     assertEquals("c1", c1.getName());
     assertEquals(ShapeType.RECTANGLE, r1.getType());
     assertEquals(30, c1.getAppearTime());
-    assertEquals(5, o1.getDisappearTime());
+    assertEquals(6, o1.getDisappearTime());
     assertEquals("c1", c1.getCopy(40).getName());
     assertTrue(new Point2D(0, 0).equals(c1.getCopy(40).getPositionAt(40)));
     assertEquals(new Point2D(0, 0),c1.getCopy(40).getPositionAt(30));

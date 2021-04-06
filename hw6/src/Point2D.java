@@ -36,6 +36,14 @@ public class Point2D {
     return y;
   }
 
+
+  public boolean equals(Point2D another) {
+    if (this == another) {
+      return true;
+    }
+    return this.getY() == another.getY() && this.getX() == another.getX();
+  }
+
   /**
    * This gets and returns a String representation of specific desired format to represent this.
    *

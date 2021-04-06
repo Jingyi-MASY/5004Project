@@ -120,7 +120,7 @@ public class ShapeTest {
     assertEquals(30, c1.getAppearTime());
     assertEquals(5, o1.getDisappearTime());
     assertEquals("c1", c1.getCopy(40).getName());
-    assertEquals(new Point2D(0, 0), c1.getCopy(40).getPositionAt(40));
+    assertTrue(new Point2D(0, 0).equals(c1.getCopy(40).getPositionAt(40)));
     try {
       c1.getCopy(40).getPositionAt(30);
       fail("Out of copy time boundary");
@@ -172,7 +172,7 @@ public class ShapeTest {
 
     c1.addChangeColor(Color.WHITE, 30, 35);
     assertEquals(Color.WHITE, c1.getColorAt(35));
-    assertEquals(Color.BLACK, c1.getColorAt(36));
+    assertEquals(Color.WHITE, c1.getColorAt(36));
     //Valid input test in ModelTest
   }
 

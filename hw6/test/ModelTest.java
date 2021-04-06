@@ -64,8 +64,8 @@ public class ModelTest {
             "Center: (15, -15), x Radius: 4, y Radius: 6 "
             + "Color: java.awt.Color[r=255,g=255,b=255]"
             + System.lineSeparator() +
-            "Appears at: t=23" + System.lineSeparator() +
-            "Disappears at t=23" + System.lineSeparator(), anime.showStatusAt(23));
+            "Appears at: t=5" + System.lineSeparator() +
+            "Disappears at t=25" + System.lineSeparator(), anime.showStatusAt(23));
   }
 
   @Test
@@ -107,15 +107,15 @@ public class ModelTest {
             "Lower left corner: 30, 30), Width: 30, Height: 20 "
             + "Color: java.awt.Color[r=255,g=255,b=255]"
             + System.lineSeparator() +
-            "Appears at: t=10" + System.lineSeparator() +
-            "Disappears at t=10" + System.lineSeparator()
+            "Appears at: t=0" + System.lineSeparator() +
+            "Disappears at t=20" + System.lineSeparator()
             + "Name: o1" + System.lineSeparator() +
             "Type: oval" + System.lineSeparator() +
-            "Center: (15, -15), xRadius: 4, yRadius: 26 "
+            "Center: (15, -15), x Radius: 4, y Radius: 6 "
             + "Color: java.awt.Color[r=255,g=255,b=255]"
             + System.lineSeparator() +
-            "Appears at: t=10" + System.lineSeparator() +
-            "Disappears at t=10" + System.lineSeparator(), anime.showStatusAt(10));
+            "Appears at: t=0" + System.lineSeparator() +
+            "Disappears at t=40" + System.lineSeparator(), anime.showStatusAt(10));
 
     anime.move("o1", new Point2D(70, 70), 20, 25);
     anime.move("o1", new Point2D(-30, 30), 0, 15);

@@ -92,11 +92,11 @@ public class AnimationImpl implements IAnimation {
       throw new IllegalArgumentException("invalid time");
     }
     LinkedList<IShape> result = new LinkedList<>();
-    for (IShape x : listOfShapes) {
+    for (int i = 0; i < listOfShapes.size(); i++) {
       //filter all shapes that are appeared at moment time
-      if (x.getCopy(time) != null) {
+      if (listOfShapes.get(i).getCopy(time) != null) {
         //copy a shape at moment time to result list
-        listOfShapes.add(x.getCopy(time));
+        listOfShapes.add(listOfShapes.get(i).getCopy(time));
       }
     }
     return result;
@@ -109,7 +109,10 @@ public class AnimationImpl implements IAnimation {
     }
     StringBuilder str = new StringBuilder();
     for (int i = 0; i < listOfShapes.size(); i++) {
-      str.append(listOfShapes.get(i).toString());
+      if(time >= listOfShapes.get(i).getAppearTime()
+              && time < listOfShapes.get(i).getDisappearTime()) {
+        str.append(listOfShapes.get(i).toString());
+      }
     }
     return str.toString();
   }

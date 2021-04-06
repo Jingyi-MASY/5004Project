@@ -179,15 +179,15 @@ public class ModelTest {
             "Lower left corner: 30, 30), Width: 150, Height: 100 "
             + "Color: java.awt.Color[r=255,g=255,b=255]"
             + System.lineSeparator() +
-            "Appears at: t=5" + System.lineSeparator() +
-            "Disappears at t=5" + System.lineSeparator()
+            "Appears at: t=0" + System.lineSeparator() +
+            "Disappears at t=20" + System.lineSeparator()
             + "Name: o1" + System.lineSeparator() +
             "Type: oval" + System.lineSeparator() +
             "Center: (15, -15), x Radius: 4, y Radius: 6 "
             + "Color: java.awt.Color[r=255,g=255,b=255]"
             + System.lineSeparator() +
-            "Appears at: t=5" + System.lineSeparator() +
-            "Disappears at t=5" + System.lineSeparator(), anime.showStatusAt(5));
+            "Appears at: t=0" + System.lineSeparator() +
+            "Disappears at t=40" + System.lineSeparator(), anime.showStatusAt(5));
     anime.scale("o1", 5, 0, 5);
     try {
       anime.scale("r0", 1, 10, 25);

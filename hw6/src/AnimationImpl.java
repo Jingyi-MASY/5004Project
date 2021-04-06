@@ -108,7 +108,7 @@ public class AnimationImpl implements IAnimation {
       throw new IllegalArgumentException("invalid time");
     }
     StringBuilder str = new StringBuilder();
-    for (int i = 0; i <= listOfShapes.size(); i++) {
+    for (int i = 0; i < listOfShapes.size(); i++) {
       str.append(listOfShapes.get(i).toString());
     }
     return str.toString();

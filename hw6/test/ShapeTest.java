@@ -22,20 +22,13 @@ public class ShapeTest {
     c1 = new Circle("c1", ShapeType.CIRCLE, new Point2D(0, 0),
             Color.BLACK, 30, 50, 10);
     o1 = new Oval("o1", ShapeType.OVAL, new Point2D(15, -15),
-            Color.WHITE, 5, 5, 4, 6);
+            Color.WHITE, 5, 6, 4, 6);
     r1 = new Rectangle("r1", ShapeType.RECTANGLE, new Point2D(50, 50),
             Color.WHITE, 0, 20, 30, 20);
   }
 
   @Test
   public void testShapeConstructor() {
-    IShape c1 = new Circle("c1", ShapeType.CIRCLE, new Point2D(0, 0),
-            Color.BLACK, 30, 50, 10);
-    IShape o1 = new Oval("o1", ShapeType.OVAL, new Point2D(15, -15),
-            Color.WHITE, 5, 5, 4, 6);
-    IShape r1 = new Rectangle("r1", ShapeType.RECTANGLE, new Point2D(50, 50),
-            Color.WHITE, 0, 20, 30, 20);
-
     //appear after disappear
     try {
       new Circle("c1", ShapeType.CIRCLE, new Point2D(0, 0),
@@ -48,6 +41,12 @@ public class ShapeTest {
     try {
       new Oval("c1", ShapeType.OVAL, new Point2D(0, 0),
               Color.BLUE, -10, 10, 20, 15);
+      fail("Accepting invalid time");
+    } catch (IllegalArgumentException ignored) {
+    }
+    try {
+      new Oval("c1", ShapeType.OVAL, new Point2D(0, 0),
+              Color.BLUE, 5, 5, 20, 15);
       fail("Accepting invalid time");
     } catch (IllegalArgumentException ignored) {
     }
@@ -118,18 +117,18 @@ public class ShapeTest {
     assertEquals("c1", c1.getName());
     assertEquals(ShapeType.RECTANGLE, r1.getType());
     assertEquals(30, c1.getAppearTime());
-    assertEquals(5, o1.getDisappearTime());
+    assertEquals(6, o1.getDisappearTime());
     assertEquals("c1", c1.getCopy(40).getName());
     assertTrue(new Point2D(0, 0).equals(c1.getCopy(40).getPositionAt(40)));
     assertEquals(new Point2D(0, 0),c1.getCopy(40).getPositionAt(30));
 
     assertEquals("Name: o1" + System.lineSeparator() +
             "Type: oval" + System.lineSeparator() +
-            "Lower left corner: (15, -15), xRadius: 4, yRadius: 6 "
+            "Center: (15, -15), x Radius: 4, y Radius: 6 "
             + "Color: java.awt.Color[r=255,g=255,b=255]"
             + System.lineSeparator() +
             "Appears at: t=5" + System.lineSeparator() +
-            "Disappears at t=5" + System.lineSeparator(), o1.toString());
+            "Disappears at t=6" + System.lineSeparator(), o1.toString());
 
     //Check Model test
   }

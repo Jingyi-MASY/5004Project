@@ -77,7 +77,7 @@ public abstract class AbstractShape implements IShape {
       throw new IllegalArgumentException("invalid color");
     }
 
-    if (disappearTime < appearTime || appearTime < 0 || disappearTime > 100) {
+    if (disappearTime <= appearTime || appearTime < 0 || disappearTime > 100) {
       throw new IllegalArgumentException("invalid appearance time range");
     }
     int timeRange = disappearTime - appearTime;

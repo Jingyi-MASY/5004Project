@@ -91,6 +91,7 @@ public class AnimationImpl implements IAnimation {
   @Override
   public LinkedList<Movement> getAllMovement() {
     LinkedList<Movement> result = new LinkedList<>();
+
     for (IShape x : listOfShapes) {
       if (x.getMovementList() != null) {
         result.addAll(x.getMovementList());

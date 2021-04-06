@@ -93,7 +93,7 @@ public class ModelTest {
     } catch (IllegalArgumentException ignored) {
     }
     anime.changeColor("r1", Color.BLUE, 10, 20);
-    assertEquals(Color.BLUE, r1.getColorAt(10));
+    assertEquals(Color.BLUE, r1.getColorAt(19));
   }
 
   @Test

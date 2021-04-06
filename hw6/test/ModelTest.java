@@ -176,7 +176,7 @@ public class ModelTest {
             Color.WHITE, 0, 40, 4, 6));
     assertEquals("Name: r1" + System.lineSeparator() +
             "Type: rectangle" + System.lineSeparator() +
-            "Lower left corner: 30, 30), Width: 150, Height: 100 "
+            "Lower left corner: (50, 50), Width: 150, Height: 100 "
             + "Color: java.awt.Color[r=255,g=255,b=255]"
             + System.lineSeparator() +
             "Appears at: t=0" + System.lineSeparator() +

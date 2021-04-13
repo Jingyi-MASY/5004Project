@@ -122,7 +122,7 @@ public class AnimationImpl implements IAnimation {
       if (time >= listOfShapes.get(i).getAppearTime()
               && time < listOfShapes.get(i).getDisappearTime()) {
         //copy a shape at moment time to result list
-        listOfShapes.add(listOfShapes.get(i).getCopy(time));
+        result.add(listOfShapes.get(i).getCopy(time));
       }
     }
     return result;

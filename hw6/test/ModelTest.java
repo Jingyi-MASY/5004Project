@@ -225,7 +225,7 @@ public class ModelTest {
 
     //Need to extend the boundary
     try {
-      anime.showStatusAt(90);
+      anime.showStatusAt(110);
       fail("Out of boundary");
     } catch (IllegalArgumentException ignored) {
     }

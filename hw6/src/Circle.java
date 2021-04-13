@@ -6,6 +6,7 @@ import java.awt.Color;
  * tracks radius status along the time of appearance of this shape.
  */
 public class Circle extends AbstractShape {
+  int radius;
   private int[] radiusTimeline;
 
   /**
@@ -26,6 +27,7 @@ public class Circle extends AbstractShape {
     if (type != ShapeType.CIRCLE) {
       throw new IllegalArgumentException("This should be a circle");
     }
+    this.radius = radius;
     int timeRange = disappearTime - appearTime;
     this.radiusTimeline = new int[timeRange];
     for (int i = 0; i < timeRange; i++) {
@@ -104,8 +106,15 @@ public class Circle extends AbstractShape {
 
   @Override
   public String getDimensionChange(int time, int factor) {
-    return "scales from Radius: " + this.getRadiusAt(time - 1) + ", to Radius: "
-            + this.getRadiusAt(time - 1) * factor;
+    //old dimension is the dimension at the moment before the start time starts
+    //which is at the end of last time unit ends (t = startTime - 1)
+    int oldRadius;
+    if (time == appearTime) {
+      oldRadius = this.radius;
+    } else {
+      oldRadius = this.getRadiusAt(time - 1);
+    }
+    return "scales from Radius: " + oldRadius + ", to Radius: " + oldRadius * factor;
   }
 
   /**

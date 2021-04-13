@@ -158,10 +158,9 @@ public class ModelTest {
       fail("Movement invalid position");
     } catch (IllegalArgumentException ignored) {
     }
-    //take a look again!
-    assertEquals("Shape o1 moves from (12, -12) to (-30, 30) from t=0 to t=15"
+    assertEquals("Shape o1 moves from (15, -15) to (-30, 30) from t=0 to t=15"
             + System.lineSeparator()
-            + "Shape r1 moves from (46, 46) to (30, 30) from t=5 to t=10"
+            + "Shape r1 moves from (50, 50) to (30, 30) from t=5 to t=10"
             + System.lineSeparator()
             + "Shape o1 moves from (-30, 30) to (70, 70) from t=20 to t=25"
             + System.lineSeparator(), anime.displayAll());
@@ -200,18 +199,12 @@ public class ModelTest {
       fail("Invalid name");
     } catch (IllegalArgumentException ignored) {
     }
-    /*
-    assertEquals("Shape o1 scales from xRadius:4 yRadius:6 "
-            + "to xRadius:20 yRadius:30 from t= 0 to t= 5"
-            + System.lineSeparator() + "Shape r1 scales from Weight:30 Height:20 "
-            + "to Weight:150 Height:100 from t= 3 to t= 5"
-            + System.lineSeparator()
-            + "Shape r1 moves from (50, 50) to (30, 30) from t= 7 to t= 10"
-            + System.lineSeparator(), anime.displayAll());
-     */
-    //take a look again!
-    assertEquals("Shape o1 Shape r1 Shape r1 moves from (44, 44) to " +
-            "(30, 30) from t=7 to t=10\n", anime.displayAll());
+
+    assertEquals("Shape o1 scales from xRadius: 4, yRadius: 6, to xRadius: 20, " +
+            "yRadius: 30 from t=0 to t=5\n" +
+            "Shape r1 scales from Width: 30, Height: 20, to Width: 150, Height: 100 from " +
+            "t=3 to t=5\n" +
+            "Shape r1 moves from (50, 50) to (30, 30) from t=7 to t=10\n", anime.displayAll());
   }
 
   @Test
@@ -232,7 +225,7 @@ public class ModelTest {
 
     //Need to extend the boundary
     try {
-      anime.showStatusAt(150);
+      anime.showStatusAt(90);
       fail("Out of boundary");
     } catch (IllegalArgumentException ignored) {
     }

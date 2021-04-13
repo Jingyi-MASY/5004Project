@@ -21,6 +21,20 @@ public interface IShape {
   ShapeType getType();
 
   /**
+   * This method gets and returns the initial position of this shape. This might be different from
+   * the result from getPositionAt(appearTime) because the later one reflects moving status.
+   * @return  initial position of this shape before any change, Point2D type.
+   */
+  Point2D getPosition();
+
+  /**
+   * This method gets and returns the initial color of this shape. This might be different from
+   * the result from getColorAt(appearTime) because the later one reflects moving status.
+   * @return  initial color of this shape before any change, Color type.
+   */
+  Color getColor();
+
+  /**
    * this method gets and returns the position of this shape at certain point of time.
    *
    * @param time time that is looking for based on, int type.

@@ -32,7 +32,7 @@ public class Rectangle extends AbstractShape {
     }
     this.width = width;
     this.height = height;
-    int timeRange = disappearTime - appearTime + 1;
+    int timeRange = disappearTime - appearTime;
     this.widthTimeline = new int[timeRange];
     this.heightTimeline = new int[timeRange];
     for (int i = 0; i < timeRange; i++) {
@@ -122,9 +122,8 @@ public class Rectangle extends AbstractShape {
         heightTimeline[startTime - appearTime + i] = oldHeight
                 + (k * (oldHeight * factor - oldHeight)) / range;
         k++;
-        //anything else needs to be done here?
       }
-      //change radius after since
+      //change dimension after since
       for (int j = endTime; j < disappearTime; j++) {
         widthTimeline[j - appearTime] = oldWidth * factor;
         heightTimeline[j - appearTime] = oldHeight * factor;
@@ -147,8 +146,17 @@ public class Rectangle extends AbstractShape {
 
   @Override
   public String getDimensionChange(int time, int factor) {
-    int oldWidth = this.getWidthAt(time);
-    int oldHeight = this.getHeightAt(time);
+    //old dimension is the dimension at the moment before the start time starts
+    //which is at the end of last time unit ends (t = startTime - 1)
+    int oldWidth;
+    int oldHeight;
+    if (time == appearTime) {
+      oldWidth = this.width;
+      oldHeight = this.height;
+    } else {
+      oldWidth = this.getWidthAt(time - 1);
+      oldHeight = this.getHeightAt(time - 1);
+    }
     return "scales from Width: " + oldWidth + ", Height: " + oldHeight
             + ", to Width: " + oldWidth * factor + ", Height: " + oldHeight * factor;
   }

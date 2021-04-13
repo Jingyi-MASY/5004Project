@@ -99,7 +99,7 @@ public abstract class AbstractShape implements IShape {
     for (int i = 0; i < timeRange; i++) {
       colorTimeline[i] = color;
     }
-    this.listOfMovements = new LinkedList<>();
+    this.listOfMovements = new LinkedList<Movement>();
   }
 
 
@@ -112,6 +112,17 @@ public abstract class AbstractShape implements IShape {
   public ShapeType getType() {
     return this.type;
   }
+
+  @Override
+  public Point2D getPosition() {
+    return this.position;
+  }
+
+  @Override
+  public Color getColor() {
+    return this.color;
+  }
+
 
   @Override
   public Point2D getPositionAt(int time) throws IllegalArgumentException {

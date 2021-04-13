@@ -33,7 +33,7 @@ public class Oval extends AbstractShape {
     }
     this.xRadius = xRadius;
     this.yRadius = yRadius;
-    int timeRange = disappearTime - appearTime + 1;
+    int timeRange = disappearTime - appearTime;
     this.xRadiusTimeline = new int[timeRange];
     this.yRadiusTimeline = new int[timeRange];
     for (int i = 0; i < timeRange; i++) {
@@ -147,8 +147,17 @@ public class Oval extends AbstractShape {
 
   @Override
   public String getDimensionChange(int time, int factor) {
-    int oldXRadius = this.getXRadiusAt(time);
-    int oldYRadius = this.getYRadiusAt(time);
+    //old dimension is the dimension at the moment before the start time starts
+    //which is at the end of last time unit ends (t = startTime - 1)
+    int oldXRadius;
+    int oldYRadius;
+    if (time == appearTime) {
+      oldXRadius = this.xRadius;
+      oldYRadius = this.yRadius;
+    } else {
+      oldXRadius = this.getXRadiusAt(time - 1);
+      oldYRadius = this.getYRadiusAt(time - 1);
+    }
     return "scales from xRadius: " + oldXRadius + ", yRadius: " + oldYRadius
             + ", to xRadius: " + oldXRadius * factor + ", yRadius: " + oldYRadius * factor;
   }

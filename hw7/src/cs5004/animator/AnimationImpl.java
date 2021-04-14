@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class AnimationImpl implements IAnimation {
   private List<IShape> listOfShapes;
-  private final int[] bounds;
+  private int[] bounds;
 
 
   /**
@@ -186,7 +186,6 @@ public class AnimationImpl implements IAnimation {
 
 
   public static final class Builder implements AnimationBuilder<IAnimation> {
-     bounds;
 
     @Override
     public IAnimation build() {

@@ -5,9 +5,9 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-import cs5004.animator.model.IShape;
-import cs5004.animator.model.Movement;
-import cs5004.animator.model.ShapeType;
+import cs5004.animator.IShape;
+import cs5004.animator.Movement;
+import cs5004.animator.ShapeType;
 
 public class TextView implements IView{
   private PrintStream out;

@@ -2,8 +2,8 @@ package cs5004.animator.view;
 
 import java.util.List;
 
-import cs5004.animator.model.AnimationImpl;
-import cs5004.animator.model.IShape;
+import cs5004.animator.IAnimation;
+import cs5004.animator.IShape;
 
 public interface IView {
   /**
@@ -13,8 +13,14 @@ public interface IView {
    *                      circle.
    */
   void showShapeInitials(List<IShape> listOfShapes);
+
   void showShapeAppearance(List<IShape> listOfShapes);
+
   void showMotions(List<IShape> listOfShapes);
+
+  void showAll(IAnimation animation);
+  void showOneShape(IAnimation animation, String shapeName);
+  void showStatusAt(IAnimation animation, int time);
   //void showOptions();
   //void showStringEntry();
   //void showOptionError();

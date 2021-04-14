@@ -1,4 +1,4 @@
-package cs5004.animator.model;
+package cs5004.animator;
 /**
  * This class represents a Scale movement that implements the movement interface, this class
  * includes all the fields and methods that are specific to a a Scale movement. The fields of this

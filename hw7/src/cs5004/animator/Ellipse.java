@@ -1,4 +1,4 @@
-package cs5004.animator.model;
+package cs5004.animator;
 import java.awt.Color;
 
 /**

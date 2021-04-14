@@ -1,4 +1,4 @@
-package cs5004.animator.model;
+package cs5004.animator;
 /**
  * This Movement interface includes all operations that applies to all movements.
  */

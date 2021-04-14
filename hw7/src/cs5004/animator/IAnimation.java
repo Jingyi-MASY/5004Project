@@ -1,4 +1,4 @@
-package cs5004.animator.model;
+package cs5004.animator;
 import java.awt.Color;
 import java.util.LinkedList;
 
@@ -7,6 +7,16 @@ import java.util.LinkedList;
  * implementation can add various shapes and various movements into it.
  */
 public interface IAnimation {
+
+  /**
+   * This methods sets bounds for this animation.
+   */
+  void setBounds(int x, int y, int width, int height);
+
+  /**
+   * This method gets and returns the bounds for this animation.
+   */
+  int[] getBounds();
 
   /**
    * This method adds a shape into this animation. The shaped to be added must appears within time

@@ -1,5 +1,6 @@
-package cs5004.animator.model;
-import java.awt.Color;
+package cs5004.animator;
+
+import java.awt.*;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  */
 public class AnimationImpl implements IAnimation {
   private List<IShape> listOfShapes;
+  private final int[] bounds;
 
 
   /**
@@ -21,6 +23,29 @@ public class AnimationImpl implements IAnimation {
    */
   public AnimationImpl() {
     this.listOfShapes = new LinkedList<>();
+    this.bounds = new int[]{0, 0, 1000, 1000}; //default bounds value
+  }
+
+  /**
+   * This is the constructor of this AnimationImpl class. It initialize an animation implementation
+   * by creating two empty lists: listOfShapes and listOfNames.
+   */
+  public AnimationImpl(int x, int y, int width, int height) {
+    this.listOfShapes = new LinkedList<>();
+    this.bounds = new int[]{x, y, width, height}; //default bounds value
+  }
+
+  @Override
+  public void setBounds(int x, int y, int width, int height) {
+    this.bounds[0] = x;
+    this.bounds[1] = y;
+    this.bounds[2] = width;
+    this.bounds[3] = height;
+  }
+
+  @Override
+  public int[] getBounds() {
+    return this.bounds;
   }
 
   @Override
@@ -159,7 +184,29 @@ public class AnimationImpl implements IAnimation {
     return str.toString();
   }
 
+
   public static final class Builder implements AnimationBuilder<IAnimation> {
-    //fill in here
+     bounds;
+
+    @Override
+    public IAnimation build() {
+      return null;
+    }
+
+    @Override
+    public AnimationBuilder<IAnimation> setBounds(int x, int y, int width, int height) {
+      return null;
+    }
+
+    @Override
+    public AnimationBuilder<IAnimation> declareShape(String name, String type) {
+      return null;
+    }
+
+    @Override
+    public AnimationBuilder<IAnimation> addMotion(String name, int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
+      return null;
+    }
+
   }
 }

@@ -1,4 +1,4 @@
-package cs5004.animator.model;
+package cs5004.animator;
 /**
  * this class represents a Point2D class and includes all fields and methods that are specific to
  * this class. The fields of this class includes an x and an y indicating its position on x axis and

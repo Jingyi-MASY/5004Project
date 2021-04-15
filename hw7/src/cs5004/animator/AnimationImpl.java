@@ -275,13 +275,13 @@ public class AnimationImpl implements IAnimation {
 
     @Override
     public IAnimation build() {
-      return this.animation;//???
+      return this.animation;
     }
 
     @Override
     public AnimationBuilder<IAnimation> setBounds(int x, int y, int width, int height) {
       animation.setBounds(x, y, width, height);
-      return this;//???
+      return this;
     }
 
     @Override

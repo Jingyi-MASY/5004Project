@@ -6,6 +6,7 @@ package cs5004.animator;
  */
 public class Move implements Movement {
   IShape shape;
+  Point2D initialPosition;
   Point2D targetPosition;
   int startTime;
   int endTime;
@@ -14,13 +15,16 @@ public class Move implements Movement {
    * this constructor initialize a Move movement based on the following parameters.
    *
    * @param shape          shape that will conduct this move, IShape type.
-   * @param targetPosition the target position of where this movement would move the shape to,
+   * @param initialPosition the initial position of where the motion would move the shape from,
+   *                        Point2D type.
+   * @param targetPosition the target position of where this motion would move the shape to,
    *                       Point2D type.
    * @param startTime      the start time of this move, int type.
    * @param endTime        the end time of this move, int type.
    */
-  public Move(IShape shape, Point2D targetPosition, int startTime, int endTime) {
+  public Move(IShape shape, Point2D initialPosition, Point2D targetPosition, int startTime, int endTime) {
     this.shape = shape;
+    this.initialPosition = initialPosition;
     this.targetPosition = targetPosition;
     this.startTime = startTime;
     this.endTime = endTime;
@@ -29,6 +33,11 @@ public class Move implements Movement {
   @Override
   public int getStartTime() {
     return this.startTime;
+  }
+
+  @Override
+  public int getEndTime() {
+    return this.endTime;
   }
 
   @Override

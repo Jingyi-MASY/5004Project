@@ -200,7 +200,7 @@ public class ModelTest {
     } catch (IllegalArgumentException ignored) {
     }
 
-    assertEquals("Shape o1 scales from xRadius: 4, yRadius: 6, to xRadius: 20, " +
+    assertEquals("Shape o11 scales from xRadius: 4, yRadius: 6, to xRadius: 20, " +
             "yRadius: 30 from t=0 to t=5\n" +
             "Shape r1 scales from Width: 30, Height: 20, to Width: 150, Height: 100 from " +
             "t=3 to t=5\n" +

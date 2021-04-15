@@ -8,6 +8,7 @@ import java.awt.Color;
  */
 public class ColorChange implements Movement {
   IShape shape;
+  Color initialColor;
   Color targetColor;
   int startTime;
   int endTime;
@@ -16,13 +17,15 @@ public class ColorChange implements Movement {
    * This constructor initialize a ColorChange movement based on the following parameters.
    *
    * @param shape       shape that would conduct this movement, IShape type.
+   * @param initialColor  initial color that the shape would change from, Color type.
    * @param targetColor target color that the shape would turn to after completing this movement,
    *                    Color type.
    * @param startTime   the start time of this movement, int type.
    * @param endTime     the end time of this movement, int type.
    */
-  public ColorChange(IShape shape, Color targetColor, int startTime, int endTime) {
+  public ColorChange(IShape shape, Color initialColor, Color targetColor, int startTime, int endTime) {
     this.shape = shape;
+    this.initialColor = initialColor;
     this.targetColor = targetColor;
     this.startTime = startTime;
     this.endTime = endTime;
@@ -49,5 +52,10 @@ public class ColorChange implements Movement {
   @Override
   public int getStartTime() {
     return this.startTime;
+  }
+
+  @Override
+  public int getEndTime() {
+    return this.endTime;
   }
 }

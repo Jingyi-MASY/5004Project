@@ -23,20 +23,6 @@ public interface IShape {
   ShapeType getType();
 
   /**
-   * This method gets and returns the initial position of this shape. This might be different from
-   * the result from getPositionAt(appearTime) because the later one reflects moving status.
-   * @return  initial position of this shape before any change, Point2D type.
-   */
-  Point2D getPosition();
-
-  /**
-   * This method gets and returns the initial color of this shape. This might be different from
-   * the result from getColorAt(appearTime) because the later one reflects moving status.
-   * @return  initial color of this shape before any change, Color type.
-   */
-  Color getColor();
-
-  /**
    * this method gets and returns the position of this shape at certain point of time.
    *
    * @param time time that is looking for based on, int type.
@@ -54,6 +40,10 @@ public interface IShape {
    */
   Color getColorAt(int time) throws IllegalArgumentException;
 
+  int getPara1At(int time) throws IllegalArgumentException;
+
+  int getPara2At(int time) throws IllegalArgumentException;
+
   /**
    * this methods gets and returns the appearTime of this shape.
    *
@@ -69,37 +59,35 @@ public interface IShape {
   int getDisappearTime();
 
   /**
-   * this method returns the only parameter in dimension, initial value before any motion.
-   * for a circle, it should be the radius; for a square, it should be the width.
-   * @return  the only parameter in dimension.
+   * this method is used to update the appearance time and disappearance time for this shape
+   * that is existing in an animation. The updates includes this shape's appear time, disappear time
+   * the changing status for each motion (isMovingStatus, isChangeingColorStatus, isScaling), and
+   * the status timeline for each attributes(color, position, dimensions).
+   * @param start the start time of certain motion, int type.
+   * @param end   the end time of certain motion, int type.
    */
-  int getPara();
+  void updateAppearance(int start, int end);
 
   /**
-   * this method returns the first parameter in dimension, initial value before any motion..
-   * It should be width for a rectangle, and xRadius for a ellipse.
-   * @return  first parameter in dimension.
+   * this method is used to update the color of this shape from startTime to endTime.
+   * @param color   the color to fill in this shape from start time to end time, Color type.
+   * @param startTime  start time of this filling/updating, int type.
+   * @param endTime   end time of this filling/updating, int type.
    */
-  int getPara1();
+  void updateColor (Color color, int startTime, int endTime);
 
   /**
-   * this method returns the second parameter in dimension, initial value before any motion..
-   * It should be height for a rectangle, and yRadius for a ellipse.
-   * @return  second parameter in dimension.
-   */
-  int getPara2();
-
-  /**
-   * This method add a color change movement to this shape to a target color, starting at a start
+   * This method adds a color change to this shape to a target color, starting at a start
    * time and completes at an end time.
    *
-   * @param color     target color after color change movement, Color type.
+   * @param color1    original color at this shape at startTime, Color type.
+   * @param color2     target color after color change movement, Color type.
    * @param startTime start time of this color change movement, int type.
    * @param endTime   end time of this color change movement, int type.
    * @throws IllegalStateException if the target time range is not available for this shape to take
    *                               a color change move.
    */
-  void addChangeColor(Color color, int startTime, int endTime) throws IllegalStateException;
+  void addChangeColor(Color color1, Color color2, int startTime, int endTime) throws IllegalStateException;
 
   /**
    * This method adds a scaling movement to this shape to a certain new dimension, starting at a
@@ -111,7 +99,15 @@ public interface IShape {
    * @throws IllegalArgumentException if the target time range is not available for this shape to
    *                                  take a scaling movement.
    */
-  void addScale(int factor, int startTime, int endTime) throws IllegalArgumentException;
+  //void addScale(int factor, int startTime, int endTime) throws IllegalArgumentException;
+
+  /**
+   * this method is used to fill in and update the position of this shape
+   * @param position  the position to fill in for this shape, Point2D type.
+   * @param startTime   the start time to fill in the position to this shape, int type.
+   * @param endTime   the end time to fill in the position to this shape, int type.
+   */
+  void updatePosition(Point2D position, int startTime, int endTime);
 
   /**
    * This method adds a moving movement to this shape so that it moves to a new position, starting
@@ -123,8 +119,44 @@ public interface IShape {
    * @throws IllegalArgumentException if the target time range is not available for this shape to
    *                                  take a moving movement.
    */
-  void addMove(Point2D newPosition, int startTime, int endTime)
+  void addMove(Point2D oldPosition, Point2D newPosition, int startTime, int endTime)
           throws IllegalArgumentException;
+
+  /**
+   * this method is used to fill in and update the width of this shape
+   * @param width  the width to fill in for this shape, int type.
+   * @param startTime   the start time to fill in the position to this shape, int type.
+   * @param endTime   the end time to fill in the position to this shape, int type.
+   */
+  void updateWidth(int width, int startTime, int endTime);
+
+  /**
+   * this methods adds a scale motion on this shape's width from the initial width to the target
+   * width from startTime to endTime.
+   * @param initialWidth  the initial width of the shape when the shape starts the motion, int type.
+   * @param targetWidth   the target width of this shape when the shape ends the motion, int type.
+   * @param startTime   the start time of this motion, int type.
+   * @param endTime   the end time of this motion, int type.
+   */
+  void addWidthScale(int initialWidth, int targetWidth, int startTime, int endTime);
+
+  /**
+   * this method is used to fill in and update the height of this shape
+   * @param height  the height to fill in for this shape, int type.
+   * @param startTime   the start time to fill in the position to this shape, int type.
+   * @param endTime   the end time to fill in the position to this shape, int type.
+   */
+  void updateHeight(int height, int startTime, int endTime);
+
+  /**
+   * this methods adds a scale motion on this shape's width from the initial height to the target
+   * height from startTime to endTime.
+   * @param initialHeight  the initial height of the shape when the shape starts the motion.
+   * @param targetHeight   the target height of this shape when the shape ends the motion.
+   * @param startTime   the start time of this motion, int type.
+   * @param endTime   the end time of this motion, int type.
+   */
+  void addHeightScale(int initialHeight, int targetHeight, int startTime, int endTime);
 
   /**
    * This method generates a copy of this shape for all its status at certain point of time.
@@ -133,7 +165,7 @@ public interface IShape {
    * @return a new shape that has the same status of this shape at certain time,
    *         or return null if the time is invalid for this shape.
    */
-  IShape getCopy(int time);
+  //IShape getCopy(int time);
 
   /**
    * This method gets and returns a list of all movements of this shape.
@@ -149,6 +181,6 @@ public interface IShape {
    * @param factor the scaling factor. new dimensions = old dimension * factor, int type.
    * @return the text description of how the dimensions have changes during a scaling movement.
    */
-  String getDimensionChange(int time, int factor);
+  //String getDimensionChange(int time, int factor);
 
 }

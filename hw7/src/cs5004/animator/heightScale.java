@@ -4,9 +4,10 @@ package cs5004.animator;
  * includes all the fields and methods that are specific to a a Scale movement. The fields of this
  * class includes a shape, a scaling factor, a start time, and an end time.
  */
-public class Scale implements Movement {
+public class heightScale implements Movement {
   IShape shape;
-  int scalingFactor;
+  int oldPara;
+  int newPara;
   int startTime;
   int endTime;
 
@@ -14,19 +15,23 @@ public class Scale implements Movement {
    * this constructor initializes this Scale movement based on the following parameters.
    *
    * @param shape         shape that would conduct this movement, IShape type.
-   * @param scalingFactor the scaling factor, int type.
+   * @param oldPara       the initial length of the parameter.
+   * @param newPara       the target length of the parameter.
    * @param startTime     the start time of this movement, int type.
    * @param endTime       the end time of this movement, int type.
    */
-  public Scale(IShape shape, int scalingFactor, int startTime, int endTime)
+  public heightScale(IShape shape, int oldPara, int newPara, int startTime, int endTime)
           throws IllegalArgumentException {
-    if (scalingFactor <= 0) {
-      throw new IllegalArgumentException("Scaling factor cannot be zero or negative");
-    }
     this.shape = shape;
-    this.scalingFactor = scalingFactor;
+    this.oldPara = oldPara;
+    this.newPara = newPara;
     this.startTime = startTime;
     this.endTime = endTime;
+  }
+
+  @Override
+  public String display() {
+    return null;
   }
 
   @Override
@@ -35,11 +40,8 @@ public class Scale implements Movement {
   }
 
   @Override
-  public String display() {
-    String str = "";
-    str += "Shape " + this.shape.getName() + " ";
-    str += this.shape.getDimensionChange(startTime, scalingFactor) + " from t=" + startTime
-            + " to t=" + endTime + System.lineSeparator();
-    return str;
+  public int getEndTime() {
+    return this.endTime;
   }
 }
+

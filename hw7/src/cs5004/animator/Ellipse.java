@@ -1,5 +1,4 @@
 package cs5004.animator;
-import java.awt.Color;
 
 /**
  * this class represents an Elipse shape, and it includes all fields and methods that are specific to
@@ -7,179 +6,19 @@ import java.awt.Color;
  * yRadiusTimeline.
  */
 public class Ellipse extends AbstractShape {
-  int xRadius;
-  int yRadius;
-  int[] xRadiusTimeline;
-  int[] yRadiusTimeline;
 
   /**
    * This Ellipse class constructor initialize a Ellipse object based on the passed in info.
    *
-   * @param name          name of the shape, String type.
-   * @param type          type of the shape, ShapeType enum type.
-   * @param position      position of the center of the Ellipse, Point2D type.
-   * @param color         color of this Ellipse, Color type.
-   * @param appearTime    time that this Ellipse shows up in certain animation, int type.
-   * @param disappearTime time that this Ellipse disappears in certain animation, int type.
-   * @param xRadius       initial radius on x-axis of this Ellipse, int type.
-   * @param yRadius       initial radius on y-axis of this Ellipse, int type.
+   * @param name name of the shape, String type.
+   * @param type type of the shape, ShapeType enum type.
    * @throws IllegalArgumentException if the appearance time range is invalid.
    */
-  public Ellipse(String name, ShapeType type, Point2D position, Color color, int appearTime,
-                 int disappearTime, int xRadius, int yRadius) {
+  public Ellipse(String name, ShapeType type) {
 
-    super(name, type, position, color, appearTime, disappearTime, xRadius, yRadius);
+    super(name, type);
     if (type != ShapeType.ELLIPSE) {
       throw new IllegalArgumentException("This should be an Ellipse");
     }
-    this.xRadius = xRadius;
-    this.yRadius = yRadius;
-    int timeRange = disappearTime - appearTime;
-    this.xRadiusTimeline = new int[timeRange];
-    this.yRadiusTimeline = new int[timeRange];
-    for (int i = 0; i < timeRange; i++) {
-      xRadiusTimeline[i] = xRadius;
-    }
-    for (int i = 0; i < timeRange; i++) {
-      yRadiusTimeline[i] = yRadius;
-    }
-  }
-
-  /**
-   * this method gets and returns a list of xRadius of this Ellipse during the entire time of its
-   * appearance.
-   *
-   * @return xRadius of this Ellipse at every moment of the timeline
-   */
-  public int[] getXRadiusTimeline() {
-    return xRadiusTimeline;
-  }
-
-  /**
-   * this method gets and returns a list of yRadius of this Ellipse during the entire time of its
-   * appearance.
-   *
-   * @return yRadius of this Ellipse at every moment of the timeline
-   */
-  public int[] getYRadiusTimeline() {
-    return yRadiusTimeline;
-  }
-
-  /**
-   * this methods returns the xRadius value at certain point of time.
-   *
-   * @param time time that is looking for.
-   * @return the xRadius of this Ellipse at the passed in time.
-   * @throws IllegalArgumentException if the passed in time if out of range.
-   */
-  public int getXRadiusAt(int time) throws IllegalArgumentException {
-    if (time < appearTime || time > disappearTime) {
-      throw new IllegalArgumentException("At this time the shape is not appeared.");
-    }
-    int timeIndex = time - appearTime;
-    return this.xRadiusTimeline[timeIndex];
-  }
-
-  /**
-   * this method returns the yRadius value at certain point of time.
-   *
-   * @param time time that is looking for
-   * @return yRadius of this Ellipse at the passed in time.
-   * @throws IllegalArgumentException if the passed in time if out of range.
-   */
-  public int getYRadiusAt(int time) throws IllegalArgumentException {
-    if (time < appearTime || time > disappearTime) {
-      throw new IllegalArgumentException("At this time the shape is not appeared.");
-    }
-    int timeIndex = time - appearTime;
-    return this.yRadiusTimeline[timeIndex];
-  }
-
-  /**
-   * This method adds a scaling movement to this Ellipse shape.
-   *
-   * @param factor    factor to use to measure dimension. new dimension = old dimension * factor.
-   * @param startTime target start time of this scaling movement, int type.
-   * @param endTime   target end time of this scaling movement, int type.
-   * @throws IllegalArgumentException if the start time and end time stays out of the appearance
-   *                                  time range.
-   */
-  public void addScale(int factor, int startTime, int endTime) throws IllegalArgumentException {
-    if (factor <= 0) {
-      throw new IllegalArgumentException("scaling factor cannot be zero or negative number");
-    }
-    if (startTime > endTime || startTime < appearTime || endTime > disappearTime) {
-      throw new IllegalArgumentException("invalid appearance time range");
-    }
-    if (checkIfScalingAvailable(startTime, endTime)) {
-      int range = endTime - startTime;
-      int k = 1;
-      int oldXRadius = this.getXRadiusAt(startTime);
-      int oldYRadius = this.getYRadiusAt(startTime);
-
-      for (int i = 0; i < endTime - startTime; i++) {
-        isScalingStatus[startTime - appearTime + i] = 1;
-        xRadiusTimeline[startTime - appearTime + i] =
-                oldXRadius + (k * (oldXRadius * factor - oldXRadius)) / range;
-        yRadiusTimeline[startTime - appearTime + i] =
-                oldYRadius + (k * (oldYRadius * factor - oldYRadius)) / range;
-        k++;
-      }
-      //change radius after since
-      for (int j = endTime; j < disappearTime; j++) {
-        xRadiusTimeline[j - appearTime] = oldXRadius * factor;
-        yRadiusTimeline[j - appearTime] = oldYRadius * factor;
-      }
-      this.listOfMovements.add(new Scale(this, factor, startTime, endTime));
-    } else {
-      throw new IllegalStateException("this shape is not available for a scale");
-    }
-  }
-
-  @Override
-  public Ellipse getCopy(int time) {
-    if (time > appearTime && time < disappearTime) {
-      return new Ellipse(this.name, ShapeType.ELLIPSE, this.getPositionAt(time),
-              this.getColorAt(time), this.getAppearTime(), this.disappearTime,
-              this.getXRadiusAt(time), this.getYRadiusAt(time));
-    }
-    return null;
-  }
-
-  @Override
-  public String getDimensionChange(int time, int factor) {
-    //old dimension is the dimension at the moment before the start time starts
-    //which is at the end of last time unit ends (t = startTime - 1)
-    int oldXRadius;
-    int oldYRadius;
-    if (time == appearTime) {
-      oldXRadius = this.xRadius;
-      oldYRadius = this.yRadius;
-    } else {
-      oldXRadius = this.getXRadiusAt(time - 1);
-      oldYRadius = this.getYRadiusAt(time - 1);
-    }
-    return "scales from xRadius: " + oldXRadius + ", yRadius: " + oldYRadius
-            + ", to xRadius: " + oldXRadius * factor + ", yRadius: " + oldYRadius * factor;
-  }
-
-
-  /**
-   * This gets and returns a specific string representation desired for this Ellipse.
-   *
-   * @return a string representation of this Ellipse.
-   */
-  @Override
-  public String toString() {
-    String str = "";
-    str += "Name: " + this.name + System.lineSeparator();
-    str += "Type: " + this.type.toString() + System.lineSeparator();
-    str += "Center: " + this.getPositionAt(appearTime).toString() + ", x Radius: "
-            + this.getXRadiusAt(appearTime)
-            + ", y Radius: " + this.getYRadiusAt(appearTime) + " Color: "
-            + this.getColorAt(appearTime).toString() + System.lineSeparator();
-    str += "Appears at: t=" + this.appearTime + System.lineSeparator();
-    str += "Disappears at t=" + this.disappearTime + System.lineSeparator();
-    return str;
   }
 }

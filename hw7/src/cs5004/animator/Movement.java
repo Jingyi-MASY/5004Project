@@ -19,4 +19,12 @@ public interface Movement {
    * @return start time of this movement, int type.
    */
   int getStartTime();
+
+  /**
+   * This method gets and returns the end time of this movement, which is when this movement is
+   * just about to start.
+   *
+   * @return end time of this movement, int type.
+   */
+  int getEndTime();
 }

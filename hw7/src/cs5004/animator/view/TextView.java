@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+import cs5004.animator.IAnimation;
 import cs5004.animator.IShape;
 import cs5004.animator.Movement;
 import cs5004.animator.ShapeType;
@@ -16,36 +17,29 @@ public class TextView implements IView{
     this.out = out;
   }
 
-  @Override
   public void showShapeInitials(List<IShape> listOfShapes) {
     for (IShape shape : listOfShapes) {
-      out.print("Create " + shape.getColor().toString() + " " + shape.getType().toString() + " ");
-      out.print(shape.getName() + " ");
+      out.print("Create " + shape.getColorAt(shape.getAppearTime()).toString() + " ");
+      out.print(shape.getType().toString() + " " + shape.getName() + " ");
       if (shape.getType() == ShapeType.RECTANGLE) {//when shape is a rectangle
-        out.print("with corner at " + shape.getPosition().toString() + ", ");
-        out.print("width " + shape.getPara1());
-        out.println("and height " + shape.getPara2());
-      } else { //when shape is a circle or oval
-        out.print("with center at " + shape.getPosition() + ", ");
-        if (shape.getType() == ShapeType.CIRCLE) { //shape is a circle
-          out.println("radius " + shape.getPara());
-        } else { // shape is a ellipse
-          out.println("radius " + shape.getPara1() + " " + shape.getPara2());
-        }
+        out.print("with corner at " + shape.getPositionAt(shape.getAppearTime()).toString() + ", ");
+        out.print("width " + shape.getPara1At(shape.getAppearTime()));
+        out.println("and height " + shape.getPara2At(shape.getAppearTime()));
+      } else { //when shape is an ellipse
+        out.print("with center at " + shape.getPositionAt(shape.getAppearTime()) + ", ");
+        out.print("radius " + shape.getPara1At(shape.getAppearTime()));
+        out.println(" and " + shape.getPara2At(shape.getAppearTime()));
       }
     }
   }
 
-  @Override
   public void showShapeAppearance(List<IShape> listOfShapes) {
     for (IShape shape : listOfShapes) {
       out.print(shape.getName() + " appears at time t=" + shape.getAppearTime());
       out.println(" and disappears at time t=" + shape.getDisappearTime());
     }
-
   }
 
-  @Override
   public void showMotions(List<IShape> listOfShapes) {
     LinkedList<Movement> motionList = new LinkedList<>();
     for (IShape x : listOfShapes) {
@@ -53,10 +47,31 @@ public class TextView implements IView{
         motionList.addAll(x.getMovementList());
       }
     }
-    motionList.sort(Comparator.comparingInt(Movement::getStartTime));
+    motionList.sort(Comparator.comparingInt(Movement::getEndTime));
 
     for (Movement m : motionList) {
       out.print(m.display());
     }
+  }
+
+  @Override
+  public void showAll(IAnimation animation) {
+    this.showShapeInitials(animation.getListOfShapes());
+    this.showShapeAppearance(animation.getListOfShapes());
+    this.showMotions(animation.getListOfShapes());
+  }
+
+  @Override
+  public void showOneShape(IAnimation animation, String shapeName) {
+    LinkedList<IShape> oneShape = new LinkedList<>();
+    for (IShape x : animation.getListOfShapes()) {
+      if (x.equals(shapeName)) {
+        oneShape.add(x);
+        break;
+      }
+    }
+    this.showShapeInitials(oneShape);
+    this.showShapeInitials(oneShape);
+    this.showMotions(oneShape);
   }
 }

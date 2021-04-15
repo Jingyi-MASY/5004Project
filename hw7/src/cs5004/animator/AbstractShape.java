@@ -1,7 +1,8 @@
 package cs5004.animator;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * This is an abstract class that implements IShape. This class includes all common fields and
@@ -14,99 +15,45 @@ import java.util.LinkedList;
 public abstract class AbstractShape implements IShape {
   protected String name;
   protected ShapeType type;
-  protected Point2D position;
-  protected Color color;
-  protected int para;
-  protected int para1;
-  protected int para2;
-  protected int appearTime;
-  protected int disappearTime;
-  protected int[] isMovingStatus;
-  protected int[] isChangingColorStatus;
-  protected int[] isScalingStatus;
-  protected Point2D[] positionTimeline;
-  protected Color[] colorTimeline;
+  protected int appearTime; //appear time
+  protected int disappearTime;//disappear time
+
+  protected List<Integer> isMovingStatus;
+  protected List<Integer> isChangingColorStatus;
+  protected List<Integer> isPara1ScalingStatus;
+  protected List<Integer> isPara2ScalingStatus;
+
+  protected List<Point2D> positionTimeline;
+  protected List<Color> colorTimeline;
+  protected List<Integer> para1Timeline;
+  protected List<Integer> para2Timeline;
+
   protected LinkedList<Movement> listOfMovements;
 
-  /**
-   * The constructor of AbstractShape create an abstract shape based on the passed in parameters.
-   *
-   * @param name          name of this shape, String type.
-   * @param type          type of this shape, ShapeType enum.
-   * @param position      the position of this shape, Point2D type.
-   * @param color         color of this shape, Color type.
-   * @param appearTime    appear time of this shape, int.
-   * @param disappearTime disappear time of this shape, int.
-   * @param para          parameter of a given shape (for a cirle, it is the radius)
-   * @throws IllegalArgumentException if the appear time and disappear time is invalid.
-   */
-  public AbstractShape(String name, ShapeType type, Point2D position, Color color, int appearTime,
-                       int disappearTime, int para) throws IllegalArgumentException {
-    if (para <= 0) {
-      throw new IllegalArgumentException("invalid shape parameter");
-    }
-    shapeBuilder(name, type, position, color, appearTime, disappearTime);
-    this.para = para;
-  }
-
-  /**
-   * The constructor of AbstractShape create an abstract shape based on the passed in parameters.
-   *
-   * @param name          name of this shape, String type.
-   * @param type          type of this shape, ShapeType enum.
-   * @param position      the position of this shape, Point2D type.
-   * @param color         color of this shape, Color type.
-   * @param appearTime    appear time of this shape, int.
-   * @param disappearTime disappear time of this shape, int.
-   * @param para1         first parameter of a given shape (rectangle: width; ellipse: xRadius).
-   * @param para2         second parameter of a given shape (rectangle:height; ellipse:yRadius).
-   * @throws IllegalArgumentException if the appear time and disappear time is invalid.
-   */
-  public AbstractShape(String name, ShapeType type, Point2D position, Color color, int appearTime,
-                       int disappearTime, int para1, int para2) throws IllegalArgumentException {
-    if (para1 <= 0 || para2 <= 0) {
-      throw new IllegalArgumentException("invalid shape parameter");
-    }
-    shapeBuilder(name, type, position, color, appearTime, disappearTime);
-    this.para1 = para1;
-    this.para2 = para2;
-  }
-
-
-  private void shapeBuilder(String name, ShapeType type, Point2D position, Color color,
-                            int appearTime, int disappearTime) throws IllegalArgumentException {
+  //new constructor added for hw7
+  public AbstractShape(String name, ShapeType type) {
     if (name == null) {
       throw new IllegalArgumentException("invalid name");
     } else if (type == null) {
       throw new IllegalArgumentException("invalid shape type");
-    } else if (position == null) {
-      throw new IllegalArgumentException("invalid position");
-    } else if (color == null) {
-      throw new IllegalArgumentException("invalid color");
     }
-
-    if (disappearTime <= appearTime || appearTime < 0 || disappearTime > 100) {
-      throw new IllegalArgumentException("invalid appearance time range");
-    }
-    int timeRange = disappearTime - appearTime;
-
     this.name = name;
     this.type = type;
-    this.position = position;
-    this.appearTime = appearTime;
-    this.disappearTime = disappearTime;
-    this.color = color;
-    this.isMovingStatus = new int[timeRange];
-    this.isChangingColorStatus = new int[timeRange];
-    this.isScalingStatus = new int[timeRange];
-    this.positionTimeline = new Point2D[timeRange];
-    for (int i = 0; i < timeRange; i++) {
-      positionTimeline[i] = position;
-    }
-    this.colorTimeline = new Color[timeRange];
-    for (int i = 0; i < timeRange; i++) {
-      colorTimeline[i] = color;
-    }
+
+    //below are default value (needs to be changed when the first motion has been added)
+    this.appearTime = -1;
+    this.disappearTime = -1;
+
+    this.isMovingStatus = new LinkedList<Integer>();
+    this.isChangingColorStatus = new LinkedList<Integer>();
+    this.isPara1ScalingStatus = new LinkedList<Integer>();
+    this.isPara2ScalingStatus = new LinkedList<Integer>();
+
+    this.positionTimeline = new LinkedList<Point2D>();
+    this.colorTimeline = new  LinkedList<Color>();
+    this.para1Timeline = new LinkedList<Integer>();
+    this.para2Timeline = new LinkedList<Integer>();
+
     this.listOfMovements = new LinkedList<Movement>();
   }
 
@@ -122,49 +69,6 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public Point2D getPosition() {
-    return this.position;
-  }
-
-  @Override
-  public Color getColor() {
-    return this.color;
-  }
-
-  @Override
-  public int getPara() {
-    return this.para;
-  }
-
-  @Override
-  public int getPara1() {
-    return this.para1;
-  }
-
-  @Override
-  public int getPara2() {
-    return this.para2;
-  }
-
-  @Override
-  public Point2D getPositionAt(int time) throws IllegalArgumentException {
-    if (time < appearTime || time > disappearTime) {
-      throw new IllegalArgumentException("At this time the shape is not appeared.");
-    }
-    int timeIndex = time - appearTime;
-    return positionTimeline[timeIndex];
-  }
-
-  @Override
-  public Color getColorAt(int time) throws IllegalArgumentException {
-    if (time < appearTime || time > disappearTime) {
-      throw new IllegalArgumentException("At this time the shape is not appeared.");
-    }
-    int timeIndex = time - appearTime;
-    return colorTimeline[timeIndex];
-  }
-
-  @Override
   public int getAppearTime() {
     return appearTime;
   }
@@ -174,6 +78,42 @@ public abstract class AbstractShape implements IShape {
     return disappearTime;
   }
 
+  @Override
+  public Point2D getPositionAt(int time) throws IllegalArgumentException {
+    if (time < this.appearTime || time > this.disappearTime) {
+      throw new IllegalArgumentException("At this time the shape is not appeared.");
+    }
+    int timeIndex = time - appearTime;
+    return positionTimeline.get(timeIndex);
+  }
+
+  @Override
+  public Color getColorAt(int time) throws IllegalArgumentException {
+    if (time < appearTime || time > disappearTime) {
+      throw new IllegalArgumentException("At this time the shape is not appeared.");
+    }
+    int timeIndex = time - appearTime;
+    return colorTimeline.get(timeIndex);
+  }
+
+  @Override
+  public int getPara1At(int time) throws IllegalArgumentException {
+    if (time < appearTime || time > disappearTime) {
+      throw new IllegalArgumentException("At this time the shape is not appeared.");
+    }
+    int timeIndex = time - appearTime;
+    return para1Timeline.get(timeIndex);
+  }
+
+  @Override
+  public int getPara2At(int time) throws IllegalArgumentException {
+    if (time < appearTime || time > disappearTime) {
+      throw new IllegalArgumentException("At this time the shape is not appeared.");
+    }
+    int timeIndex = time - appearTime;
+    return para2Timeline.get(timeIndex);
+  }
+
   /**
    * This method gets and returns the moving status of every unit of time in a list.
    *
@@ -181,7 +121,7 @@ public abstract class AbstractShape implements IShape {
    *         indicates moving in progress, NOT available to add new move. 0 indicates moving not in
    *         progress, available for new move.
    */
-  protected int[] getMovingStatus() {
+  protected List<Integer> getMovingStatus() {
     return isMovingStatus;
   }
 
@@ -192,7 +132,7 @@ public abstract class AbstractShape implements IShape {
    *         1 indicates color changing in progress, NOT available to add new color change.
    *         0 indicates color changing not in progress, available for new color change.
    */
-  protected int[] getColorChangingStatus() {
+  protected List<Integer> getColorChangingStatus() {
     return isChangingColorStatus;
   }
 
@@ -203,8 +143,12 @@ public abstract class AbstractShape implements IShape {
    *         indicates scaling in progress, NOT available to add new scaling.
    *         0 indicates scaling not in progress, available for new scaling.
    */
-  protected int[] getScalingStatus() {
-    return isScalingStatus;
+  protected List<Integer> getPara1ScalingStatus() {
+    return isPara1ScalingStatus;
+  }
+
+  protected List<Integer> getPara2ScalingStatus() {
+    return isPara2ScalingStatus;
   }
 
   /**
@@ -213,7 +157,7 @@ public abstract class AbstractShape implements IShape {
    * @return a list of Color elements that indicates the color status of this shape at every time
    *         unit of its appearance time.
    */
-  protected Color[] getColorTimeline() {
+  protected List<Color> getColorTimeline() {
     return colorTimeline;
   }
 
@@ -223,8 +167,17 @@ public abstract class AbstractShape implements IShape {
    * @return a list of Position2D elements that indicates the position of this shape at every time
    *         unit of its appearance time.
    */
-  protected Point2D[] getMovingTimeline() {
+  protected List<Point2D> getMovingTimeline() {
     return positionTimeline;
+  }
+
+
+  protected List<Integer> getPara1Timeline() {
+    return this.para1Timeline;
+  }
+
+  protected List<Integer> getPara2Timeline() {
+    return this.para2Timeline;
   }
 
 
@@ -237,55 +190,106 @@ public abstract class AbstractShape implements IShape {
    * @return true if this shape is available for this color change move, false otherwise.
    */
   protected boolean checkIfChangingColorAvailable(int startTime, int endTime) {
-    for (int i = 0; i < endTime - startTime; i++) {
-      if (isChangingColorStatus[i] == 1) {
+    int from = startTime - appearTime;
+    int to = endTime - appearTime;
+    for (int i = from; i < to; i++) {
+      if (isChangingColorStatus.get(i) == 1) {
         return false;
       }
     }
     return true;
+  }
+
+  public void updateAppearance(int start, int end) {
+    if (this.appearTime == -1 && this.disappearTime == -1) {
+      updateTimeline(start, end);
+      this.appearTime = start;
+      this.disappearTime = end;
+    } else {
+      if (start < appearTime) {
+        updateTimeline(start, disappearTime);
+        this.appearTime = start;
+      }
+      if (end > disappearTime) {
+        updateTimeline(appearTime, end);
+        this.disappearTime = end;
+      }
+    }
+  }
+
+  protected void updateTimeline(int newAppear, int newDisappear) {
+    if (this.appearTime == -1 || this.disappearTime == -1) {//no appearance time yet, -1 is default value
+      int range = newDisappear - newAppear;
+      for (int i = 0; i < range; i++) {
+        isChangingColorStatus.add(0);
+        isMovingStatus.add(0);
+        isPara1ScalingStatus.add(0);
+        isPara2ScalingStatus.add(0);
+        positionTimeline.add(0, null);
+        colorTimeline.add(0, null);
+        para1Timeline.add(0, null);
+        para2Timeline.add(0, null);
+      }
+    } else {//there was an available appearance time
+      //append at front (appear time changes to earlier)
+      int frontDiff = appearTime - newAppear;
+      for (int i = 0; i < frontDiff; i++) {
+        isChangingColorStatus.add(0, 0);
+        isMovingStatus.add(0, 0);
+        isPara1ScalingStatus.add(0, 0);
+        isPara2ScalingStatus.add(0, 0);
+        positionTimeline.add(0, null);
+        colorTimeline.add(0, null);
+        para1Timeline.add(0, null);
+        para2Timeline.add(0, null);
+      }
+      //append at back (disappear time changes to later)
+      int backDiff = newDisappear - disappearTime;
+      for (int i = 0; i < backDiff; i++) {
+        isChangingColorStatus.add(isChangingColorStatus.size(), 0);
+        isMovingStatus.add(isMovingStatus.size(), 0);
+        isPara1ScalingStatus.add(isPara1ScalingStatus.size(), 0);
+        isPara2ScalingStatus.add(isPara2ScalingStatus.size(), 0);
+        positionTimeline.add(positionTimeline.size(), null);
+        colorTimeline.add(colorTimeline.size(), null);
+        para1Timeline.add(para1Timeline.size(), null);
+        para2Timeline.add(para2Timeline.size(), null);
+      }
+    }
   }
 
   @Override
-  public void addChangeColor(Color color, int startTime, int endTime) throws IllegalStateException {
-    if (startTime > endTime || startTime < appearTime || endTime > disappearTime) {
-      throw new IllegalArgumentException("invalid color change time range");
+  public void updateColor(Color color, int startTime, int endTime) {
+    int range = endTime - startTime;
+    for (int i = 0; i < range; i++) {
+      colorTimeline.set(startTime - appearTime + i, color);
     }
-    if (checkIfChangingColorAvailable(startTime, endTime)) {
-      int range = endTime - startTime;
-      int k = 1;
-      Color oldColor = this.getColorAt(startTime);
-      for (int i = 0; i < range; i++) {
-        isChangingColorStatus[startTime - appearTime + i] = 1;
-        int newRGB = k * (color.getRGB() - oldColor.getRGB()) / range;//difference
-        colorTimeline[startTime - appearTime + i] = new Color(oldColor.getRGB() + newRGB);
-        k++;
-      }
-      //change color since after
-      for (int j = endTime; j < disappearTime; j++) {
-        colorTimeline[j - appearTime] = color;
-      }
-      this.listOfMovements.add(new ColorChange(this, color, startTime, endTime));
-    } else {
-      throw new IllegalStateException("this shape is not available for a color change");
-    }
-
   }
 
-  /**
-   * This method checks if scaling movement is available for this shape from start time to end time,
-   * which means to check if the time range has been occupied for scaling movement.
-   *
-   * @param startTime target start time to have a scaling scaling movement, int type.
-   * @param endTime   target end time to have a scaling movement, int type.
-   * @return true if the shape if available for a scaling movement, false otherwise.
-   */
-  protected boolean checkIfScalingAvailable(int startTime, int endTime) {
-    for (int i = 0; i < endTime - startTime; i++) {
-      if (isScalingStatus[startTime - appearTime + i] == 1) {
-        return false;
-      }
+
+  @Override
+  public void addChangeColor(Color oldColor, Color newColor, int startTime, int endTime) throws IllegalStateException {
+    if (!checkIfChangingColorAvailable(startTime, endTime)) {
+      throw new IllegalStateException("this shape is not available for a color change");
     }
-    return true;
+    int range = endTime - startTime;
+    int k = 1;
+    //Color oldColor = this.getColorAt(startTime);
+    for (int i = 0; i < range; i++) {
+      isChangingColorStatus.set(startTime - appearTime + i, 1);
+      int newRGB = k * (newColor.getRGB() - oldColor.getRGB()) / range;//difference
+      colorTimeline.set(startTime - appearTime + i, new Color(oldColor.getRGB() + newRGB));
+      k++;
+    }
+    this.listOfMovements.add(new ColorChange(this, oldColor, newColor, startTime, endTime));
+  }
+
+  @Override
+  public void updatePosition(Point2D position, int startTime, int endTime) {
+    int range = endTime - startTime;
+    for (int i = 0; i < range; i++) {
+      positionTimeline.set(startTime - appearTime + i, position);
+    }
   }
 
   /**
@@ -298,7 +302,7 @@ public abstract class AbstractShape implements IShape {
    */
   protected boolean checkIfMovingAvailable(int startTime, int endTime) {
     for (int i = 0; i < endTime - startTime; i++) {
-      if (isMovingStatus[startTime - appearTime + i] == 1) {
+      if (isMovingStatus.get(startTime - appearTime + i) == 1) {
         return false;
       }
     }
@@ -306,31 +310,107 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
-  public void addMove(Point2D newPosition, int startTime, int endTime)
+  public void addMove(Point2D oldPosition, Point2D newPosition, int startTime, int endTime)
           throws IllegalArgumentException {
-    if (startTime > endTime || startTime < appearTime || endTime > disappearTime) {
-      throw new IllegalArgumentException("invalid appearance time range");
-    }
-    if (checkIfMovingAvailable(startTime, endTime)) {
-      int range = endTime - startTime;
-      int k = 1;
-      int oldX = this.getPositionAt(startTime).getX();
-      int oldY = this.getPositionAt(startTime).getY();
-      for (int i = 0; i < endTime - startTime; i++) {
-        isMovingStatus[startTime - appearTime + i] = 1;
-        int newX = (k * (newPosition.getX() - oldX)) / range;
-        int newY = (k * (newPosition.getY() - oldY)) / range;
-        positionTimeline[startTime - appearTime + i] = new Point2D(oldX + newX, oldY + newY);
-        k++;
-      }
-      //change position since after
-      for (int j = endTime; j < disappearTime; j++) {
-        positionTimeline[j - appearTime] = newPosition;
-      }
-      this.listOfMovements.add(new Move(this, newPosition, startTime, endTime));
-    } else {
+    if (!checkIfMovingAvailable(startTime, endTime)) {
       throw new IllegalStateException("this shape is not available for moving");
     }
+    int range = endTime - startTime;
+    int k = 1;
+    int oldX = oldPosition.getX();
+    int oldY = oldPosition.getY();
+    for (int i = 0; i < range; i++) {
+      isMovingStatus.set(startTime - appearTime + i, 1);
+      int newX = (k * (newPosition.getX() - oldX)) / range;
+      int newY = (k * (newPosition.getY() - oldY)) / range;
+      positionTimeline.set(startTime - appearTime + i, new Point2D(oldX + newX, oldY + newY));
+      k++;
+    }
+    this.listOfMovements.add(new Move(this, oldPosition, newPosition, startTime, endTime));
+  }
+
+  @Override
+  public void updateWidth(int width, int startTime, int endTime) {
+    int range = endTime - startTime;
+    for (int i = 0; i < range; i++) {
+      para1Timeline.set(startTime - appearTime + i, width);
+    }
+  }
+
+  @Override
+  public void updateHeight(int height, int startTime, int endTime) {
+    int range = endTime - startTime;
+    for (int i = 0; i < range; i++) {
+      para1Timeline.set(startTime - appearTime + i, height);
+    }
+  }
+
+  /**
+   * This method checks if scaling on width is available for this shape from start time to end time,
+   * which means to check if the time range has been occupied for scaling movement.
+   *
+   * @param startTime target start time to have a scaling scaling movement, int type.
+   * @param endTime   target end time to have a scaling movement, int type.
+   * @return true if the shape if available for a scaling movement, false otherwise.
+   */
+  protected boolean checkIfScalingWidthAvailable(int startTime, int endTime) {
+    for (int i = 0; i < endTime - startTime; i++) {
+      if (isPara1ScalingStatus.get(startTime - appearTime + i) == 1) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  @Override
+  public void addWidthScale(int oldWidth, int newWidth, int startTime, int endTime)
+          throws IllegalArgumentException {
+    if (!checkIfScalingWidthAvailable(startTime, endTime)) {
+      throw new IllegalStateException("this shape is not available for moving");
+    }
+    int range = endTime - startTime;
+    int k = 1;
+    for (int i = 0; i < range; i++) {
+      isPara1ScalingStatus.set(startTime - appearTime + i, 1);
+      int diff = (k * (newWidth - oldWidth)) / range;
+      para1Timeline.set(startTime - appearTime + i, oldWidth + diff);
+      k++;
+    }
+    this.listOfMovements.add(new widthScale(this, oldWidth, newWidth, startTime, endTime));
+  }
+
+  /**
+   * This method checks if scaling on height is available for this shape from start time to end time,
+   * which means to check if the time range has been occupied for scaling movement.
+   *
+   * @param startTime target start time to have a scaling scaling movement, int type.
+   * @param endTime   target end time to have a scaling movement, int type.
+   * @return true if the shape if available for a scaling movement, false otherwise.
+   */
+  protected boolean checkIfScalingHeightAvailable(int startTime, int endTime) {
+    for (int i = 0; i < endTime - startTime; i++) {
+      if (isPara2ScalingStatus.get(startTime - appearTime + i) == 1) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  @Override
+  public void addHeightScale(int oldHeight, int newHeight, int startTime, int endTime)
+          throws IllegalArgumentException {
+    if (!checkIfScalingHeightAvailable(startTime, endTime)) {
+      throw new IllegalStateException("this shape is not available for moving");
+    }
+    int range = endTime - startTime;
+    int k = 1;
+    for (int i = 0; i < range; i++) {
+      isPara1ScalingStatus.set(startTime - appearTime + i, 1);
+      int diff = (k * (newHeight - oldHeight)) / range;
+      para1Timeline.set(startTime - appearTime + i, oldHeight + diff);
+      k++;
+    }
+    this.listOfMovements.add(new heightScale(this, oldHeight, newHeight, startTime, endTime));
   }
 
   @Override

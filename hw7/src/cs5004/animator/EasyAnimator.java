@@ -1,14 +1,64 @@
 package cs5004.animator;
 
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import cs5004.animator.util.AnimationReader;
+import cs5004.animator.util.AnimationBuilder;
+import cs5004.animator.view.SVGView;
+import cs5004.animator.view.TextView;
+import cs5004.animator.view.VisualView;
+
 public final class EasyAnimator {
+  private static int speed;
+  private static Readable in;
+  private static Appendable out;
+  private static AnimationBuilder builder;
+
   public static void main(String[] args) {
-    //fill in here
+    // Set default value
+    speed = 1;
+    builder = null;
+    out = System.out;
+    in = null;
 
-    //get output from TextView, write it into a file
-    //close the file
 
-    //get output from SVGView, write it into a file
-    //close the file
+    String[] fields = {"-view", "-in", "-out", "-speed"};
+    for(int i = 0; i < args.length; i+=2){
+      if(args[i].equalsIgnoreCase(fields[3])){
+        try{
+          speed = Integer.parseInt(args[i + 1]);
+        } catch (Exception e){
+          throw new IllegalArgumentException(e);
+        }
+      } else if(args[i].equalsIgnoreCase(fields[0])){
+        if(ViewOption.SVG.isView(args[i + 1])){
+          builder = new SVGView();
+        }else if(ViewOption.VISUAL.isView(args[i + 1])){
+          builder = new VisualView();
+        }else if(ViewOption.TEXT.isView(args[i + 1])){
+          builder = new TextView();
+        }
+      }else if(args[i].equalsIgnoreCase(fields[1])){
+        try {
+          in = new FileReader(fields[i + 1]);
+        } catch (FileNotFoundException e) {
+          e.printStackTrace();
+        }
+
+      }else if(args[i].equalsIgnoreCase(fields[2])){
+        try {
+          out = new FileWriter(fields[i + 1]);
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+
+    AnimationReader reader = new AnimationReader();
+    reader.parseFile(in, builder);
   }
 }

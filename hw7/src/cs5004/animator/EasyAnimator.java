@@ -1,6 +1,7 @@
 package cs5004.animator;
 
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -53,16 +54,25 @@ public final class EasyAnimator {
         }else if(ViewOption.TEXT.isView(args[i + 1])){
           builder = new TextView();
         }
+        if(ViewOption.VISUAL.isView(args[i + 1])){
+          builder = new VisualView();
+        }
       }else if(args[i].equalsIgnoreCase(fields[1])){
         try {
-          in = new FileReader(fields[i + 1]);
+          //Need to change, if refactor
+          String filePath = new File("").getAbsolutePath()
+                  + "\\5004Project-main\\hw7\\code\\" + args[i + 1];
+          in = new FileReader(filePath);
         } catch (FileNotFoundException e) {
           message("Input File not found.");
         }
 
       }else if(args[i].equalsIgnoreCase(fields[2])){
         try {
-          out = new FileWriter(fields[i + 1]);
+          //Need to change, if refactor
+          String filePath = new File("").getAbsolutePath()
+                  + "\\5004Project-main\\hw7\\code\\" + args[i + 1];
+          out = new FileWriter(filePath);
         } catch (IOException e) {
           message("Output File not found.");
         }

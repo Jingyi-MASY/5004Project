@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.swing.*;
+
 import cs5004.animator.util.AnimationReader;
 import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.view.SVGView;
@@ -17,6 +19,15 @@ public final class EasyAnimator {
   private static Readable in;
   private static Appendable out;
   private static AnimationBuilder builder;
+  private static JFrame frame;
+
+  private static void message(String message) {
+    frame = new JFrame();
+    JOptionPane.showMessageDialog(frame,message,
+            "Input Error",
+            JOptionPane.ERROR_MESSAGE);
+
+  }
 
   public static void main(String[] args) {
     // Set default value
@@ -32,7 +43,7 @@ public final class EasyAnimator {
         try{
           speed = Integer.parseInt(args[i + 1]);
         } catch (Exception e){
-          throw new IllegalArgumentException(e);
+          message("Invalid speed format.");
         }
       } else if(args[i].equalsIgnoreCase(fields[0])){
         if(ViewOption.SVG.isView(args[i + 1])){
@@ -46,14 +57,14 @@ public final class EasyAnimator {
         try {
           in = new FileReader(fields[i + 1]);
         } catch (FileNotFoundException e) {
-          e.printStackTrace();
+          message("Input File not found.");
         }
 
       }else if(args[i].equalsIgnoreCase(fields[2])){
         try {
           out = new FileWriter(fields[i + 1]);
         } catch (IOException e) {
-          e.printStackTrace();
+          message("Output File not found.");
         }
       }
     }

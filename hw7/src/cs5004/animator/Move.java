@@ -42,18 +42,9 @@ public class Move implements Movement {
 
   @Override
   public String display() {
-    //old position is the position at the moment before the start time of this motion starts
-    //which is at the end of last time unit ends (t = startTime - 1)
-    Point2D oldPosition;
-    if (startTime == this.shape.getAppearTime()) {
-      oldPosition = this.shape.getPosition();
-    } else {
-      oldPosition = this.shape.getPositionAt(startTime - 1);
-    }
-    String str = "";
-    str += "Shape " + this.shape.getName() + " ";
-    str += "moves from " + oldPosition + " to " + this.targetPosition + " from t=" + startTime
-            + " to t=" + endTime + System.lineSeparator();
+    String str = shape.getName() + " ";
+    str += "moves from " + this.initialPosition + " to " + this.targetPosition;
+    str += " from time t=" + startTime + " to t=" + endTime;
     return str;
   }
 }

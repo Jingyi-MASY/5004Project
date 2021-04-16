@@ -4,19 +4,26 @@ package cs5004.animator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
 
-import cs5004.animator.model.IAnimation;
+
+import cs5004.animator.model.AnimationImpl;
+import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationReader;
+
 import cs5004.animator.view.IView;
 import cs5004.animator.view.InputMessage;
 import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
 import cs5004.animator.view.ViewOption;
+import cs5004.animator.model.IAnimation;
 
 public final class EasyAnimator {
   private static int speed;
   private static Readable in;
-  private static File out;
+  private static PrintStream out;
 
   public static void main(String[] args) {
     // Set default value
@@ -58,7 +65,11 @@ public final class EasyAnimator {
         //TODO:Need to change, if refactor
         String filePath = new File("").getAbsolutePath()
                 + "\\5004Project-main\\hw7\\code\\" + args[i + 1];
-        out = new File(filePath);
+        try {
+          out = new PrintStream(filePath);
+        } catch (FileNotFoundException e) {
+          InputMessage.Message("Output File not found.");
+        }
       }
     }
     //If no in and view parameter passed in, JPanel ErrorMessage
@@ -67,7 +78,7 @@ public final class EasyAnimator {
     }
 
     //AnimationBuilder implementation
-    IAnimation model = AnimationReader.parseFile(in, new AnimationBuilderImpl());
+    IAnimation model = AnimationReader.parseFile(in, new AnimationImpl.Builder());
     //Create a view;
     if(view == ViewOption.SVG){
       iView = new SVGView(out);

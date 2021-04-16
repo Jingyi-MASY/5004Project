@@ -9,12 +9,12 @@ import java.io.IOException;
 
 import javax.swing.*;
 
-import cs5004.animator.model.ViewOption;
+import cs5004.animator.view.ViewOption;
 import cs5004.animator.util.AnimationReader;
 import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
-import cs5004.animator.view.VisualView;
+//import cs5004.animator.view.VisualView;
 
 public final class EasyAnimator {
   private static int speed;
@@ -51,12 +51,12 @@ public final class EasyAnimator {
         if(ViewOption.SVG.isView(args[i + 1])){
           builder = new SVGView();
         }else if(ViewOption.VISUAL.isView(args[i + 1])){
-          builder = new VisualView();
+          //builder = new VisualView();
         }else if(ViewOption.TEXT.isView(args[i + 1])){
           builder = new TextView();
         }
         if(ViewOption.VISUAL.isView(args[i + 1])){
-          builder = new VisualView();
+          //builder = new VisualView();
         }
       }else if(args[i].equalsIgnoreCase(fields[1])){
         try {

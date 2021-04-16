@@ -18,13 +18,13 @@ import cs5004.animator.view.TextView;
 public final class EasyAnimator {
   private static int speed;
   private static Readable in;
-  private static Appendable out;
+  private static File out;
 
   public static void main(String[] args) {
     // Set default value
     speed = 1;
     IView iView = null;
-    out = System.out;
+    out = null;
     in = null;
     ViewOption view = null;
 
@@ -57,14 +57,10 @@ public final class EasyAnimator {
         }
 
       }else if(args[i].equalsIgnoreCase(fields[2])){
-        try {
-          //TODO:Need to change, if refactor
-          String filePath = new File("").getAbsolutePath()
-                  + "\\5004Project-main\\hw7\\code\\" + args[i + 1];
-          out = new FileWriter(filePath);
-        } catch (IOException e) {
-          InputMessage.Message("Output File not found.");
-        }
+        //TODO:Need to change, if refactor
+        String filePath = new File("").getAbsolutePath()
+                + "\\5004Project-main\\hw7\\code\\" + args[i + 1];
+        out = new File(filePath);
       }
     }
     //If no in and view parameter passed in, JPanel ErrorMessage

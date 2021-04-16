@@ -14,7 +14,7 @@ public enum ViewOption {
   ViewOption(String txt) {
     this.txt = txt;
   }
-  protected boolean isView(String string){
+  public boolean isView(String string){
     return this.txt.equalsIgnoreCase(string);
   }
 }

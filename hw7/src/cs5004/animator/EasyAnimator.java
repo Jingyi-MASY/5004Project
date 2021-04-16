@@ -4,13 +4,10 @@ package cs5004.animator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintStream;
 
 
 import cs5004.animator.model.AnimationImpl;
-import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationReader;
 
 import cs5004.animator.view.IView;

@@ -4,7 +4,7 @@ package cs5004.animator;
  * includes all the fields and methods that are specific to a a Scale movement. The fields of this
  * class includes a shape, a scaling factor, a start time, and an end time.
  */
-public class heightScale implements Movement {
+public class HeightScale implements Movement {
   IShape shape;
   int oldPara;
   int newPara;
@@ -20,7 +20,7 @@ public class heightScale implements Movement {
    * @param startTime     the start time of this movement, int type.
    * @param endTime       the end time of this movement, int type.
    */
-  public heightScale(IShape shape, int oldPara, int newPara, int startTime, int endTime)
+  public HeightScale(IShape shape, int oldPara, int newPara, int startTime, int endTime)
           throws IllegalArgumentException {
     this.shape = shape;
     this.oldPara = oldPara;
@@ -31,7 +31,16 @@ public class heightScale implements Movement {
 
   @Override
   public String display() {
-    return null;
+    String str = shape.getName() + " ";
+    if (shape.getType() == ShapeType.RECTANGLE) {//if shape is a rectangle
+      str += "changes height from " + this.oldPara + " to " + this.newPara;
+      str += " from time t=" + startTime + " to t=" + endTime;
+      return str;
+    } else { //if shape is a ellipse
+      str += "changes yDiameter from " + this.oldPara + " to " + this.newPara;
+      str += " from time t=" + startTime + " to t=" + endTime;
+      return str;
+    }
   }
 
   @Override

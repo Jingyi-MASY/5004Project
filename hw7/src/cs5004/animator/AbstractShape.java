@@ -376,7 +376,7 @@ public abstract class AbstractShape implements IShape {
       para1Timeline.set(startTime - appearTime + i, oldWidth + diff);
       k++;
     }
-    this.listOfMovements.add(new widthScale(this, oldWidth, newWidth, startTime, endTime));
+    this.listOfMovements.add(new WidthScale(this, oldWidth, newWidth, startTime, endTime));
   }
 
   /**
@@ -410,7 +410,7 @@ public abstract class AbstractShape implements IShape {
       para1Timeline.set(startTime - appearTime + i, oldHeight + diff);
       k++;
     }
-    this.listOfMovements.add(new heightScale(this, oldHeight, newHeight, startTime, endTime));
+    this.listOfMovements.add(new HeightScale(this, oldHeight, newHeight, startTime, endTime));
   }
 
   @Override

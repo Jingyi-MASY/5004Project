@@ -33,18 +33,9 @@ public class ColorChange implements Movement {
 
   @Override
   public String display() {
-    //old color is the color at the moment before the start time of this motion starts
-    //which is at the end of last time unit ends (t = startTime - 1)
-    Color oldColor;
-    if (startTime == this.shape.getAppearTime()) {
-      oldColor = this.shape.getColor();
-    } else {
-      oldColor = this.shape.getColorAt(startTime - 1);
-    }
-    String str = "";
-    str += "Shape " + this.shape.getName() + " ";
-    str += "changes color from " + oldColor.getRGB()
-            + " to " + targetColor.getRGB() + " from t=" + startTime + " to t="
+    String str = shape.getName() + " ";
+    str += "changes from " + initialColor.toString() + " to " + targetColor.toString();
+    str += " from time t=" + startTime + " to t="
             + endTime + System.lineSeparator();
     return str;
   }

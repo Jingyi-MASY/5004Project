@@ -50,7 +50,7 @@ public class TextView implements IView{
     motionList.sort(Comparator.comparingInt(Movement::getEndTime));
 
     for (Movement m : motionList) {
-      out.print(m.display());
+      out.println(m.display());
     }
   }
 

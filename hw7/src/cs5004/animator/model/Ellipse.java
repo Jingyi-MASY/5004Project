@@ -1,4 +1,4 @@
-package cs5004.animator;
+package cs5004.animator.model;
 
 /**
  * this class represents an Elipse shape, and it includes all fields and methods that are specific to

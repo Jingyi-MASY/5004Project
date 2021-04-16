@@ -1,4 +1,4 @@
-package cs5004.animator;
+package cs5004.animator.model;
 /**
  * This class represents a Move movement class that implements movement interface, it includes all
  * fields and methods that are specific for this class. the fields of this class includes a shape, a

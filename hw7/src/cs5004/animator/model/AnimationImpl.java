@@ -1,8 +1,10 @@
-package cs5004.animator;
+package cs5004.animator.model;
 
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
+
+import cs5004.animator.util.AnimationBuilder;
 
 /**
  * This class is an implementation of the Animation interface, it implements all operations from the

@@ -1,4 +1,4 @@
-package cs5004.animator;
+package cs5004.animator.model;
 
 import java.util.List;
 

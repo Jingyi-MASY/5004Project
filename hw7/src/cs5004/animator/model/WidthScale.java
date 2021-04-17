@@ -52,4 +52,17 @@ public class WidthScale implements Movement {
   public int getEndTime() {
     return this.endTime;
   }
+
+  @Override
+  public String getMotionType() {
+    return "widthScale";
+  }
+
+  public int getOldPara() {
+    return oldPara;
+  }
+
+  public int getNewPara() {
+    return newPara;
+  }
 }

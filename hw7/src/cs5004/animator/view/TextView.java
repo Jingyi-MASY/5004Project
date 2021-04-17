@@ -12,6 +12,7 @@ import cs5004.animator.model.ShapeType;
 
 public class TextView implements IView{
   private PrintStream out;
+  private int speed;
 
   public TextView(PrintStream out) {
     if (out == null) {
@@ -77,5 +78,15 @@ public class TextView implements IView{
     this.showShapeInitials(oneShape);
     this.showShapeInitials(oneShape);
     this.showMotions(oneShape);
+  }
+
+  @Override
+  public void setSpeed(int speed) {
+    this.speed = speed;
+  }
+
+  @Override
+  public int getSpeed() {
+    return this.speed;
   }
 }

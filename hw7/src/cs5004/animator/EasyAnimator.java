@@ -52,7 +52,7 @@ public final class EasyAnimator {
         try {
           //TODO:Need to change, if refactor
           String filePath = new File("").getAbsolutePath()
-                  + "\\5004Project-main\\hw7\\code\\" + args[i + 1];
+                  + "\\hw7\\code\\" + args[i + 1];
           in = new FileReader(filePath);
         } catch (FileNotFoundException e) {
           InputMessage.Message("Input File not found.");
@@ -61,7 +61,7 @@ public final class EasyAnimator {
       }else if(args[i].equalsIgnoreCase(fields[2])){
         //TODO:Need to change, if refactor
         String filePath = new File("").getAbsolutePath()
-                + "\\5004Project-main\\hw7\\code\\" + args[i + 1];
+                + "\\hw7\\code\\" + args[i + 1];
         try {
           out = new PrintStream(filePath);
         } catch (FileNotFoundException e) {
@@ -80,7 +80,7 @@ public final class EasyAnimator {
     if(view == ViewOption.SVG){
       iView = new SVGView(out);
     } else if(view == ViewOption.VISUAL) {
-      iView = new VisualView(out);
+      //iView = new VisualView(out);
     } else if(view == ViewOption.VISUAL) {
       iView = new TextView(out);
     }

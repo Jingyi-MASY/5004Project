@@ -27,4 +27,6 @@ public interface Movement {
    * @return end time of this movement, int type.
    */
   int getEndTime();
+
+  String getMotionType();
 }

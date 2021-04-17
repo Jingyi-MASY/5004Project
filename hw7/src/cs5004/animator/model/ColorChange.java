@@ -49,4 +49,17 @@ public class ColorChange implements Movement {
   public int getEndTime() {
     return this.endTime;
   }
+
+  @Override
+  public String getMotionType() {
+    return "color";
+  }
+
+  public Color getInitial() {
+    return initialColor;
+  }
+
+  public Color getTargetColor() {
+    return targetColor;
+  }
 }

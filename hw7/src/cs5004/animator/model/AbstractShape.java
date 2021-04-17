@@ -273,8 +273,7 @@ public abstract class AbstractShape implements IShape {
       throw new IllegalStateException("this shape is not available for a color change");
     }
     int range = endTime - startTime;
-    int k = 1;
-    //Color oldColor = this.getColorAt(startTime);
+    int k = 0;
     for (int i = 0; i < range; i++) {
       isChangingColorStatus.set(startTime - appearTime + i, 1);
       int newRGB = k * (newColor.getRGB() - oldColor.getRGB()) / range;//difference
@@ -316,7 +315,7 @@ public abstract class AbstractShape implements IShape {
       throw new IllegalStateException("this shape is not available for moving");
     }
     int range = endTime - startTime;
-    int k = 1;
+    int k = 0;
     int oldX = oldPosition.getX();
     int oldY = oldPosition.getY();
     for (int i = 0; i < range; i++) {
@@ -369,7 +368,7 @@ public abstract class AbstractShape implements IShape {
       throw new IllegalStateException("this shape is not available for moving");
     }
     int range = endTime - startTime;
-    int k = 1;
+    int k = 0;
     for (int i = 0; i < range; i++) {
       isPara1ScalingStatus.set(startTime - appearTime + i, 1);
       int diff = (k * (newWidth - oldWidth)) / range;
@@ -403,11 +402,11 @@ public abstract class AbstractShape implements IShape {
       throw new IllegalStateException("this shape is not available for moving");
     }
     int range = endTime - startTime;
-    int k = 1;
+    int k = 0;
     for (int i = 0; i < range; i++) {
-      isPara1ScalingStatus.set(startTime - appearTime + i, 1);
+      isPara2ScalingStatus.set(startTime - appearTime + i, 1);
       int diff = (k * (newHeight - oldHeight)) / range;
-      para1Timeline.set(startTime - appearTime + i, oldHeight + diff);
+      para2Timeline.set(startTime - appearTime + i, oldHeight + diff);
       k++;
     }
     this.listOfMovements.add(new HeightScale(this, oldHeight, newHeight, startTime, endTime));

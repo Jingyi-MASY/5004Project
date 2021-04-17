@@ -52,5 +52,18 @@ public class HeightScale implements Movement {
   public int getEndTime() {
     return this.endTime;
   }
+
+  @Override
+  public String getMotionType() {
+    return "heightScale";
+  }
+
+  public int getOldPara() {
+    return oldPara;
+  }
+
+  public int getNewPara() {
+    return newPara;
+  }
 }
 

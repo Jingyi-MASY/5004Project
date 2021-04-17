@@ -96,7 +96,7 @@ public class AnimationImpl implements IAnimation {
         //if color changed: addChangeColor, add to motionList; else: update color
         Color color1 = new Color(r1, g1, b1);
         Color color2 = new Color(r2, g2, b2);
-        if (r1 == r2 && g1 == g2 && b1 == b2) {
+        if (color1.equals(color2)) {
           x.updateColor(color1, t1, t2);
         } else {
           x.addChangeColor(color1, color2, t1, t2);

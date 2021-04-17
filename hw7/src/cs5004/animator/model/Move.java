@@ -41,6 +41,19 @@ public class Move implements Movement {
   }
 
   @Override
+  public String getMotionType() {
+    return "move";
+  }
+
+  public Point2D getInitial() {
+    return initialPosition;
+  }
+
+  public Point2D getTarget() {
+    return targetPosition;
+  }
+
+  @Override
   public String display() {
     String str = shape.getName() + " ";
     str += "moves from " + this.initialPosition + " to " + this.targetPosition;

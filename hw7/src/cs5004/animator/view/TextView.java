@@ -89,4 +89,8 @@ public class TextView implements IView{
   public int getSpeed() {
     return this.speed;
   }
+
+  public PrintStream getOutput() {
+    return out;
+  }
 }

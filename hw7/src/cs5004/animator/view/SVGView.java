@@ -17,11 +17,12 @@ public class SVGView implements IView{
   private PrintStream out;
   private int speed; //integer ticks per second; ticks per 1000ms
 
-  public SVGView(PrintStream out) {
+  public SVGView(PrintStream out, int speed) {
     if (out == null) {
       out = System.out;
     }
     this.out = out;
+    this.speed = speed;
   }
 
   @Override
@@ -89,9 +90,9 @@ public class SVGView implements IView{
             showMove(shape, (Move) motionList.get(i));
           } else if (motionList.get(i) instanceof ColorChange) {
             showColorChange(shape, (ColorChange) motionList.get(i));
-          } else if (motionList.get(i).getMotionType().equals("widthScale")) {
+          } else if (motionList.get(i) instanceof WidthScale) {
             showWidthScale(shape, (WidthScale)motionList.get(i));
-          } else if (motionList.get(i).getMotionType().equals("heightScale")) {
+          } else if (motionList.get(i) instanceof HeightScale) {
             showHeightScale(shape, (HeightScale)motionList.get(i));
           } else {
             throw new IllegalArgumentException("motion type error");
@@ -109,67 +110,71 @@ public class SVGView implements IView{
   }
 
   private void showMove(IShape shape, Move motion) {
-    int begin = speed * 1000 / motion.getStartTime(); //in ms (1s = 1000ms)
-    int dur = (speed * 1000 / motion.getEndTime()) - begin; //in ms (1s = 1000ms)
+    int begin = motion.getStartTime() * 1000 / speed; //in ms (1s = 1000ms)
+    int dur = ((motion.getEndTime()) - motion.getStartTime()) * 1000 / speed; //in ms (1s = 1000ms)
     int fromX = motion.getInitial().getX();
     int fromY = motion.getInitial().getY();
     int toX = motion.getTarget().getX();
     int toY = motion.getTarget().getY();
     if (shape.getType() == ShapeType.ELLIPSE) {
-      out.append(("<animate attributeType=\"xml\" type = \"move\" begin=\"%dms\" "
-              + "dur=\"%dms\" attributeName=\"cx\" from=\"%d\" to=\"%d\" fill=\"freeze\" \\")
+      out.append(("<animate attributeType=\"xml\" type= \"move\" begin=\"%dms\" "
+              + "dur=\"%dms\" attributeName=\"cx\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, fromX, toX));
-      out.append(("<animate attributeType=\"xml\" type = \"move\" begin=\"%dms\" "
-              + "dur=\"%dms\" attributeName=\"cy\" from=\"%d\" to=\"%d\" fill=\"freeze\" \\")
+      out.append(("<animate attributeType=\"xml\" type= \"move\" begin=\"%dms\" "
+              + "dur=\"%dms\" attributeName=\"cy\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, fromY, toY));
     } else {//shape is a rectangle
-      out.append(("<animate attributeType=\"xml\" type = \"move\" begin=\"%dms\" "
-              + "dur=\"%dms\" attributeName=\"x\" from=\"%d\" to=\"%d\" fill=\"freeze\" \\")
+      out.append(("<animate attributeType=\"xml\" type= \"move\" begin=\"%dms\" "
+              + "dur=\"%dms\" attributeName=\"x\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, fromX, toX));
-      out.append(("<animate attributeType=\"xml\" type = \"move\" begin=\"%dms\" "
-              + "dur=\"%dms\" attributeName=\"y\" from=\"%d\" to=\"%d\" fill=\"freeze\" \\")
+      out.append(("<animate attributeType=\"xml\" type= \"move\" begin=\"%dms\" "
+              + "dur=\"%dms\" attributeName=\"y\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, fromY, toY));
     }
   }
 
   private void showColorChange(IShape shape, ColorChange motion) {
-    int begin = speed * 1000 / motion.getStartTime(); //in ms (1s = 1000ms)
-    int dur = (speed * 1000 / motion.getEndTime()) - begin; //in ms (1s = 1000ms)
-    String fromColor = motion.getInitial().toString();
-    String toColor = motion.getTargetColor().toString();
-    out.append(("<animate attributeType=\"xml\" type = \"color\" begin=\"%dms\" dur"
-            + "=\"%dms\" attributeName=\"fill\" from=\"%s\" to=\"%s\" fill=\"freeze\" \\")
-            .formatted(begin, dur, fromColor, toColor));
+    int begin = motion.getStartTime() * 1000 / speed; //in ms (1s = 1000ms)
+    int dur = ((motion.getEndTime()) - motion.getStartTime()) * 1000 / speed; //in ms (1s = 1000ms)
+    int r1 = motion.getInitial().getRed();
+    int g1 = motion.getInitial().getGreen();
+    int b1 = motion.getInitial().getBlue();
+    int r2 = motion.getTargetColor().getRed();
+    int g2 = motion.getTargetColor().getGreen();
+    int b2 = motion.getTargetColor().getBlue();
+    out.append(("<animate attributeType=\"xml\" type=\"color\" begin=\"%dms\" dur"
+            + "=\"%dms\" attributeName=\"fill\" from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" fill=\"freeze\" />\n")
+            .formatted(begin, dur, r1, g1, b1, r2, g2, b2));
   }
 
   private void showWidthScale(IShape shape, WidthScale motion) {
-    int begin = speed * 1000 / motion.getStartTime(); //in ms (1s = 1000ms)
-    int dur = (speed * 1000 / motion.getEndTime()) - begin; //in ms (1s = 1000ms)
+    int begin = motion.getStartTime() * 1000 / speed; //in ms (1s = 1000ms)
+    int dur = ((motion.getEndTime()) - motion.getStartTime()) * 1000 / speed; //in ms (1s = 1000ms)
     int from = motion.getOldPara();
     int to = motion.getNewPara();
     if (shape.getType() == ShapeType.RECTANGLE) {
       out.append(("<animate attributeType=\"xml\" begin=\"%dms\" dur=\"%dms\" type=\"scale\" "
-              + "attributeName=\"width\" from=\"%d\" to=\"%d\" fill=\"freeze\"/>")
+              + "attributeName=\"width\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, from, to));
     } else { //shape is an ellipse
       out.append(("<animate attributeType=\"xml\" begin=\"%dms\" dur=\"%dms\" type=\"scale\" "
-              + "attributeName=\"rx\" from=\"%d\" to=\"%d\" fill=\"freeze\"/>")
+              + "attributeName=\"rx\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, from/2, to/2));
     }
   }
 
   private void showHeightScale(IShape shape, HeightScale motion) {
-    int begin = speed * 1000 / motion.getStartTime(); //in ms (1s = 1000ms)
-    int dur = (speed * 1000 / motion.getEndTime()) - begin; //in ms (1s = 1000ms)
+    int begin = motion.getStartTime() * 1000 / speed; //in ms (1s = 1000ms)
+    int dur = ((motion.getEndTime()) - motion.getStartTime()) * 1000 / speed; //in ms (1s = 1000ms)
     int from = motion.getOldPara();
     int to = motion.getNewPara();
     if (shape.getType() == ShapeType.RECTANGLE) {
       out.append(("<animate attributeType=\"xml\" begin=\"%dms\" dur=\"%dms\" type=\"scale\" "
-              + "attributeName=\"height\" from=\"%d\" to=\"%d\" fill=\"freeze\"/>")
+              + "attributeName=\"height\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, from, to));
     } else { //shape is an ellipse
       out.append(("<animate attributeType=\"xml\" begin=\"%dms\" dur=\"%dms\" type=\"scale\" "
-              + "attributeName=\"ry\" from=\"%d\" to=\"%d\" fill=\"freeze\"/>")
+              + "attributeName=\"ry\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, from/2, to/2));
     }
   }
@@ -200,4 +205,8 @@ public class SVGView implements IView{
     return this.speed;
   }
 
+  @Override
+  public PrintStream getOutput() {
+    return out;
+  }
 }

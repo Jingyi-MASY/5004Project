@@ -13,6 +13,7 @@ import cs5004.animator.util.AnimationReader;
 import cs5004.animator.view.IView;
 import cs5004.animator.view.InputMessage;
 import cs5004.animator.view.SVGView;
+import cs5004.animator.view.VisualView;
 import cs5004.animator.view.TextView;
 import cs5004.animator.view.ViewOption;
 import cs5004.animator.model.IAnimation;
@@ -52,7 +53,7 @@ public final class EasyAnimator {
         try {
           //TODO:Need to change, if refactor
           String filePath = new File("").getAbsolutePath()
-                  + "\\5004Project-main\\hw7\\code\\" + args[i + 1];
+                  + "\\hw7\\code\\" + args[i + 1];
           in = new FileReader(filePath);
         } catch (FileNotFoundException e) {
           InputMessage.Message("Input File not found.");
@@ -61,7 +62,7 @@ public final class EasyAnimator {
       }else if(args[i].equalsIgnoreCase(fields[2])){
         //TODO:Need to change, if refactor
         String filePath = new File("").getAbsolutePath()
-                + "\\5004Project-main\\hw7\\code\\" + args[i + 1];
+                + "\\hw7\\code\\" + args[i + 1];
         try {
           out = new PrintStream(filePath);
         } catch (FileNotFoundException e) {
@@ -81,7 +82,9 @@ public final class EasyAnimator {
       iView = new SVGView(out);
     } else if(view == ViewOption.VISUAL) {
       iView = new VisualView(out);
-    } else if(view == ViewOption.VISUAL) {
+      ((VisualView) iView).speed(speed);
+    } else
+    if(view == ViewOption.TEXT) {
       iView = new TextView(out);
     }
     iView.showAll(model);

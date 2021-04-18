@@ -340,7 +340,7 @@ public abstract class AbstractShape implements IShape {
   public void updateHeight(int height, int startTime, int endTime) {
     int range = endTime - startTime;
     for (int i = 0; i < range; i++) {
-      para1Timeline.set(startTime - appearTime + i, height);
+      para2Timeline.set(startTime - appearTime + i, height);
     }
   }
 

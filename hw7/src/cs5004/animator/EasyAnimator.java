@@ -18,13 +18,18 @@ import cs5004.animator.view.ViewOption;
 import cs5004.animator.model.IAnimation;
 
 /**
- * EasyAnimator class: controller of the project
+ * EasyAnimator class: it serves as the controller of the project.
  */
 public final class EasyAnimator {
   private static int speed;
   private static Readable in;
   private static PrintStream out;
 
+  /**
+   * This is the starting point of this project. Based on the content of the passed in args, the
+   * project will show view in different format to display animation.
+   * @param args  passed in paramter to give command, String type.
+   */
   public static void main(String[] args) {
     // Set default value
     speed = 1;
@@ -40,7 +45,7 @@ public final class EasyAnimator {
         try {
           speed = Integer.parseInt(args[i + 1]);
         } catch (Exception e) {
-          InputMessage.Message("Invalid speed format.");
+          InputMessage.message("Invalid speed format.");
         }
       } else if (args[i].equalsIgnoreCase(fields[0])) {
         for (ViewOption v : ViewOption.values()) {
@@ -51,34 +56,34 @@ public final class EasyAnimator {
       }
       //Read input source, and build FileReader, if not found JFrame ErrorMessage
       else if (args[i].equalsIgnoreCase(fields[1])) {
+        String filePath = "";
         try {
           //TODO:Need to change, if refactor
-          String filePath = new File("").getAbsolutePath()
-                  + args[i + 1];
+          filePath = new File("").getAbsolutePath()
+                 + '/' + args[i + 1];
           in = new FileReader(filePath);
         } catch (FileNotFoundException e) {
-          InputMessage.Message("Input File not found.");
+          InputMessage.message(filePath + "Input File not found.");
         }
-
       } else if (args[i].equalsIgnoreCase(fields[2])) {
         //TODO:Need to change, if refactor
         String filePath = new File("").getAbsolutePath()
-                + args[i + 1];
+                + '/' + args[i + 1];
         try {
           out = new PrintStream(filePath);
         } catch (FileNotFoundException e) {
-          InputMessage.Message("Output File not found.");
+          InputMessage.message("Output File not found.");
         }
       }
     }
     //If no in and view parameter passed in, JPanel ErrorMessage
     if (in == null || view == null) {
-      InputMessage.Message("Must provide -in and -view.");
+      InputMessage.message("Must provide -in and -view.");
     }
 
     //AnimationBuilder implementation
     IAnimation model = AnimationReader.parseFile(in, new AnimationImpl.Builder());
-//    Create a view;
+    //Create a view;
     if (view == ViewOption.SVG) {
       iView = new SVGView(out, speed);
     } else if (view == ViewOption.VISUAL) {

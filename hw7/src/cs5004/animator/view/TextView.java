@@ -11,10 +11,18 @@ import cs5004.animator.model.Movement;
 import cs5004.animator.model.Point2D;
 import cs5004.animator.model.ShapeType;
 
-public class TextView implements IView{
+/**
+ * This TextView represents a view class that displays animations in text format. This class
+ * includes all fields and methods that belong to a TextView.
+ */
+public class TextView implements IView {
   private PrintStream out;
   private int speed;
 
+  /**
+   * This construct a TextView based on the passed in output.
+   * @param out the passed in output used in this view, PrintStream class.
+   */
   public TextView(PrintStream out) {
     if (out == null) {
       out = System.out;
@@ -22,18 +30,18 @@ public class TextView implements IView{
     this.out = out;
   }
 
-  public void showShapeInitials(List<IShape> listOfShapes) {
+  private void showShapeInitials(List<IShape> listOfShapes) {
     //PrintStream result = new PrintStream(filePath);
     for (IShape shape : listOfShapes) {
       out.print("Create " + shape.getColorAt(shape.getAppearTime()).toString() + " ");
       out.print(shape.getType().toString() + " " + shape.getName() + " ");
-      if (shape.getType() == ShapeType.RECTANGLE) {//when shape is a rectangle
+      if (shape.getType() == ShapeType.RECTANGLE) { //when shape is a rectangle
         out.print("with corner at " + shape.getPositionAt(shape.getAppearTime()).toString() + ", ");
         out.print("width " + shape.getPara1At(shape.getAppearTime()));
         out.println(" and height " + shape.getPara2At(shape.getAppearTime()));
       } else { //when shape is an ellipse
-        int xRadius = shape.getPara1At(shape.getAppearTime())/2;
-        int yRadius = shape.getPara2At(shape.getAppearTime())/2;
+        int xRadius = shape.getPara1At(shape.getAppearTime()) / 2;
+        int yRadius = shape.getPara2At(shape.getAppearTime()) / 2;
         Point2D tLCorner = shape.getPositionAt(shape.getAppearTime());
         Point2D center = new Point2D(tLCorner.getX() + xRadius, tLCorner.getY() + yRadius);
         out.print("with center at " + center + ", ");
@@ -43,14 +51,14 @@ public class TextView implements IView{
     }
   }
 
-  public void showShapeAppearance(List<IShape> listOfShapes) {
+  private void showShapeAppearance(List<IShape> listOfShapes) {
     for (IShape shape : listOfShapes) {
       out.print(shape.getName() + " appears at time t=" + shape.getAppearTime());
       out.println(" and disappears at time t=" + shape.getDisappearTime());
     }
   }
 
-  public void showMotions(List<IShape> listOfShapes) {
+  private void showMotions(List<IShape> listOfShapes) {
     LinkedList<Movement> motionList = new LinkedList<>();
     for (IShape x : listOfShapes) {
       if (x.getMovementList() != null) {
@@ -75,24 +83,52 @@ public class TextView implements IView{
 
   @Override
   public void showOneShape(IAnimation animation, String shapeName) {
-    LinkedList<IShape> oneShape = new LinkedList<>();
+    if (animation == null || shapeName == null) {
+      throw new IllegalArgumentException("invalid input");
+    }
+    boolean found = false;
     for (IShape x : animation.getListOfShapes()) {
-      if (x.equals(shapeName)) {
-        oneShape.add(x);
-        break;
+      if (x.getName().equals(shapeName)) {
+        found = true;
       }
     }
-    this.showShapeInitials(oneShape);
-    this.showShapeInitials(oneShape);
-    this.showMotions(oneShape);
+    if (!found) {
+      throw new IllegalArgumentException("shape not found");
+    }
+    for (IShape x : animation.getListOfShapes()) {
+      //show initials
+      out.print("Create " + x.getColorAt(x.getAppearTime()).toString() + " ");
+      out.print(x.getType().toString() + " " + x.getName() + " ");
+      if (x.getType() == ShapeType.RECTANGLE) { //when shape is a rectangle
+        out.print("with corner at " + x.getPositionAt(x.getAppearTime()).toString() + ", ");
+        out.print("width " + x.getPara1At(x.getAppearTime()));
+        out.println(" and height " + x.getPara2At(x.getAppearTime()));
+      } else { //when shape is an ellipse
+        int xRadius = x.getPara1At(x.getAppearTime()) / 2;
+        int yRadius = x.getPara2At(x.getAppearTime()) / 2;
+        Point2D tLCorner = x.getPositionAt(x.getAppearTime());
+        Point2D center = new Point2D(tLCorner.getX() + xRadius, tLCorner.getY() + yRadius);
+        out.print("with center at " + center + ", ");
+        out.print("radius " + xRadius);
+        out.println(" and " + yRadius);
+      }
+      //show appearance
+      if (x.getName().equals(shapeName)) {
+        out.print(x.getName() + " appears at time t=" + x.getAppearTime());
+        out.println(" and disappears at time t=" + x.getDisappearTime());
+        //show motions
+        if (x.getMovementList() != null) {
+          x.getMovementList().sort(Comparator.comparingInt(Movement::getEndTime));
+          for (Movement m : x.getMovementList()) {
+            out.println(m.display());
+          }
+        }
+      }
+    }
   }
 
   @Override
   public int getSpeed() {
-    return this.speed;
-  }
-
-  public PrintStream getOutput() {
-    return out;
+    return speed;
   }
 }

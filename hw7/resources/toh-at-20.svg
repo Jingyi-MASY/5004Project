@@ -1,4 +1,4 @@
-<svg width="555" height="249" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<svg width="555" height="249" version="1.1" viewBox="145, 50, 410, 199" xmlns="http://www.w3.org/2000/svg">
 <rect id="disk1" x="190" y="161" width="20" height="11" fill="rgb(113,87,151)" visibility="visible" >
 <animate attributeType="xml" begin="1250ms" dur="500ms" attributeName="x" from="190" to="190" fill="freeze" />
 <animate attributeType="xml" begin="1250ms" dur="500ms" attributeName="y" from="161" to="50" fill="freeze" />
@@ -1555,4 +1555,3 @@
 </rect>
 
 </svg>
-

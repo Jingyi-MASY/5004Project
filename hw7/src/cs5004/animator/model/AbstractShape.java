@@ -1,6 +1,6 @@
 package cs5004.animator.model;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,7 +30,12 @@ public abstract class AbstractShape implements IShape {
 
   protected LinkedList<Movement> listOfMovements;
 
-  //new constructor added for hw7
+  /**
+   * This is the constructor for an abstract shape. To create a shape, a name (String type) and
+   * a shape type need to be passed in.
+   * @param name  name of this shape, string type.
+   * @param type  the shape type of this shape, ShapeType type.
+   */
   public AbstractShape(String name, ShapeType type) {
     if (name == null) {
       throw new IllegalArgumentException("invalid name");
@@ -114,7 +119,7 @@ public abstract class AbstractShape implements IShape {
     return para2Timeline.get(timeIndex);
   }
 
-  /**
+  /*
    * This method gets and returns the moving status of every unit of time in a list.
    *
    * @return list of 1 or 0 indicating whether if the shape is in certain moving movement. 1
@@ -125,7 +130,7 @@ public abstract class AbstractShape implements IShape {
     return isMovingStatus;
   }
 
-  /**
+  /*
    * This method gets and returns the color-changing status of every unit of time in a list.
    *
    * @return list of 1 or 0 indicating whether if the shape is in certain color-changing movement.
@@ -136,8 +141,8 @@ public abstract class AbstractShape implements IShape {
     return isChangingColorStatus;
   }
 
-  /**
-   * This method gets and returns the scaling status of every unit of time in a list.
+  /*
+   * This method gets and returns the scaling status of every unit of time in a list for width.
    *
    * @return list of 1 or 0 indicating whether if the shape is in certain scaling movement. 1
    *         indicates scaling in progress, NOT available to add new scaling.
@@ -147,11 +152,15 @@ public abstract class AbstractShape implements IShape {
     return isPara1ScalingStatus;
   }
 
+  /*
+   * This method gets and returns the scaling status of every unit of time in a list, for height.
+   * @return list of 1 or 0 indicating is height is scaling status.
+   */
   protected List<Integer> getPara2ScalingStatus() {
     return isPara2ScalingStatus;
   }
 
-  /**
+  /*
    * This method gets and returns the Color status of this shape at all time of its appearance.
    *
    * @return a list of Color elements that indicates the color status of this shape at every time
@@ -161,7 +170,7 @@ public abstract class AbstractShape implements IShape {
     return colorTimeline;
   }
 
-  /**
+  /*
    * This method gets and returns the position status of this shape at all time of its appearance.
    *
    * @return a list of Position2D elements that indicates the position of this shape at every time
@@ -172,16 +181,22 @@ public abstract class AbstractShape implements IShape {
   }
 
 
+  /*
+   * Thie gets and returns the width status timeline.
+   */
   protected List<Integer> getPara1Timeline() {
     return this.para1Timeline;
   }
 
+  /*
+   * Thie gets and returns the height status timeline.
+   */
   protected List<Integer> getPara2Timeline() {
     return this.para2Timeline;
   }
 
 
-  /**
+  /*
    * This method checks if changing color movement is available for this shape from start time to
    * end time, which means check if the time range has been occupied for color changing movement.
    *
@@ -200,6 +215,7 @@ public abstract class AbstractShape implements IShape {
     return true;
   }
 
+  @Override
   public void updateAppearance(int start, int end) {
     if (this.appearTime == -1 && this.disappearTime == -1) {
       updateTimeline(start, end);
@@ -217,8 +233,12 @@ public abstract class AbstractShape implements IShape {
     }
   }
 
+  /*
+   * Thie this a helper method that update and append the status recording timeline lists.
+   */
   protected void updateTimeline(int newAppear, int newDisappear) {
-    if (this.appearTime == -1 || this.disappearTime == -1) {//no appearance time yet, -1 is default value
+    if (this.appearTime == -1 || this.disappearTime == -1) {
+      //no appearance time yet, -1 is default value
       int range = newDisappear - newAppear;
       for (int i = 0; i < range; i++) {
         isChangingColorStatus.add(0);
@@ -230,7 +250,7 @@ public abstract class AbstractShape implements IShape {
         para1Timeline.add(0, null);
         para2Timeline.add(0, null);
       }
-    } else {//there was an available appearance time
+    } else { //there was an available appearance time
       //append at front (appear time changes to earlier)
       int frontDiff = appearTime - newAppear;
       for (int i = 0; i < frontDiff; i++) {
@@ -268,7 +288,8 @@ public abstract class AbstractShape implements IShape {
 
 
   @Override
-  public void addChangeColor(Color oldColor, Color newColor, int startTime, int endTime) throws IllegalStateException {
+  public void addChangeColor(Color oldColor, Color newColor, int startTime, int endTime)
+          throws IllegalStateException {
     if (!checkIfChangingColorAvailable(startTime, endTime)) {
       throw new IllegalStateException("this shape is not available for a color change");
     }
@@ -291,7 +312,7 @@ public abstract class AbstractShape implements IShape {
     }
   }
 
-  /**
+  /*
    * This method checks if moving movement is available for this shape form start time to end time,
    * which means to check if the time range has been occupied for moving movement.
    *
@@ -344,7 +365,7 @@ public abstract class AbstractShape implements IShape {
     }
   }
 
-  /**
+  /*
    * This method checks if scaling on width is available for this shape from start time to end time,
    * which means to check if the time range has been occupied for scaling movement.
    *
@@ -378,8 +399,8 @@ public abstract class AbstractShape implements IShape {
     this.listOfMovements.add(new WidthScale(this, oldWidth, newWidth, startTime, endTime));
   }
 
-  /**
-   * This method checks if scaling on height is available for this shape from start time to end time,
+  /*
+   * This method checks if scaling on height is available for this shape from startTime to endTime,
    * which means to check if the time range has been occupied for scaling movement.
    *
    * @param startTime target start time to have a scaling scaling movement, int type.

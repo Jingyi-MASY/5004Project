@@ -1,4 +1,5 @@
 package cs5004.animator.model;
+
 /**
  * This class represents a Move movement class that implements movement interface, it includes all
  * fields and methods that are specific for this class. the fields of this class includes a shape, a
@@ -22,7 +23,8 @@ public class Move implements Movement {
    * @param startTime      the start time of this move, int type.
    * @param endTime        the end time of this move, int type.
    */
-  public Move(IShape shape, Point2D initialPosition, Point2D targetPosition, int startTime, int endTime) {
+  public Move(IShape shape, Point2D initialPosition, Point2D targetPosition, int startTime,
+              int endTime) {
     this.shape = shape;
     this.initialPosition = initialPosition;
     this.targetPosition = targetPosition;

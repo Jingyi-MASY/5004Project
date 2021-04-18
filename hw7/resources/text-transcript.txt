@@ -30,4 +30,3 @@ disk1 moves from (190, 240) to (190, 50) from time t=217 to t=227
 disk1 moves from (190, 50) to (490, 50) from time t=228 to t=238
 disk1 moves from (490, 50) to (490, 180) from time t=239 to t=249
 disk1 changes from java.awt.Color[r=0,g=49,b=90] to java.awt.Color[r=0,g=255,b=0] from time t=249 to t=257
-

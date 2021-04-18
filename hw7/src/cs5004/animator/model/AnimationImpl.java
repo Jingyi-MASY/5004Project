@@ -1,6 +1,6 @@
 package cs5004.animator.model;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,6 +36,7 @@ public class AnimationImpl implements IAnimation {
     this.bounds = new int[]{x, y, width, height}; //default bounds value
   }
 
+
   @Override
   public void setBounds(int x, int y, int width, int height) {
     this.bounds[0] = x;
@@ -64,9 +65,9 @@ public class AnimationImpl implements IAnimation {
         throw new IllegalArgumentException("Name of this shape exists.");
       }
     }
-    if (type.toLowerCase().equals("rectangle")) {
+    if (type.equalsIgnoreCase("rectangle")) {
       this.listOfShapes.add(new Rectangle(name, ShapeType.RECTANGLE));
-    } else if (type.toLowerCase().equals("ellipse")) {
+    } else if (type.equalsIgnoreCase("ellipse")) {
       this.listOfShapes.add(new Ellipse(name, ShapeType.ELLIPSE));
     } else {
       throw new IllegalArgumentException("invalid shape type");
@@ -83,7 +84,7 @@ public class AnimationImpl implements IAnimation {
       throw new IllegalArgumentException("invalid name");
     }
     //check for valid time range
-    if (t2 < t1) {
+    if (t2 < t1 || t1 < 0) {
       throw new IllegalArgumentException("invalid time range");
     }
     //check if the shape with passed in name has been created in the animation
@@ -133,144 +134,16 @@ public class AnimationImpl implements IAnimation {
     }
   }
 
-
-  /*
-  @Override
-  public void addShape(IShape shape) throws IllegalArgumentException {
-    if (shape == null) {
-      throw new IllegalArgumentException("Null shape input.");
-    }
-    for (IShape n : listOfShapes) {
-      if (n.getName().equals(shape.getName())) {
-        throw new IllegalArgumentException("Name of this shape exists.");
-      }
-    }
-    this.listOfShapes.add(shape);
-  }
-
-
-  @Override
-  public void changeColor(String name, Color targetColor, int startTime, int endTime) {
-    if (targetColor == null) {
-      throw new IllegalArgumentException("target color is invalid");
-    }
-    boolean found = false;
-    for (IShape x : listOfShapes) {
-      if (x.getName().equals(name)) {
-        found = true;
-        x.addChangeColor(targetColor, startTime, endTime);
-      }
-    }
-    if (!found) {
-      throw new IllegalArgumentException("not found shape name");
-    }
-  }
-
-  @Override
-  public void scale(String name, int scalingFactor, int startTime, int endTime) {
-    if (scalingFactor <= 0) {
-      throw new IllegalArgumentException("invalid scaling factor");
-    }
-    boolean found = false;
-    for (IShape x : listOfShapes) {
-      if (x.getName().equals(name)) {
-        found = true;
-        x.addScale(scalingFactor, startTime, endTime);
-      }
-    }
-    if (!found) {
-      throw new IllegalArgumentException("not found shape name");
-    }
-  }
-
-  @Override
-  public void move(String name, Point2D targetPosition, int startTime, int endTime) {
-    if (targetPosition == null) {
-      throw new IllegalArgumentException("invalid target position");
-    }
-    boolean found = false;
-    for (IShape x : listOfShapes) {
-      if (x.getName().equals(name)) {
-        found = true;
-        x.addMove(targetPosition, startTime, endTime);
-      }
-    }
-    if (!found) {
-      throw new IllegalArgumentException("not found shape name");
-    }
-  }
+  /**
+   * This Builder class serves as an adapter in this project, it adapts the input file from reader
+   * into the AnimationImpl to build Animations.
    */
-
-  /*
-  @Override
-  public String showAllShapes() {
-    StringBuilder str = new StringBuilder();
-    for (int i = 0; i < listOfShapes.size(); i++) {
-      str.append(listOfShapes.get(i).toString());
-    }
-    return str.toString();
-  }
-
-  @Override
-  public LinkedList<Movement> getAllMovement() {
-    LinkedList<Movement> result = new LinkedList<>();
-    for (IShape x : listOfShapes) {
-      if (x.getMovementList() != null) {
-        result.addAll(x.getMovementList());
-      }
-    }
-    result.sort(Comparator.comparingInt(Movement::getEndTime));
-    return result;
-  }
-
-  @Override
-  public String displayAll() {
-    StringBuilder str = new StringBuilder();
-    if (getAllMovement() != null) {
-      for (Movement m : getAllMovement()) {
-        str.append(m.display());
-      }
-    }
-    return str.toString();
-  }
-
-  @Override
-  public LinkedList<IShape> getShapeStatusAtTime(int time) {
-    LinkedList<IShape> result = new LinkedList<>();
-    for (int i = 0; i < listOfShapes.size(); i++) {
-      //filter all shapes that are appeared at moment time
-      if (time >= listOfShapes.get(i).getAppearTime()
-              && time < listOfShapes.get(i).getDisappearTime()) {
-        //copy a shape at moment time to result list
-        result.add(listOfShapes.get(i).getCopy(time));
-      }
-    }
-    return result;
-  }
-
-  @Override
-  public String showStatusAt(int time) {
-    if (time < 0 || time > 100) {
-      throw new IllegalArgumentException("invalid time");
-    }
-    StringBuilder str = new StringBuilder();
-    for (int i = 0; i < listOfShapes.size(); i++) {
-      if (time >= listOfShapes.get(i).getAppearTime()
-              && time < listOfShapes.get(i).getDisappearTime()) {
-        str.append(listOfShapes.get(i).getCopy(time).toString());
-      }
-    }
-    return str.toString();
-  }
-
-   */
-
-
-
-
   public static final class Builder implements AnimationBuilder<IAnimation> {
     IAnimation animation;
 
+    /**
+     * This is the constructor of this Builder class.
+     */
     public Builder() {
       this.animation = new AnimationImpl();
     }
@@ -296,11 +169,14 @@ public class AnimationImpl implements IAnimation {
     }
 
     @Override
-    public AnimationBuilder<IAnimation> addMotion(String name, int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2) {
+    public AnimationBuilder<IAnimation> addMotion(String name, int t1, int x1, int y1, int w1,
+                                                  int h1, int r1, int g1, int b1, int t2, int x2,
+                                                  int y2, int w2, int h2, int r2, int g2, int b2) {
       if (name == null) {
         throw new IllegalArgumentException("invalid name");
       }
-      this.animation.addMotion(name, t1, x1, y1, w1, h1, r1, g1, b1, t2, x2, y2, w2, h2, r2, g2, b2);
+      this.animation.addMotion(name, t1, x1, y1, w1, h1, r1, g1, b1,
+              t2, x2, y2, w2, h2, r2, g2, b2);
       return this;
     }
 

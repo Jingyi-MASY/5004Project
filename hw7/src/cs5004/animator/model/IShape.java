@@ -74,7 +74,7 @@ public interface IShape {
    * @param startTime  start time of this filling/updating, int type.
    * @param endTime   end time of this filling/updating, int type.
    */
-  void updateColor (Color color, int startTime, int endTime);
+  void updateColor(Color color, int startTime, int endTime);
 
   /**
    * This method adds a color change to this shape to a target color, starting at a start
@@ -87,22 +87,11 @@ public interface IShape {
    * @throws IllegalStateException if the target time range is not available for this shape to take
    *                               a color change move.
    */
-  void addChangeColor(Color color1, Color color2, int startTime, int endTime) throws IllegalStateException;
+  void addChangeColor(Color color1, Color color2, int startTime, int endTime)
+          throws IllegalStateException;
 
   /**
-   * This method adds a scaling movement to this shape to a certain new dimension, starting at a
-   * start time and completes at an end time.
-   *
-   * @param factor    factor to use to measure dimension. new dimension = old dimension * factor.
-   * @param startTime target start time of this scaling movement, int type.
-   * @param endTime   target end time of this scaling movement, int type.
-   * @throws IllegalArgumentException if the target time range is not available for this shape to
-   *                                  take a scaling movement.
-   */
-  //void addScale(int factor, int startTime, int endTime) throws IllegalArgumentException;
-
-  /**
-   * this method is used to fill in and update the position of this shape
+   * this method is used to fill in and update the position of this shape.
    * @param position  the position to fill in for this shape, Point2D type.
    * @param startTime   the start time to fill in the position to this shape, int type.
    * @param endTime   the end time to fill in the position to this shape, int type.
@@ -123,7 +112,7 @@ public interface IShape {
           throws IllegalArgumentException;
 
   /**
-   * this method is used to fill in and update the width of this shape
+   * this method is used to fill in and update the width of this shape.
    * @param width  the width to fill in for this shape, int type.
    * @param startTime   the start time to fill in the position to this shape, int type.
    * @param endTime   the end time to fill in the position to this shape, int type.
@@ -131,7 +120,7 @@ public interface IShape {
   void updateWidth(int width, int startTime, int endTime);
 
   /**
-   * this methods adds a scale motion on this shape's width from the initial width to the target
+   * this methods adds a scale motion on this shape's width from the initial width to the target.
    * width from startTime to endTime.
    * @param initialWidth  the initial width of the shape when the shape starts the motion, int type.
    * @param targetWidth   the target width of this shape when the shape ends the motion, int type.
@@ -141,7 +130,7 @@ public interface IShape {
   void addWidthScale(int initialWidth, int targetWidth, int startTime, int endTime);
 
   /**
-   * this method is used to fill in and update the height of this shape
+   * this method is used to fill in and update the height of this shape.
    * @param height  the height to fill in for this shape, int type.
    * @param startTime   the start time to fill in the position to this shape, int type.
    * @param endTime   the end time to fill in the position to this shape, int type.
@@ -159,28 +148,10 @@ public interface IShape {
   void addHeightScale(int initialHeight, int targetHeight, int startTime, int endTime);
 
   /**
-   * This method generates a copy of this shape for all its status at certain point of time.
-   *
-   * @param time time that is looking for, int type.
-   * @return a new shape that has the same status of this shape at certain time,
-   *         or return null if the time is invalid for this shape.
-   */
-  //IShape getCopy(int time);
-
-  /**
    * This method gets and returns a list of all movements of this shape.
    *
    * @return list of all movements that happens to this shape, LinkedList type.
    */
   LinkedList<Movement> getMovementList();
-
-  /**
-   * This method display in String format of how its dimensions changes during a scaling movement.
-   *
-   * @param time   the start time of the scaling movement, int type.
-   * @param factor the scaling factor. new dimensions = old dimension * factor, int type.
-   * @return the text description of how the dimensions have changes during a scaling movement.
-   */
-  //String getDimensionChange(int time, int factor);
 
 }

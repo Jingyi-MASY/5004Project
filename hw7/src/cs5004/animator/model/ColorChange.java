@@ -1,4 +1,5 @@
 package cs5004.animator.model;
+
 import java.awt.Color;
 
 /**
@@ -23,7 +24,8 @@ public class ColorChange implements Movement {
    * @param startTime   the start time of this movement, int type.
    * @param endTime     the end time of this movement, int type.
    */
-  public ColorChange(IShape shape, Color initialColor, Color targetColor, int startTime, int endTime) {
+  public ColorChange(IShape shape, Color initialColor, Color targetColor, int startTime,
+                     int endTime) {
     this.shape = shape;
     this.initialColor = initialColor;
     this.targetColor = targetColor;

@@ -1,6 +1,6 @@
 package cs5004.animator.model;
+
 /**
- *
  * This enum represents all possible types of shape in IShape implementations. The fields of this
  * enum includes a String txt.
  */

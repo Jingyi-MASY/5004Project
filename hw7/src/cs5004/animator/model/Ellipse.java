@@ -1,7 +1,7 @@
 package cs5004.animator.model;
 
 /**
- * this class represents an Elipse shape, and it includes all fields and methods that are specific to
+ * this class represents an Elipse shape, it includes all fields and methods that are specific to
  * an Ellipse shape. The fields of this class includes xRadius, yRadius, xRadiusTimeline, and
  * yRadiusTimeline.
  */

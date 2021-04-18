@@ -1,5 +1,10 @@
 package cs5004.animator.util;
 
+/**
+ * This Builder interface serves as an adapter in this project, it adapts input file from reader
+ * into the AnimationImpl to build Animations.
+ * @param <Doc> the specific model interface type, in this case IAnimation.
+ */
 public interface AnimationBuilder<Doc> {
   /**
    * Constructs a final document.
@@ -53,6 +58,7 @@ public interface AnimationBuilder<Doc> {
    * @return This {@link AnimationBuilder}
    */
   AnimationBuilder<Doc> addMotion(String name,
-                                         int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1,
-                                         int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2);
+                                         int t1, int x1, int y1, int w1, int h1, int r1,
+                                  int g1, int b1, int t2, int x2, int y2, int w2, int h2,
+                                  int r2, int g2, int b2);
 }

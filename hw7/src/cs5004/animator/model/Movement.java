@@ -1,4 +1,5 @@
 package cs5004.animator.model;
+
 /**
  * This Movement interface includes all operations that applies to all movements.
  */

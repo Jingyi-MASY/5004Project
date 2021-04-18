@@ -1,4 +1,5 @@
 package cs5004.animator.model;
+
 /**
  * This class represents a Scale movement that implements the movement interface, this class
  * includes all the fields and methods that are specific to a a Scale movement. The fields of this
@@ -32,7 +33,7 @@ public class WidthScale implements Movement {
   @Override
   public String display() {
     String str = shape.getName() + " ";
-    if (shape.getType() == ShapeType.RECTANGLE) {//if shape is a rectangle
+    if (shape.getType() == ShapeType.RECTANGLE) { //if shape is a rectangle
       str += "changes width from " + this.oldPara + " to " + this.newPara;
       str += " from time t=" + startTime + " to t=" + endTime;
       return str;

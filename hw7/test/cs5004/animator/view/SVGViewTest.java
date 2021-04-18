@@ -14,7 +14,6 @@ import cs5004.animator.model.IAnimation;
 
 public class SVGViewTest {
   private IView view1;
-  private IView textView;
   ByteArrayOutputStream os = new ByteArrayOutputStream();
   private PrintStream out = new PrintStream(os);
   private IAnimation animation;
@@ -23,7 +22,6 @@ public class SVGViewTest {
   public void setUp() {
     animation = new AnimationImpl(100, 100, 1000, 1000);
     view1 = new SVGView(out, 100);
-    textView = new TextView(out);
     animation = new AnimationImpl(0, 0, 800, 800);
     animation.declareShape("r1", "rectangle");
     animation.addMotion("r1", 1, 0, 0, 100, 200, 0, 128, 128,
@@ -42,8 +40,6 @@ public class SVGViewTest {
     view1.getOutput();
     view1.showAll(animation);
     String output = os.toString(StandardCharsets.UTF_8);
-    //textView.showAll(animation);
-    //assertEquals("x", textView.getOutput().toString());
     assertEquals("<svg width=\"800\" height=\"800\" version=\"1.1\" " +
             "xmlns=\"http://www.w3.org/2000/svg\">\n" +
             "<rect id=\"r1\" x=\"0\" y=\"0\" width=\"100\" height=\"200\" fill=\"rgb(0,128,128)" +

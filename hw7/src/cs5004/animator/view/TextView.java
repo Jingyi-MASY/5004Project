@@ -8,6 +8,7 @@ import java.util.List;
 import cs5004.animator.model.IAnimation;
 import cs5004.animator.model.IShape;
 import cs5004.animator.model.Movement;
+import cs5004.animator.model.Point2D;
 import cs5004.animator.model.ShapeType;
 
 public class TextView implements IView{
@@ -29,11 +30,15 @@ public class TextView implements IView{
       if (shape.getType() == ShapeType.RECTANGLE) {//when shape is a rectangle
         out.print("with corner at " + shape.getPositionAt(shape.getAppearTime()).toString() + ", ");
         out.print("width " + shape.getPara1At(shape.getAppearTime()));
-        out.println("and height " + shape.getPara2At(shape.getAppearTime()));
+        out.println(" and height " + shape.getPara2At(shape.getAppearTime()));
       } else { //when shape is an ellipse
-        out.print("with center at " + shape.getPositionAt(shape.getAppearTime()) + ", ");
-        out.print("radius " + shape.getPara1At(shape.getAppearTime()));
-        out.println(" and " + shape.getPara2At(shape.getAppearTime()));
+        int xRadius = shape.getPara1At(shape.getAppearTime())/2;
+        int yRadius = shape.getPara2At(shape.getAppearTime())/2;
+        Point2D tLCorner = shape.getPositionAt(shape.getAppearTime());
+        Point2D center = new Point2D(tLCorner.getX() + xRadius, tLCorner.getY() + yRadius);
+        out.print("with center at " + center + ", ");
+        out.print("radius " + xRadius);
+        out.println(" and " + yRadius);
       }
     }
   }
@@ -62,7 +67,9 @@ public class TextView implements IView{
   @Override
   public void showAll(IAnimation animation) {
     this.showShapeInitials(animation.getListOfShapes());
+    out.println("");
     this.showShapeAppearance(animation.getListOfShapes());
+    out.println("");
     this.showMotions(animation.getListOfShapes());
   }
 
@@ -78,11 +85,6 @@ public class TextView implements IView{
     this.showShapeInitials(oneShape);
     this.showShapeInitials(oneShape);
     this.showMotions(oneShape);
-  }
-
-  @Override
-  public void setSpeed(int speed) {
-    this.speed = speed;
   }
 
   @Override

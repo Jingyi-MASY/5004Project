@@ -48,8 +48,8 @@ public class SVGView implements IView{
   private void showHeader(IAnimation animation) {
     //the overall svg width is w and height is h.
     //By default anything drawn between (0,0) and (width,height) will be visible
-    int w = animation.getBounds()[2];
-    int h = animation.getBounds()[3];
+    int w = animation.getBounds()[2] + animation.getBounds()[0];
+    int h = animation.getBounds()[3] + animation.getBounds()[1];
     out.append(("<svg width=\"%d\" height=\"%d\" version=\"1.1\" "
             + "xmlns=\"http://www.w3.org/2000/svg\">").formatted(w, h));
     out.append("\n");
@@ -117,17 +117,17 @@ public class SVGView implements IView{
     int toX = motion.getTarget().getX();
     int toY = motion.getTarget().getY();
     if (shape.getType() == ShapeType.ELLIPSE) {
-      out.append(("<animate attributeType=\"xml\" type= \"move\" begin=\"%dms\" "
+      out.append(("<animate attributeType=\"xml\" begin=\"%dms\" "
               + "dur=\"%dms\" attributeName=\"cx\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, fromX, toX));
-      out.append(("<animate attributeType=\"xml\" type= \"move\" begin=\"%dms\" "
+      out.append(("<animate attributeType=\"xml\" begin=\"%dms\" "
               + "dur=\"%dms\" attributeName=\"cy\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, fromY, toY));
     } else {//shape is a rectangle
-      out.append(("<animate attributeType=\"xml\" type= \"move\" begin=\"%dms\" "
+      out.append(("<animate attributeType=\"xml\" begin=\"%dms\" "
               + "dur=\"%dms\" attributeName=\"x\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, fromX, toX));
-      out.append(("<animate attributeType=\"xml\" type= \"move\" begin=\"%dms\" "
+      out.append(("<animate attributeType=\"xml\" begin=\"%dms\" "
               + "dur=\"%dms\" attributeName=\"y\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, fromY, toY));
     }
@@ -142,7 +142,7 @@ public class SVGView implements IView{
     int r2 = motion.getTargetColor().getRed();
     int g2 = motion.getTargetColor().getGreen();
     int b2 = motion.getTargetColor().getBlue();
-    out.append(("<animate attributeType=\"xml\" type=\"color\" begin=\"%dms\" dur"
+    out.append(("<animate attributeType=\"xml\" begin=\"%dms\" dur"
             + "=\"%dms\" attributeName=\"fill\" from=\"rgb(%d,%d,%d)\" to=\"rgb(%d,%d,%d)\" fill=\"freeze\" />\n")
             .formatted(begin, dur, r1, g1, b1, r2, g2, b2));
   }
@@ -153,11 +153,11 @@ public class SVGView implements IView{
     int from = motion.getOldPara();
     int to = motion.getNewPara();
     if (shape.getType() == ShapeType.RECTANGLE) {
-      out.append(("<animate attributeType=\"xml\" begin=\"%dms\" dur=\"%dms\" type=\"scale\" "
+      out.append(("<animate attributeType=\"xml\" begin=\"%dms\" dur=\"%dms\" "
               + "attributeName=\"width\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, from, to));
     } else { //shape is an ellipse
-      out.append(("<animate attributeType=\"xml\" begin=\"%dms\" dur=\"%dms\" type=\"scale\" "
+      out.append(("<animate attributeType=\"xml\" begin=\"%dms\" dur=\"%dms\" "
               + "attributeName=\"rx\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, from/2, to/2));
     }
@@ -169,11 +169,11 @@ public class SVGView implements IView{
     int from = motion.getOldPara();
     int to = motion.getNewPara();
     if (shape.getType() == ShapeType.RECTANGLE) {
-      out.append(("<animate attributeType=\"xml\" begin=\"%dms\" dur=\"%dms\" type=\"scale\" "
+      out.append(("<animate attributeType=\"xml\" begin=\"%dms\" dur=\"%dms\" "
               + "attributeName=\"height\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, from, to));
     } else { //shape is an ellipse
-      out.append(("<animate attributeType=\"xml\" begin=\"%dms\" dur=\"%dms\" type=\"scale\" "
+      out.append(("<animate attributeType=\"xml\" begin=\"%dms\" dur=\"%dms\" "
               + "attributeName=\"ry\" from=\"%d\" to=\"%d\" fill=\"freeze\" />\n")
               .formatted(begin, dur, from/2, to/2));
     }
@@ -193,11 +193,6 @@ public class SVGView implements IView{
       }
     }
     out.append("\n</svg>");
-  }
-
-  @Override
-  public void setSpeed(int speed) {
-    this.speed = speed;
   }
 
   @Override

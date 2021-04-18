@@ -54,7 +54,7 @@ public final class EasyAnimator {
         try {
           //TODO:Need to change, if refactor
           String filePath = new File("").getAbsolutePath()
-                  + "/hw7/resources/" + args[i + 1];
+                  + args[i + 1];
           in = new FileReader(filePath);
         } catch (FileNotFoundException e) {
           InputMessage.Message("Input File not found.");
@@ -63,7 +63,7 @@ public final class EasyAnimator {
       } else if (args[i].equalsIgnoreCase(fields[2])) {
         //TODO:Need to change, if refactor
         String filePath = new File("").getAbsolutePath()
-                + "/hw7/resources/" + args[i + 1];
+                + args[i + 1];
         try {
           out = new PrintStream(filePath);
         } catch (FileNotFoundException e) {

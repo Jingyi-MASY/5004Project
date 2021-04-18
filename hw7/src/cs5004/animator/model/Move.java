@@ -5,11 +5,11 @@ package cs5004.animator.model;
  * target position, a start time and an end time.
  */
 public class Move implements Movement {
-  IShape shape;
-  Point2D initialPosition;
-  Point2D targetPosition;
-  int startTime;
-  int endTime;
+  protected IShape shape;
+  protected Point2D initialPosition;
+  protected Point2D targetPosition;
+  protected int startTime;
+  protected int endTime;
 
   /**
    * this constructor initialize a Move movement based on the following parameters.

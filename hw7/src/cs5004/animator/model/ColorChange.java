@@ -7,11 +7,11 @@ import java.awt.Color;
  * this class includes a shape, a target color, a start time, and an end time.
  */
 public class ColorChange implements Movement {
-  IShape shape;
-  Color initialColor;
-  Color targetColor;
-  int startTime;
-  int endTime;
+  protected IShape shape;
+  protected Color initialColor;
+  protected Color targetColor;
+  protected int startTime;
+  protected int endTime;
 
   /**
    * This constructor initialize a ColorChange movement based on the following parameters.

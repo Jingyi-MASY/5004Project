@@ -5,11 +5,11 @@ package cs5004.animator.model;
  * class includes a shape, a scaling factor, a start time, and an end time.
  */
 public class HeightScale implements Movement {
-  IShape shape;
-  int oldPara;
-  int newPara;
-  int startTime;
-  int endTime;
+  protected IShape shape;
+  protected int oldPara;
+  protected int newPara;
+  protected int startTime;
+  protected int endTime;
 
   /**
    * this constructor initializes this Scale movement based on the following parameters.

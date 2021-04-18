@@ -5,8 +5,8 @@ package cs5004.animator.model;
  * position on y axis.
  */
 public class Point2D {
-  int x;
-  int y;
+  protected int x;
+  protected int y;
 
   /**
    * This constructor initializes a position based on its passed in parameters x and y.

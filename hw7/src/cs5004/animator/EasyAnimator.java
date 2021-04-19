@@ -11,7 +11,7 @@ import cs5004.animator.util.AnimationReader;
 
 import cs5004.animator.view.IView;
 import cs5004.animator.view.InputMessage;
-import cs5004.animator.view.SVGView;
+//import cs5004.animator.view.SVGView;
 import cs5004.animator.view.VisualView;
 import cs5004.animator.view.TextView;
 import cs5004.animator.view.ViewOption;
@@ -60,7 +60,7 @@ public final class EasyAnimator {
         try {
           //TODO:Need to change, if refactor
           filePath = new File("").getAbsolutePath()
-                 + '/' + args[i + 1];
+                 + "/hw7/code/" + args[i + 1];
           in = new FileReader(filePath);
         } catch (FileNotFoundException e) {
           InputMessage.message(filePath + "Input File not found.");
@@ -68,7 +68,7 @@ public final class EasyAnimator {
       } else if (args[i].equalsIgnoreCase(fields[2])) {
         //TODO:Need to change, if refactor
         String filePath = new File("").getAbsolutePath()
-                + '/' + args[i + 1];
+                + "/hw7/resources/" + args[i + 1];
         try {
           out = new PrintStream(filePath);
         } catch (FileNotFoundException e) {
@@ -84,9 +84,10 @@ public final class EasyAnimator {
     //AnimationBuilder implementation
     IAnimation model = AnimationReader.parseFile(in, new AnimationImpl.Builder());
     //Create a view;
-    if (view == ViewOption.SVG) {
-      iView = new SVGView(out, speed);
-    } else if (view == ViewOption.VISUAL) {
+//    if (view == ViewOption.SVG) {
+//      iView = new SVGView(out, speed);
+//    } else
+      if (view == ViewOption.VISUAL) {
       iView = new VisualView(out, speed);
     } else if (view == ViewOption.TEXT) {
       iView = new TextView(out);

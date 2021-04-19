@@ -1,6 +1,9 @@
 package cs5004.animator.view;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,6 +24,7 @@ public class ViewPanel extends JPanel {
   private int speed = 1;
   private int tick = 0;
   private final int framesPerSecond = 60;
+
   /**
    * this constructor creates a ViewPanel based on the passed in listOfShapes and a speed.
    * @param listOfShapes  a list of shape that is a field of an animation.
@@ -74,15 +78,21 @@ public class ViewPanel extends JPanel {
         float durY = (float)(shape.getPositionAt(t + 1).getY() - y) / framesPerSecond;
         float durPara1 = (float)(shape.getPara1At(t + 1) - para1) / framesPerSecond;
         float durPara2 = (float)(shape.getPara2At(t + 1) - para2) / framesPerSecond;
-        g.setColor(new Color((int)(r + durR * (tick % framesPerSecond)), (int)(green + durG * (tick % framesPerSecond)), (int)(b + durB * (tick % framesPerSecond))));
+        g.setColor(new Color((int)(r + durR * (tick % framesPerSecond)),
+                (int)(green + durG * (tick % framesPerSecond)),
+                (int)(b + durB * (tick % framesPerSecond))));
 
 
         if (shape.getType() == ShapeType.RECTANGLE) {
-          g.fillRect((int)(x + durX * (tick % framesPerSecond)), (int)(y + durY * (tick % framesPerSecond)),
-                  (int)(para1 + durPara1 * (tick % framesPerSecond)), (int)(para2 + durPara2 * (tick % framesPerSecond)));
+          g.fillRect((int)(x + durX * (tick % framesPerSecond)),
+                  (int)(y + durY * (tick % framesPerSecond)),
+                  (int)(para1 + durPara1 * (tick % framesPerSecond)),
+                  (int)(para2 + durPara2 * (tick % framesPerSecond)));
         } else if (shape.getType() == ShapeType.ELLIPSE) {
-          g.drawOval((int)(x + durX * (tick % framesPerSecond)), (int)(y + durY * (tick % framesPerSecond)),
-                  (int)(para1 + durPara1 * (tick % framesPerSecond)), (int)(para2 + durPara2 * (tick % framesPerSecond)));
+          g.drawOval((int)(x + durX * (tick % framesPerSecond)),
+                  (int)(y + durY * (tick % framesPerSecond)),
+                  (int)(para1 + durPara1 * (tick % framesPerSecond)),
+                  (int)(para2 + durPara2 * (tick % framesPerSecond)));
         }
       }
     }

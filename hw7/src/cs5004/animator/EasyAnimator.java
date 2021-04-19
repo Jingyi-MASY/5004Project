@@ -96,10 +96,10 @@ public final class EasyAnimator {
       iView = new TextView(out);
     }
 
-      iView.showAll(model);
+    iView.showAll(model);
 
-      if(out != null){
-        out.close();
-      }
+    if (out != null) {
+      out.close();
+    }
   }
 }

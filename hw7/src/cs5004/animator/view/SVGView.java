@@ -100,7 +100,8 @@ public class SVGView implements IView {
     } else { //when the shape type if ellipse
       out.append("<ellipse id=\"").append(id).append("\" cx=\"").append(String.valueOf(x))
               .append("\" cy=\"").append(String.valueOf(y)).append("\" rx=\"")
-              .append(String.valueOf(width / 2)).append("\" ry=\"").append(String.valueOf(height / 2))
+              .append(String.valueOf(width / 2)).append("\" ry=\"")
+              .append(String.valueOf(height / 2))
               .append("\" fill=\"").append("rgb(").append(String.valueOf(r)).append(",")
               .append(String.valueOf(g)).append(",").append(String.valueOf(b))
               .append(")\" visibility=\"visible\" >\n");

@@ -39,7 +39,7 @@ public class ViewPanel extends JPanel {
   public void animate() {
     int delay = 1000 / framesPerSecond;
 
-    timer = new Timer(0, new ActionListener() {
+    timer = new Timer(delay, new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         tick += speed;
@@ -47,7 +47,6 @@ public class ViewPanel extends JPanel {
 
       }
     });
-    timer.setDelay(delay);
     timer.start();
   }
 
@@ -60,29 +59,30 @@ public class ViewPanel extends JPanel {
     for (IShape shape : listOfShapes) {
       if (tick >= shape.getAppearTime() * framesPerSecond
               && tick  < shape.getDisappearTime() * framesPerSecond) {
-        int r = shape.getColorAt(tick / framesPerSecond).getRed();
-        int green = shape.getColorAt(tick / framesPerSecond).getGreen();
-        int b = shape.getColorAt(tick / framesPerSecond).getBlue();
-        int x = shape.getPositionAt(tick / framesPerSecond).getX();
-        int y = shape.getPositionAt(tick / framesPerSecond).getY();
-        int para1 = shape.getPara1At(tick / framesPerSecond);
-        int para2 = shape.getPara2At(tick / framesPerSecond);
-        int durR = (shape.getColorAt(tick / framesPerSecond + 1).getRed() - r) / framesPerSecond;
-        int durG = (shape.getColorAt(tick / framesPerSecond + 1).getGreen() - green) / framesPerSecond;
-        int durB = (shape.getColorAt(tick / framesPerSecond + 1).getBlue() - b) / framesPerSecond;
-        int durX = (shape.getPositionAt(tick / framesPerSecond + 1).getX() - x) / framesPerSecond;
-        int durY = (shape.getPositionAt(tick / framesPerSecond + 1).getY() - y) / framesPerSecond;
-        int durPara1 = (shape.getPara1At(tick / framesPerSecond + 1) - para1) / framesPerSecond;
-        int durPara2 = (shape.getPara2At(tick / framesPerSecond + 1) - para2) / framesPerSecond;
-        g.setColor(new Color(r + durR * (tick % framesPerSecond), green + durG * (tick % framesPerSecond), b + durB * (tick % framesPerSecond)));
+        int t = tick / framesPerSecond;
+        int r = shape.getColorAt(t).getRed();
+        int green = shape.getColorAt(t).getGreen();
+        int b = shape.getColorAt(t).getBlue();
+        int x = shape.getPositionAt(t).getX();
+        int y = shape.getPositionAt(t).getY();
+        int para1 = shape.getPara1At(t);
+        int para2 = shape.getPara2At(t);
+        float durR = (float)(shape.getColorAt(t + 1).getRed() - r) / framesPerSecond;
+        float durG = (float)(shape.getColorAt(t + 1).getGreen() - green) / framesPerSecond;
+        float durB = (float)(shape.getColorAt(t + 1).getBlue() - b) / framesPerSecond;
+        float durX = (float)(shape.getPositionAt(t + 1).getX() - x) / framesPerSecond;
+        float durY = (float)(shape.getPositionAt(t + 1).getY() - y) / framesPerSecond;
+        float durPara1 = (float)(shape.getPara1At(t + 1) - para1) / framesPerSecond;
+        float durPara2 = (float)(shape.getPara2At(t + 1) - para2) / framesPerSecond;
+        g.setColor(new Color((int)(r + durR * (tick % framesPerSecond)), (int)(green + durG * (tick % framesPerSecond)), (int)(b + durB * (tick % framesPerSecond))));
 
 
         if (shape.getType() == ShapeType.RECTANGLE) {
-          g.fillRect(x + durX * (tick % framesPerSecond), y + durY * (tick % framesPerSecond),
-                  para1 + durPara1 * (tick % framesPerSecond), para2 + durPara2 * (tick % framesPerSecond));
+          g.fillRect((int)(x + durX * (tick % framesPerSecond)), (int)(y + durY * (tick % framesPerSecond)),
+                  (int)(para1 + durPara1 * (tick % framesPerSecond)), (int)(para2 + durPara2 * (tick % framesPerSecond)));
         } else if (shape.getType() == ShapeType.ELLIPSE) {
-          g.drawOval(x + durX * (tick % framesPerSecond), y + durY * (tick % framesPerSecond),
-                  para1 + durPara1 * (tick % framesPerSecond), para2 + durPara2 * (tick % framesPerSecond));
+          g.drawOval((int)(x + durX * (tick % framesPerSecond)), (int)(y + durY * (tick % framesPerSecond)),
+                  (int)(para1 + durPara1 * (tick % framesPerSecond)), (int)(para2 + durPara2 * (tick % framesPerSecond)));
         }
       }
     }

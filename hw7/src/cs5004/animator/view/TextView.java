@@ -33,7 +33,10 @@ public class TextView implements IView {
   private void showShapeInitials(List<IShape> listOfShapes) {
     //PrintStream result = new PrintStream(filePath);
     for (IShape shape : listOfShapes) {
-      out.print("Create " + shape.getColorAt(shape.getAppearTime()).toString() + " ");
+      int r = shape.getColorAt(shape.getAppearTime()).getRed();
+      int g = shape.getColorAt(shape.getAppearTime()).getGreen();
+      int b = shape.getColorAt(shape.getAppearTime()).getBlue();
+      out.print("Create Color(r=" + r + ",g=" + g + ",b=" + b + ") ");
       out.print(shape.getType().toString() + " " + shape.getName() + " ");
       if (shape.getType() == ShapeType.RECTANGLE) { //when shape is a rectangle
         out.print("with corner at " + shape.getPositionAt(shape.getAppearTime()).toString() + ", ");
@@ -97,7 +100,10 @@ public class TextView implements IView {
     }
     for (IShape x : animation.getListOfShapes()) {
       //show initials
-      out.print("Create " + x.getColorAt(x.getAppearTime()).toString() + " ");
+      int r = x.getColorAt(x.getAppearTime()).getRed();
+      int g = x.getColorAt(x.getAppearTime()).getGreen();
+      int b = x.getColorAt(x.getAppearTime()).getBlue();
+      out.print("Create Color(r=" + r + ",g=" + g + ",b=" + b + ") ");
       out.print(x.getType().toString() + " " + x.getName() + " ");
       if (x.getType() == ShapeType.RECTANGLE) { //when shape is a rectangle
         out.print("with corner at " + x.getPositionAt(x.getAppearTime()).toString() + ", ");

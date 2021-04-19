@@ -35,8 +35,15 @@ public class ColorChange implements Movement {
 
   @Override
   public String display() {
+    int r1 = initialColor.getRed();
+    int g1 = initialColor.getGreen();
+    int b1 = initialColor.getBlue();
+    int r2 = targetColor.getRed();
+    int g2 = targetColor.getGreen();
+    int b2 = targetColor.getBlue();
     String str = shape.getName() + " ";
-    str += "changes from " + initialColor.toString() + " to " + targetColor.toString();
+    str += "changes from " + "Color(r=" + r1 + ",g=" + g1 + ",b=" + b1 + ")";
+    str += " to " + "Color(r=" + r2 + ",g=" + g2 + ",b=" + b2 + ")";
     str += " from time t=" + startTime + " to t="
             + endTime;
     return str;

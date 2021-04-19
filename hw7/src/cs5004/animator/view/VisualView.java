@@ -26,18 +26,25 @@ public class VisualView extends JFrame implements IView {
    * @param speed tick per sec
    */
   public VisualView(PrintStream out, int speed) {
+
     super("Canvas");
+    if (speed <= 0) {
+      throw new IllegalArgumentException("invalid speed");
+    }
     this.speed = speed;
 
     setSize(600, 400);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
+    setLayout(null);
 
   }
 
 
-  private void show(java.util.List<IShape> listOfShapes) {
+  private void show(java.util.List<IShape> listOfShapes, int[] bounds) {
     ViewPanel viewPanel = new ViewPanel(listOfShapes, speed);
+
+    viewPanel.setBounds(bounds[0], bounds[1], bounds[2], bounds[3]);
     setContentPane(viewPanel);
     JScrollPane scrollPane = new JScrollPane(viewPanel,
             ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
@@ -46,12 +53,13 @@ public class VisualView extends JFrame implements IView {
     setContentPane(scrollPane);
 
     setVisible(true);
+    viewPanel.animate();
   }
 
 
   @Override
   public void showAll(IAnimation animation) {
-    show(animation.getListOfShapes());
+    show(animation.getListOfShapes(), animation.getBounds());
   }
 
 
@@ -59,7 +67,7 @@ public class VisualView extends JFrame implements IView {
   public void showOneShape(IAnimation animation, String shapeName) {
     for (IShape shape : animation.getListOfShapes()) {
       if (shape.getName().equalsIgnoreCase(shapeName)) {
-        show(Collections.singletonList(shape));
+        show(Collections.singletonList(shape), animation.getBounds());
         return;
       }
     }

@@ -1,21 +1,9 @@
 package cs5004.animator.view;
 
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JToggleButton;
-import javax.swing.ButtonGroup;
-
-import javax.swing.ScrollPaneConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.PrintStream;
 import java.util.Collections;
+
+import javax.swing.*;
 
 import cs5004.animator.model.IAnimation;
 import cs5004.animator.model.IShape;
@@ -25,8 +13,8 @@ import cs5004.animator.model.IShape;
  * class includes a speed.
  */
 public class PlayBackView extends JFrame implements IView {
-  private int speed;
-  private PrintStream out;
+  private final int speed;
+  private final PrintStream out;
   private IAnimation animation = null;
 
   /**
@@ -67,111 +55,85 @@ public class PlayBackView extends JFrame implements IView {
     // Start & Pause & Resume button
     JToggleButton pause = new JToggleButton("Start");
 
-    pause.addChangeListener(new ChangeListener() {
-      @Override
-      public void stateChanged(ChangeEvent e) {
-        if (pause.isSelected()) {
-          viewPanel.playAnime();
-          pause.setText("Pause");
-        } else {
-          viewPanel.pauseAnime();
-          pause.setText("Play");
-        }
+    pause.addChangeListener(e -> {
+      if (pause.isSelected()) {
+        viewPanel.playAnime();
+        pause.setText("Pause");
+      } else {
+        viewPanel.pauseAnime();
+        pause.setText("Play");
       }
     });
 
     // Restart Button
     JButton restart = new JButton("Restart");
 
-    restart.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        viewPanel.restart();
-      }
-    });
+    restart.addActionListener(e -> viewPanel.restart());
 
     //Chang speed to 3 times or 1/3
     // Faster Button
     JButton faster = new JButton("Fast");
 
-    faster.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        viewPanel.faster();
-      }
-    });
+    faster.addActionListener(e -> viewPanel.faster());
 
     // Slower Button
     JButton slower = new JButton("Slow");
 
-    slower.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        viewPanel.slower();
-      }
-    });
+    slower.addActionListener(e -> viewPanel.slower());
 
     // Save
     JButton save = new JButton("Save");
 
-    save.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        JFrame saveFrame = new JFrame("Save File");
+    save.addActionListener(e -> {
+      JFrame saveFrame = new JFrame("Save File");
 
-        saveFrame.setSize(150, 120);
-        saveFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        saveFrame.setLocationRelativeTo(null);
+      saveFrame.setSize(150, 120);
+      saveFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      saveFrame.setLocationRelativeTo(null);
 
-        JPanel savePanel = new JPanel();
+      JPanel savePanel = new JPanel();
 
-        JRadioButton svg = new JRadioButton("SVG");
-        JRadioButton text = new JRadioButton("TEXT");
+      JRadioButton svg = new JRadioButton("SVG");
+      JRadioButton text = new JRadioButton("TEXT");
 
-        ButtonGroup btnGroup = new ButtonGroup();
-        btnGroup.add(svg);
-        btnGroup.add(text);
+      ButtonGroup btnGroup = new ButtonGroup();
+      btnGroup.add(svg);
+      btnGroup.add(text);
 
-        svg.setSelected(true);
+      svg.setSelected(true);
 
-        savePanel.add(svg);
-        savePanel.add(text);
+      savePanel.add(svg);
+      savePanel.add(text);
 
 
-        JButton confirm = new JButton("Save");
+      JButton confirm = new JButton("Save");
 
-        confirm.addActionListener(new ActionListener() {
-          @Override
-          public void actionPerformed(ActionEvent e) {
-            IView view = null;
-            if (svg.isSelected()) {
-              view = new SVGView(out, speed);
-            } else if (text.isSelected()) {
-              view = new TextView(out);
-            }
-            view.showAll(animation);
-          }
-        });
+      confirm.addActionListener(e1 -> {
+        IView view = null;
+        if (svg.isSelected()) {
+          view = new SVGView(out, speed);
+        } else if (text.isSelected()) {
+          view = new TextView(out);
+        }
+        assert view != null;
+        view.showAll(animation);
+      });
 
-        savePanel.add(confirm);
-        saveFrame.setContentPane(savePanel);
-        saveFrame.setVisible(true);
-      }
+      savePanel.add(confirm);
+      saveFrame.setContentPane(savePanel);
+      saveFrame.setVisible(true);
     });
 
     // Loop Button
     JToggleButton loop = new JToggleButton("Loop");
 
-    loop.addChangeListener(new ChangeListener() {
-      @Override
-      public void stateChanged(ChangeEvent e) {
-        if (loop.isSelected()) {
-          viewPanel.loop();
-          loop.setText("NonLoop");
-        } else {
-          viewPanel.stopLoop();
-          loop.setText("Loop");
-        }
+    loop.addChangeListener(e -> {
+      if (loop.isSelected()) {
+        viewPanel.loop();
+        loop.setText("NonLoop");
+      } else {
+        viewPanel.stopLoop();
+        loop.setText("Loop");
       }
     });
 

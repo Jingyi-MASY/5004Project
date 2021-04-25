@@ -18,6 +18,8 @@ import cs5004.animator.model.IShape;
  */
 public class PlayBackView extends JFrame implements IView {
   private int speed;
+  private PrintStream out;
+  private IAnimation animation= null;
 
   /**
    * Constructor of a visual view.
@@ -26,12 +28,15 @@ public class PlayBackView extends JFrame implements IView {
    * @param speed tick per sec
    */
   public PlayBackView(PrintStream out, int speed) {
-
     super("Canvas");
     if (speed <= 0) {
       throw new IllegalArgumentException("invalid speed");
     }
+    if (out == null) {
+      out = System.out;
+    }
     this.speed = speed;
+    this.out = out;
 
     setSize(600, 400);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,6 +103,54 @@ public class PlayBackView extends JFrame implements IView {
       }
     });
 
+    // Save
+    JButton save = new JButton("Save");
+
+    save.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        JFrame saveFrame = new JFrame("Save File");
+
+        saveFrame.setSize(150, 120);
+        saveFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        saveFrame.setLocationRelativeTo(null);
+
+        JPanel savePanel = new JPanel();
+
+        JRadioButton svg = new JRadioButton("SVG");
+        JRadioButton text = new JRadioButton("TEXT");
+
+        ButtonGroup btnGroup = new ButtonGroup();
+        btnGroup.add(svg);
+        btnGroup.add(text);
+
+        svg.setSelected(true);
+
+        savePanel.add(svg);
+        savePanel.add(text);
+
+
+        JButton confirm = new JButton("Save");
+
+        confirm.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent e) {
+            IView view = null;
+            if(svg.isSelected()){
+              view= new SVGView(out, speed);
+            } else if(text.isSelected()){
+              view = new TextView(out);
+            }
+            view.showAll(animation);
+          }
+        });
+
+        savePanel.add(confirm);
+        saveFrame.setContentPane(savePanel);
+        saveFrame.setVisible(true);
+      }
+    });
+
     // Loop Button
     JToggleButton loop = new JToggleButton("Loop");
 
@@ -121,6 +174,7 @@ public class PlayBackView extends JFrame implements IView {
     viewPanel.add(loop);
     viewPanel.add(slower);
     viewPanel.add(faster);
+    viewPanel.add(save);
 
 
     setVisible(true);
@@ -131,12 +185,14 @@ public class PlayBackView extends JFrame implements IView {
 
   @Override
   public void showAll(IAnimation animation) {
+    this.animation = animation;
     show(animation.getListOfShapes(), animation.getBounds());
   }
 
 
   @Override
   public void showOneShape(IAnimation animation, String shapeName) {
+    this.animation = animation;
     for (IShape shape : animation.getListOfShapes()) {
       if (shape.getName().equalsIgnoreCase(shapeName)) {
         show(Collections.singletonList(shape), animation.getBounds());

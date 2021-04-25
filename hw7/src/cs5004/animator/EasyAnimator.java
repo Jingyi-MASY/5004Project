@@ -16,6 +16,7 @@ import cs5004.animator.view.PlayBackView;
 import cs5004.animator.view.TextView;
 import cs5004.animator.view.ViewOption;
 import cs5004.animator.model.IAnimation;
+import cs5004.animator.view.VisualView;
 
 /**
  * EasyAnimator class: it serves as the controller of the project.
@@ -60,7 +61,7 @@ public final class EasyAnimator {
         try {
           //TODO:Need to change, if refactor
           filePath = new File("").getAbsolutePath()
-                 + '/' + args[i + 1];
+                 + "/hw7/code/" + args[i + 1];
           in = new FileReader(filePath);
         } catch (FileNotFoundException e) {
           InputMessage.message(filePath + "Input File not found.");
@@ -91,7 +92,7 @@ public final class EasyAnimator {
     if (view == ViewOption.SVG) {
       iView = new SVGView(out, speed);
     } else if (view == ViewOption.VISUAL) {
-      iView = new PlayBackView(out, speed);
+      iView = new VisualView(out, speed);
     } else if (view == ViewOption.TEXT) {
       iView = new TextView(out);
     } else if (view == ViewOption.PLAYBACK) {

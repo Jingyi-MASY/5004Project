@@ -113,7 +113,7 @@ public final class EasyAnimator {
     if (view == ViewOption.SVG) {
       iView = new SVGView(out, speed);
     } else if (view == ViewOption.VISUAL) {
-      iView = new VisualView(out, speed);
+      iView = new VisualView(speed);
     } else if (view == ViewOption.TEXT) {
       iView = new TextView(out);
     } else if (view == ViewOption.PLAYBACK) {

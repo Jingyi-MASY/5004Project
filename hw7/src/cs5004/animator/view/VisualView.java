@@ -6,7 +6,6 @@ import javax.swing.ScrollPaneConstants;
 
 //import java.awt.event.ActionEvent;
 //import java.awt.event.ActionListener;
-import java.io.PrintStream;
 import java.util.Collections;
 
 import cs5004.animator.model.IAnimation;
@@ -22,10 +21,9 @@ public class VisualView extends JFrame implements IView {
   /**
    * Constructor of a visual view.
    *
-   * @param out   Appendable output file
    * @param speed tick per sec
    */
-  public VisualView(PrintStream out, int speed) {
+  public VisualView(int speed) {
 
     super("Canvas");
     if (speed <= 0) {

@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -20,8 +18,8 @@ import cs5004.animator.model.ShapeType;
  */
 public class ViewPanel extends JPanel {
   protected Timer timer;
-  private java.util.List<IShape> listOfShapes;
-  private int speed = 1;
+  private final java.util.List<IShape> listOfShapes;
+  private int speed;
   private int tick = 0;
   private boolean loopFlag = false;
   private final int framesPerSecond = 60;
@@ -52,18 +50,15 @@ public class ViewPanel extends JPanel {
   public void animate() {
     int delay = 1000 / framesPerSecond;
 
-    timer = new Timer(delay, new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        tick += speed;
-        if (tick >= disappear) {
-          if (!loopFlag) {
-            timer.stop();
-          }
-          tick = 0;
-        } else {
-          repaint();
+    timer = new Timer(delay, e -> {
+      tick += speed;
+      if (tick >= disappear) {
+        if (!loopFlag) {
+          timer.stop();
         }
+        tick = 0;
+      } else {
+        repaint();
       }
     });
 

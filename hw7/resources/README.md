@@ -43,7 +43,8 @@ we have refactored the model (IAnimation interface) in order to be able to read 
 
 ### IView
 A general interface for view.
-Subclasses: VisualView, TextView, SVGView
+Subclasses: VisualView, TextView, SVGView, PlayBack
+
 
 #### VisualView
 - extends JFrame
@@ -56,7 +57,7 @@ Subclasses: VisualView, TextView, SVGView
 
 #### ViewOption
 - An enum class: restrict user input for view.
-- [Visual, SVG, Text]
+- [Visual, SVG, Text, PlayBack]
 
 #### InputMessage
 - Created a JFrame based window to give a hint of input errors user has made.
@@ -65,9 +66,17 @@ Subclasses: VisualView, TextView, SVGView
 - Provides a text view according to user input.
 
 #### SVGView
-- Provides a SVG view according to user input.
-  ![Alt text](./toh-at-20.svg)
+- Provides a SVG view according to user input. Default to System.out if out path not specified.
+![Alt text](./toh-at-20.svg)
   
+#### PlayBackView
+- A Swing based panel that draws a view. Allow user to play, pause, resume, loop, change speed and save file.
+ 
+  ![Alt text](./playback.jpg)
+
+- Save would pop up a new window for user to choose the proper format to save the file.
+
+  ![Alt text](./save.jpg)
 ### IShape, AbstractShape and concrete shape classes
 Please see updates at the end of this section.
 
@@ -106,7 +115,7 @@ Concrete movement classes includes Move, ColorChange and Scale. Each of them per
 
 #### Movement and concrete movement classes updated in hw7:
 -	Previously there are 3 classes implemented under Movement interface, however now we have 4 – Move and ColorChange stay the same, and we have separated the Scale motion into two: WidthScale and HeightScale. This change allows users to scale a shape’s width (or xDiameter) and height (or yDiameter) separately, and in this way the width-height ratio does not always have to stay the same anymore.  
--	Afte addMotion method is called, some inner helper function would check the status changes among all the attributes, if there is change in any attributes, the corresponding motion(s) would be added/attached to the shape in the animation, if the attributes does not change between t1 and t2, then those attributes will be assigned and updated to the shape while no Movement will be created. 
+-	After addMotion method is called, some inner helper function would check the status changes among all the attributes, if there is change in any attributes, the corresponding motion(s) would be added/attached to the shape in the animation, if the attributes does not change between t1 and t2, then those attributes will be assigned and updated to the shape while no Movement will be created. 
 
 
 ### Other classes

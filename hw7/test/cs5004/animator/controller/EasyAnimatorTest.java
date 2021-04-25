@@ -8,23 +8,25 @@ import java.io.PrintStream;
 import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.model.IAnimation;
 import cs5004.animator.view.IView;
-import cs5004.animator.view.InputMessage;
 import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+/**
+ * Test for Easy Animator
+ */
 public class EasyAnimatorTest {
   private EasyAnimator controller1;
   private EasyAnimator controller2;
-  private IAnimation model;
   private IView view;
   private Readable in;
   private PrintStream out;
 
   @Before
   public void setUp() throws Exception {
-    this.model = new AnimationImpl();
+    IAnimation model = new AnimationImpl();
     this.view = new SVGView(out, 2);
     this.controller1 = new EasyAnimator(in, out, model, view);
   }
@@ -44,6 +46,7 @@ public class EasyAnimatorTest {
     assertEquals(3, view.getSpeed());
     assertTrue(view instanceof TextView);
   }
+
   @Test(expected = IllegalArgumentException.class)
   public void negativeTestMain1() {
     EasyAnimator.main(null);

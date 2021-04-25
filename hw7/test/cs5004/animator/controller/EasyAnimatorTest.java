@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Test for Easy Animator
+ * Test for Easy Animator.
  */
 public class EasyAnimatorTest {
   private EasyAnimator controller1;

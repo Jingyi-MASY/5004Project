@@ -6,6 +6,9 @@ import java.util.List;
 import cs5004.animator.model.IAnimation;
 import cs5004.animator.model.IShape;
 
+/**
+ * A mock of model IAnimation.
+ */
 public class MockModel implements IAnimation {
   private StringBuilder log;
   private final int uniqueCode;
@@ -36,7 +39,8 @@ public class MockModel implements IAnimation {
   }
 
   @Override
-  public void addMotion(String s, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, int i11, int i12, int i13, int i14, int i15) {
+  public void addMotion(String s, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7,
+                        int i8, int i9, int i10, int i11, int i12, int i13, int i14, int i15) {
     log.append("Input: ").append(s).append(" ").append(i).append(" ").append(i1).append(" ")
             .append(i3).append(" ").append(i4).append(" ").append(i5).append(" ")
             .append(i6).append(" ").append(i6).append(" ").append(i8).append(" ")

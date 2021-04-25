@@ -28,7 +28,15 @@ public final class EasyAnimator {
   private static IView iView;
   private static IAnimation model;
 
-  public EasyAnimator(Readable in, PrintStream out, IAnimation model, IView iView) {
+  /**
+   * For test purpose.
+   *
+   * @param in a Readable (converted by user input -in or default as System.out)
+   * @param out a PrintStream (converted by user input -out or default as System.out)
+   * @param model the IAnimation model
+   * @param iView view created
+   */
+  protected EasyAnimator(Readable in, PrintStream out, IAnimation model, IView iView) {
     EasyAnimator.in = in;
     EasyAnimator.out = out;
     EasyAnimator.iView = iView;

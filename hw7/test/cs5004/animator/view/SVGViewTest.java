@@ -8,10 +8,10 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
-import static org.junit.Assert.assertEquals;
-
 import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.model.IAnimation;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * this is the test class for SVGView, in this class it test all public methods of a SVGView.
@@ -82,6 +82,8 @@ public class SVGViewTest {
             + " from=\"100\" to=\"50\" fill=\"freeze\" />\n"
             + "<animate attributeType=\"xml\" begin=\"50ms\" dur=\"4950ms\" attributeName="
             + "\"height\" from=\"200\" to=\"100\" fill=\"freeze\" />\n"
+            + "<animate attributeType=\"xml\" begin=\"5000ms\" dur=\"1ms\" attributeName="
+            + "\"visibility\" from=\"visible\" to=\"hidden\" fill=\"freeze\" />\n"
             + "</rect>\n"
             + "<rect id=\"r2\" x=\"100\" y=\"200\" width=\"200\" height=\"50\" fill=\"rgb(128,100,"
             + "100)\" visibility=\"visible\" >\n"
@@ -95,6 +97,8 @@ public class SVGViewTest {
             + "width\" from=\"200\" to=\"50\" fill=\"freeze\" />\n"
             + "<animate attributeType=\"xml\" begin=\"2500ms\" dur=\"5000ms\" attributeName=\""
             + "height\" from=\"50\" to=\"200\" fill=\"freeze\" />\n"
+            + "<animate attributeType=\"xml\" begin=\"7500ms\" dur=\"1ms\" attributeName=\""
+            + "visibility\" from=\"visible\" to=\"hidden\" fill=\"freeze\" />\n"
             + "</rect>\n"
             + "<ellipse id=\"e1\" cx=\"100\" cy=\"200\" rx=\"50\" ry=\"100\" fill=\"rgb(0,0,"
             + "255)\" visibility=\"visible\" >\n"
@@ -108,6 +112,8 @@ public class SVGViewTest {
             + " from=\"50\" to=\"100\" fill=\"freeze\" />\n"
             + "<animate attributeType=\"xml\" begin=\"50ms\" dur=\"950ms\" attributeName=\"ry\""
             + " from=\"100\" to=\"50\" fill=\"freeze\" />\n"
+            + "<animate attributeType=\"xml\" begin=\"1000ms\" dur=\"1ms\" attributeName=\""
+            + "visibility\" from=\"visible\" to=\"hidden\" fill=\"freeze\" />\n"
             + "</ellipse>\n" + "<rect id=\"r3\" x=\"1\" y=\"300\" width=\"60\" height=\"80\" "
             + "fill=\"rgb(128,128,56)\" visibility=\"visible\" >\n"
             + "<animate attributeType=\"xml\" begin=\"2500ms\" dur=\"3500ms\" attributeName=\""
@@ -120,6 +126,8 @@ public class SVGViewTest {
             + "width\" from=\"60\" to=\"200\" fill=\"freeze\" />\n"
             + "<animate attributeType=\"xml\" begin=\"2500ms\" dur=\"3500ms\" attributeName=\""
             + "height\" from=\"80\" to=\"90\" fill=\"freeze\" />\n"
+            + "<animate attributeType=\"xml\" begin=\"6000ms\" dur=\"1ms\" attributeName=\""
+            + "visibility\" from=\"visible\" to=\"hidden\" fill=\"freeze\" />\n"
             + "</rect>\n"
             + "<ellipse id=\"e2\" cx=\"400\" cy=\"450\" rx=\"50\" ry=\"37\" fill=\""
             + "rgb(60,80,120)\" visibility=\"visible\" >\n"
@@ -133,6 +141,8 @@ public class SVGViewTest {
             + "rx\" from=\"50\" to=\"30\" fill=\"freeze\" />\n"
             + "<animate attributeType=\"xml\" begin=\"1000ms\" dur=\"5000ms\" attributeName=\""
             + "ry\" from=\"37\" to=\"22\" fill=\"freeze\" />\n"
+            + "<animate attributeType=\"xml\" begin=\"6000ms\" dur=\"1ms\" attributeName=\""
+            + "visibility\" from=\"visible\" to=\"hidden\" fill=\"freeze\" />\n"
             + "</ellipse>\n"
             + "<rect id=\"r4\" x=\"300\" y=\"450\" width=\"100\" height=\"75\" fill=\"rgb(60,80,"
             + "120)\" visibility=\"visible\" >\n"
@@ -146,6 +156,8 @@ public class SVGViewTest {
             + "width\" from=\"100\" to=\"60\" fill=\"freeze\" />\n"
             + "<animate attributeType=\"xml\" begin=\"1000ms\" dur=\"5000ms\" attributeName=\""
             + "height\" from=\"75\" to=\"45\" fill=\"freeze\" />\n"
+            + "<animate attributeType=\"xml\" begin=\"6000ms\" dur=\"1ms\" attributeName=\""
+            + "visibility\" from=\"visible\" to=\"hidden\" fill=\"freeze\" />\n"
             + "</rect>\n\n"
             + "</svg>", os.toString(StandardCharsets.UTF_8));
   }
@@ -167,6 +179,8 @@ public class SVGViewTest {
             + "width\" from=\"100\" to=\"50\" fill=\"freeze\" />\n"
             + "<animate attributeType=\"xml\" begin=\"50ms\" dur=\"4950ms\" attributeName=\""
             + "height\" from=\"200\" to=\"100\" fill=\"freeze\" />\n"
+            + "<animate attributeType=\"xml\" begin=\"5000ms\" dur=\"1ms\" attributeName=\""
+            + "visibility\" from=\"visible\" to=\"hidden\" fill=\"freeze\" />\n"
             + "</rect>\n\n</svg>", os.toString(StandardCharsets.UTF_8));
   }
 
@@ -187,6 +201,8 @@ public class SVGViewTest {
             + "rx\" from=\"50\" to=\"100\" fill=\"freeze\" />\n"
             + "<animate attributeType=\"xml\" begin=\"50ms\" dur=\"950ms\" attributeName=\""
             + "ry\" from=\"100\" to=\"50\" fill=\"freeze\" />\n"
+            + "<animate attributeType=\"xml\" begin=\"1000ms\" dur=\"1ms\" attributeName=\""
+            + "visibility\" from=\"visible\" to=\"hidden\" fill=\"freeze\" />\n"
             + "</ellipse>\n\n</svg>", os.toString(StandardCharsets.UTF_8));
   }
 
@@ -207,6 +223,8 @@ public class SVGViewTest {
             + "width\" from=\"200\" to=\"50\" fill=\"freeze\" />\n"
             + "<animate attributeType=\"xml\" begin=\"2500ms\" dur=\"5000ms\" attributeName=\""
             + "height\" from=\"50\" to=\"200\" fill=\"freeze\" />\n"
+            + "<animate attributeType=\"xml\" begin=\"7500ms\" dur=\"1ms\" attributeName=\""
+            + "visibility\" from=\"visible\" to=\"hidden\" fill=\"freeze\" />\n"
             + "</rect>\n\n</svg>", os.toString(StandardCharsets.UTF_8));
   }
 

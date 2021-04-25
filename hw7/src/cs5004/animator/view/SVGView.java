@@ -135,6 +135,10 @@ public class SVGView implements IView {
    * private helper function to help display in showAll method.
    */
   private void showShapeFooter(IShape shape) {
+    out.append("<animate attributeType=\"xml\" begin=\"")
+            .append(String.valueOf(shape.getDisappearTime() * 1000 / speed))
+            .append("ms\" dur=\"1ms\" attributeName=\"visibility\" from=\"visible")
+            .append("\" to=\"hidden\" fill=\"freeze\" />\n");
     if (shape.getType() == ShapeType.RECTANGLE) {
       out.append("</rect>\n");
     } else if (shape.getType() == ShapeType.ELLIPSE) {

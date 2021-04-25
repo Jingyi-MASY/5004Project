@@ -31,7 +31,6 @@ public class TextView implements IView {
   }
 
   private void showShapeInitials(List<IShape> listOfShapes) {
-    //PrintStream result = new PrintStream(filePath);
     for (IShape shape : listOfShapes) {
       int r = shape.getColorAt(shape.getAppearTime()).getRed();
       int g = shape.getColorAt(shape.getAppearTime()).getGreen();
@@ -135,6 +134,6 @@ public class TextView implements IView {
 
   @Override
   public int getSpeed() {
-    return speed;
+    return this.speed;
   }
 }

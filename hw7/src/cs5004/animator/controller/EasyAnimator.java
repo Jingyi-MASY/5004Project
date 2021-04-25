@@ -1,4 +1,4 @@
-package cs5004.animator;
+package cs5004.animator.controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,7 +12,7 @@ import cs5004.animator.util.AnimationReader;
 import cs5004.animator.view.IView;
 import cs5004.animator.view.InputMessage;
 import cs5004.animator.view.SVGView;
-import cs5004.animator.view.PlayBackView;
+//import cs5004.animator.view.PlayBackView;
 import cs5004.animator.view.TextView;
 import cs5004.animator.view.ViewOption;
 import cs5004.animator.model.IAnimation;
@@ -25,6 +25,16 @@ public final class EasyAnimator {
   private static int speed;
   private static Readable in;
   private static PrintStream out;
+  private static IView iView;
+  private static IAnimation model;
+
+  public EasyAnimator(Readable in, PrintStream out, IAnimation model, IView iView) {
+    EasyAnimator.in = in;
+    EasyAnimator.out = out;
+    EasyAnimator.iView = iView;
+    EasyAnimator.model = model;
+
+  }
 
   /**
    * This is the starting point of this project. Based on the content of the passed in args, the
@@ -32,9 +42,12 @@ public final class EasyAnimator {
    * @param args  passed in paramter to give command, String type.
    */
   public static void main(String[] args) {
+    if (args == null) {
+      throw new IllegalArgumentException("invalid null command");
+    }
     // Set default value
     speed = 1;
-    IView iView = null;
+    //IView iView = null;
     out = null;
     in = null;
     ViewOption view = null;
@@ -87,7 +100,7 @@ public final class EasyAnimator {
     }
 
     //AnimationBuilder implementation
-    IAnimation model = AnimationReader.parseFile(in, new AnimationImpl.Builder());
+    model = AnimationReader.parseFile(in, new AnimationImpl.Builder());
     //Create a view;
     if (view == ViewOption.SVG) {
       iView = new SVGView(out, speed);
@@ -96,7 +109,7 @@ public final class EasyAnimator {
     } else if (view == ViewOption.TEXT) {
       iView = new TextView(out);
     } else if (view == ViewOption.PLAYBACK) {
-      iView = new PlayBackView(out, speed);
+      //iView = new PlayBackView(out, speed);
     }
 
     iView.showAll(model);

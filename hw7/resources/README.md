@@ -41,7 +41,33 @@ we have refactored the model (IAnimation interface) in order to be able to read 
 -	As we still use fields to store shape’s attribute status timeline, we kept the methods of getting the shape’s status at certain passed in moment. However we have set those methods as protected or private as needed because those methods will only be called internally. 
 -	We have removed all display-related (toString, showAll, showMotions, showShapes, etc) methods from the Model because those functionalities belong to the View. 
 
+### IView
+A general interface for view.
+Subclasses: VisualView, TextView, SVGView
 
+#### VisualView
+- extends JFrame
+- This class represents the visual view that display an animation using swing. The field of this class includes a speed.
+- Contains a Scrollbar; Vertical always on; Horizontal as needed.
+
+#### ViewPanel
+- A panel that contains the shapes to be printed.
+- FPS 60
+
+#### ViewOption
+- An enum class: restrict user input for view.
+- [Visual, SVG, Text]
+
+#### InputMessage
+- Created a JFrame based window to give a hint of input errors user has made.
+  ![Alt text](./error.jpg)
+#### TextView
+- Provides a text view according to user input.
+
+#### SVGView
+- Provides a SVG view according to user input.
+  ![Alt text](./toh-at-20.svg)
+  
 ### IShape, AbstractShape and concrete shape classes
 Please see updates at the end of this section.
 

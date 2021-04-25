@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collections;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -15,9 +14,9 @@ import cs5004.animator.model.IShape;
 import cs5004.animator.model.ShapeType;
 
 /**
- * this ViewPanel class represents all the methods and fields that belong to a ViewPanel.
- * The fields of a ViewPanel includes a speed (int), a timer (Timer), a listOfShape(list)
- * and a tick that has a default value of 0.
+ * this ViewPanel class represents all the methods and fields that belong to a ViewPanel. The fields
+ * of a ViewPanel includes a speed (int), a timer (Timer), a listOfShape(list) and a tick that has a
+ * default value of 0.
  */
 public class ViewPanel extends JPanel {
   protected Timer timer;
@@ -30,8 +29,9 @@ public class ViewPanel extends JPanel {
 
   /**
    * this constructor creates a ViewPanel based on the passed in listOfShapes and a speed.
-   * @param listOfShapes  a list of shape that is a field of an animation.
-   * @param speed   a speed to display this view, int type.
+   *
+   * @param listOfShapes a list of shape that is a field of an animation.
+   * @param speed        a speed to display this view, int type.
    */
   public ViewPanel(java.util.List<IShape> listOfShapes, int speed) {
     super();
@@ -56,12 +56,12 @@ public class ViewPanel extends JPanel {
       @Override
       public void actionPerformed(ActionEvent e) {
         tick += speed;
-        if(tick >= disappear){
-          if(!loopFlag){
+        if (tick >= disappear) {
+          if (!loopFlag) {
             timer.stop();
           }
           tick = 0;
-        } else{
+        } else {
           repaint();
         }
       }
@@ -70,11 +70,11 @@ public class ViewPanel extends JPanel {
     timer.start();
   }
 
-  protected void pauseAnime(){
+  protected void pauseAnime() {
     timer.stop();
   }
 
-  protected void playAnime(){
+  protected void playAnime() {
     timer.start();
   }
 
@@ -92,7 +92,7 @@ public class ViewPanel extends JPanel {
 
   protected void slower() {
     speed = speed / 3;
-    if(speed < 1){
+    if (speed < 1) {
       speed = 1;
     }
   }
@@ -109,7 +109,7 @@ public class ViewPanel extends JPanel {
 
     for (IShape shape : listOfShapes) {
       if (tick >= shape.getAppearTime() * framesPerSecond
-              && tick  < (shape.getDisappearTime() - 1) * framesPerSecond) {
+              && tick < (shape.getDisappearTime() - 1) * framesPerSecond) {
         int t = tick / framesPerSecond;
         int r = shape.getColorAt(t).getRed();
         int green = shape.getColorAt(t).getGreen();
@@ -118,28 +118,28 @@ public class ViewPanel extends JPanel {
         int y = shape.getPositionAt(t).getY();
         int para1 = shape.getPara1At(t);
         int para2 = shape.getPara2At(t);
-        float durR = (float)(shape.getColorAt(t + 1).getRed() - r) / framesPerSecond;
-        float durG = (float)(shape.getColorAt(t + 1).getGreen() - green) / framesPerSecond;
-        float durB = (float)(shape.getColorAt(t + 1).getBlue() - b) / framesPerSecond;
-        float durX = (float)(shape.getPositionAt(t + 1).getX() - x) / framesPerSecond;
-        float durY = (float)(shape.getPositionAt(t + 1).getY() - y) / framesPerSecond;
-        float durPara1 = (float)(shape.getPara1At(t + 1) - para1) / framesPerSecond;
-        float durPara2 = (float)(shape.getPara2At(t + 1) - para2) / framesPerSecond;
-        g.setColor(new Color((int)(r + durR * (tick % framesPerSecond)),
-                (int)(green + durG * (tick % framesPerSecond)),
-                (int)(b + durB * (tick % framesPerSecond))));
+        float durR = (float) (shape.getColorAt(t + 1).getRed() - r) / framesPerSecond;
+        float durG = (float) (shape.getColorAt(t + 1).getGreen() - green) / framesPerSecond;
+        float durB = (float) (shape.getColorAt(t + 1).getBlue() - b) / framesPerSecond;
+        float durX = (float) (shape.getPositionAt(t + 1).getX() - x) / framesPerSecond;
+        float durY = (float) (shape.getPositionAt(t + 1).getY() - y) / framesPerSecond;
+        float durPara1 = (float) (shape.getPara1At(t + 1) - para1) / framesPerSecond;
+        float durPara2 = (float) (shape.getPara2At(t + 1) - para2) / framesPerSecond;
+        g.setColor(new Color((int) (r + durR * (tick % framesPerSecond)),
+                (int) (green + durG * (tick % framesPerSecond)),
+                (int) (b + durB * (tick % framesPerSecond))));
 
 
         if (shape.getType() == ShapeType.RECTANGLE) {
-          g.fillRect((int)(x + durX * (tick % framesPerSecond)),
-                  (int)(y + durY * (tick % framesPerSecond)),
-                  (int)(para1 + durPara1 * (tick % framesPerSecond)),
-                  (int)(para2 + durPara2 * (tick % framesPerSecond)));
+          g.fillRect((int) (x + durX * (tick % framesPerSecond)),
+                  (int) (y + durY * (tick % framesPerSecond)),
+                  (int) (para1 + durPara1 * (tick % framesPerSecond)),
+                  (int) (para2 + durPara2 * (tick % framesPerSecond)));
         } else if (shape.getType() == ShapeType.ELLIPSE) {
-          g.drawOval((int)(x + durX * (tick % framesPerSecond)),
-                  (int)(y + durY * (tick % framesPerSecond)),
-                  (int)(para1 + durPara1 * (tick % framesPerSecond)),
-                  (int)(para2 + durPara2 * (tick % framesPerSecond)));
+          g.drawOval((int) (x + durX * (tick % framesPerSecond)),
+                  (int) (y + durY * (tick % framesPerSecond)),
+                  (int) (para1 + durPara1 * (tick % framesPerSecond)),
+                  (int) (para2 + durPara2 * (tick % framesPerSecond)));
         }
       }
     }

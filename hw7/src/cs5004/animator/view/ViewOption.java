@@ -7,6 +7,7 @@ package cs5004.animator.view;
 public enum ViewOption {
   TEXT("text"),
   VISUAL("visual"),
+  PLAYBACK("playback"),
   SVG("svg");
   private final String txt;
 

@@ -12,7 +12,7 @@ import cs5004.animator.util.AnimationReader;
 import cs5004.animator.view.IView;
 import cs5004.animator.view.InputMessage;
 import cs5004.animator.view.SVGView;
-//import cs5004.animator.view.PlayBackView;
+import cs5004.animator.view.PlayBackView;
 import cs5004.animator.view.TextView;
 import cs5004.animator.view.ViewOption;
 import cs5004.animator.model.IAnimation;
@@ -109,7 +109,7 @@ public final class EasyAnimator {
     } else if (view == ViewOption.TEXT) {
       iView = new TextView(out);
     } else if (view == ViewOption.PLAYBACK) {
-      //iView = new PlayBackView(out, speed);
+      iView = new PlayBackView(out, speed);
     }
 
     iView.showAll(model);

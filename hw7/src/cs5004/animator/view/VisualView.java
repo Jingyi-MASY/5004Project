@@ -17,7 +17,7 @@ import cs5004.animator.model.IShape;
  * this class includes a speed.
  */
 public class VisualView extends JFrame implements IView {
-  private int speed;
+  private final int speed;
 
   /**
    * Constructor of a visual view.

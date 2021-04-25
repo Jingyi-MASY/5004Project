@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -23,7 +24,9 @@ public class ViewPanel extends JPanel {
   private java.util.List<IShape> listOfShapes;
   private int speed = 1;
   private int tick = 0;
+  private boolean loopFlag = false;
   private final int framesPerSecond = 60;
+  private int disappear = 1;
 
   /**
    * this constructor creates a ViewPanel based on the passed in listOfShapes and a speed.
@@ -35,6 +38,12 @@ public class ViewPanel extends JPanel {
     this.speed = speed;
     this.listOfShapes = listOfShapes;
 
+    for (IShape shape : listOfShapes) {
+      if (shape.getDisappearTime() > disappear) {
+        disappear = shape.getDisappearTime();
+      }
+    }
+    disappear = disappear * framesPerSecond;
   }
 
   /**
@@ -47,11 +56,49 @@ public class ViewPanel extends JPanel {
       @Override
       public void actionPerformed(ActionEvent e) {
         tick += speed;
-        repaint();
-
+        if(tick >= disappear){
+          if(!loopFlag){
+            timer.stop();
+          }
+          tick = 0;
+        } else{
+          repaint();
+        }
       }
     });
+
     timer.start();
+  }
+
+  protected void pauseAnime(){
+    timer.stop();
+  }
+
+  protected void playAnime(){
+    timer.start();
+  }
+
+  protected void loop() {
+    loopFlag = true;
+  }
+
+  protected void stopLoop() {
+    loopFlag = false;
+  }
+
+  protected void faster() {
+    speed = speed * 3;
+  }
+
+  protected void slower() {
+    speed = speed / 3;
+    if(speed < 1){
+      speed = 1;
+    }
+  }
+
+  protected void restart() {
+    tick = 0;
   }
 
   @Override
@@ -62,7 +109,7 @@ public class ViewPanel extends JPanel {
 
     for (IShape shape : listOfShapes) {
       if (tick >= shape.getAppearTime() * framesPerSecond
-              && tick  < shape.getDisappearTime() * framesPerSecond) {
+              && tick  < (shape.getDisappearTime() - 1) * framesPerSecond) {
         int t = tick / framesPerSecond;
         int r = shape.getColorAt(t).getRed();
         int green = shape.getColorAt(t).getGreen();

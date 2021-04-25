@@ -73,10 +73,31 @@ Subclasses: VisualView, TextView, SVGView, PlayBack
 - A Swing based panel that draws a view. Allow user to play, pause, resume, loop, change speed and save file.
  
   ![Alt text](./playback.jpg)
+  
+  Start, Pause and Resume are on one button.
+  
+      // Start & Pause & Resume button
+      JToggleButton pause = new JToggleButton("Start");
+  
+      pause.addChangeListener(new ChangeListener() {
+        @Override
+        public void stateChanged(ChangeEvent e) {
+          if(pause.isSelected()){
+            viewPanel.playAnime();
+            pause.setText("Pause");
+          } else {
+            viewPanel.pauseAnime();
+            pause.setText("Play");
+          }
+        }
+      });
 
 - Save would pop up a new window for user to choose the proper format to save the file.
 
   ![Alt text](./save.jpg)
+  
+ Used ToggleButton, JButton and Radio button in the file.
+ 
 ### IShape, AbstractShape and concrete shape classes
 Please see updates at the end of this section.
 

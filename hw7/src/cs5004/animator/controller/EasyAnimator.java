@@ -22,7 +22,6 @@ import cs5004.animator.view.VisualView;
  * EasyAnimator class: it serves as the controller of the project.
  */
 public final class EasyAnimator {
-  private static int speed;
   private static Readable in;
   private static PrintStream out;
   private static IView iView;
@@ -47,14 +46,14 @@ public final class EasyAnimator {
   /**
    * This is the starting point of this project. Based on the content of the passed in args, the
    * project will show view in different format to display animation.
-   * @param args  passed in paramter to give command, String type.
+   * @param args  passed in parameter to give command, String type.
    */
   public static void main(String[] args) {
     if (args == null) {
       throw new IllegalArgumentException("invalid null command");
     }
     // Set default value
-    speed = 1;
+    int speed = 1;
     //IView iView = null;
     out = null;
     in = null;

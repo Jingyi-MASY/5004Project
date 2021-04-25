@@ -18,8 +18,8 @@ import cs5004.animator.model.WidthScale;
  * that belong to a SVGView. The fields of this SVG view includes an PrintStream out, and a speed.
  */
 public class SVGView implements IView {
-  private PrintStream out;
-  private int speed; //integer ticks per second; ticks per 1000ms
+  private final PrintStream out;
+  private final int speed; //integer ticks per second; ticks per 1000ms
 
   /**
    * This constructor creates a SVGView based on the passed in output and speed.
@@ -119,7 +119,7 @@ public class SVGView implements IView {
         if (movement instanceof Move) {
           showMove(shape, (Move) movement);
         } else if (movement instanceof ColorChange) {
-          showColorChange(shape, (ColorChange) movement);
+          showColorChange((ColorChange) movement);
         } else if (movement instanceof WidthScale) {
           showWidthScale(shape, (WidthScale) movement);
         } else if (movement instanceof HeightScale) {
@@ -182,7 +182,7 @@ public class SVGView implements IView {
   /*
    * private helper function to help display in showAll method.
    */
-  private void showColorChange(IShape shape, ColorChange motion) {
+  private void showColorChange(ColorChange motion) {
     int begin = motion.getStartTime() * 1000 / speed; //in ms (1s = 1000ms)
     int dur = ((motion.getEndTime()) - motion.getStartTime()) * 1000 / speed; //in ms (1s = 1000ms)
     int r1 = motion.getInitial().getRed();

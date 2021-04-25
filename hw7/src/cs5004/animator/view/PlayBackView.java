@@ -3,7 +3,15 @@ package cs5004.animator.view;
 import java.io.PrintStream;
 import java.util.Collections;
 
-import javax.swing.*;
+import javax.swing.JToggleButton;
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+
 
 import cs5004.animator.model.IAnimation;
 import cs5004.animator.model.IShape;

@@ -1,6 +1,14 @@
 package cs5004.animator.view;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JToggleButton;
+import javax.swing.ButtonGroup;
+
+import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -13,13 +21,13 @@ import cs5004.animator.model.IAnimation;
 import cs5004.animator.model.IShape;
 
 /**
- * This class represents the visual view that display an animation using swing. The field of
- * this class includes a speed.
+ * This class represents the visual view that display an animation using swing. The field of this
+ * class includes a speed.
  */
 public class PlayBackView extends JFrame implements IView {
   private int speed;
   private PrintStream out;
-  private IAnimation animation= null;
+  private IAnimation animation = null;
 
   /**
    * Constructor of a visual view.
@@ -62,7 +70,7 @@ public class PlayBackView extends JFrame implements IView {
     pause.addChangeListener(new ChangeListener() {
       @Override
       public void stateChanged(ChangeEvent e) {
-        if(pause.isSelected()){
+        if (pause.isSelected()) {
           viewPanel.playAnime();
           pause.setText("Pause");
         } else {
@@ -136,9 +144,9 @@ public class PlayBackView extends JFrame implements IView {
           @Override
           public void actionPerformed(ActionEvent e) {
             IView view = null;
-            if(svg.isSelected()){
-              view= new SVGView(out, speed);
-            } else if(text.isSelected()){
+            if (svg.isSelected()) {
+              view = new SVGView(out, speed);
+            } else if (text.isSelected()) {
               view = new TextView(out);
             }
             view.showAll(animation);
@@ -157,7 +165,7 @@ public class PlayBackView extends JFrame implements IView {
     loop.addChangeListener(new ChangeListener() {
       @Override
       public void stateChanged(ChangeEvent e) {
-        if(loop.isSelected()){
+        if (loop.isSelected()) {
           viewPanel.loop();
           loop.setText("NonLoop");
         } else {

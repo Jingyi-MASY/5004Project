@@ -1,16 +1,11 @@
 package cs5004.animator.view;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.Collections;
 
-import javax.swing.JToggleButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JRadioButton;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
+import javax.swing.*;
 
 
 import cs5004.animator.model.IAnimation;
@@ -95,7 +90,7 @@ public class PlayBackView extends JFrame implements IView {
     save.addActionListener(e -> {
       JFrame saveFrame = new JFrame("Save File");
 
-      saveFrame.setSize(150, 120);
+      saveFrame.setSize(180, 130);
       saveFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       saveFrame.setLocationRelativeTo(null);
 
@@ -108,22 +103,41 @@ public class PlayBackView extends JFrame implements IView {
       btnGroup.add(svg);
       btnGroup.add(text);
 
+      final JTextArea textArea = new JTextArea(1, 10);
+
+
       svg.setSelected(true);
 
       savePanel.add(svg);
       savePanel.add(text);
-
+      savePanel.add(textArea);
 
       JButton confirm = new JButton("Save");
 
       confirm.addActionListener(e1 -> {
         IView view = null;
+        String filename = textArea.getText();
+
+        if (filename == null || filename == "") {
+          filename = "out";
+        }
+        String filePath = new File("").getAbsolutePath()
+                + '/' + filename;
         if (svg.isSelected()) {
-          view = new SVGView(out, speed);
+          try {
+            view = new SVGView(new PrintStream(filePath + ".svg"), speed);
+          } catch (FileNotFoundException fileNotFoundException) {
+            InputMessage.message("Output File not found.");
+          }
         } else if (text.isSelected()) {
-          view = new TextView(out);
+          try {
+            view = new TextView(new PrintStream(filePath + ".txt"));
+          } catch (FileNotFoundException fileNotFoundException) {
+            InputMessage.message("Output File not found.");
+          }
         }
         assert view != null;
+        saveFrame.dispose();
         view.showAll(animation);
       });
 

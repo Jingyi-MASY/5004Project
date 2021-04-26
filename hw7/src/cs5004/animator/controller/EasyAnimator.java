@@ -27,28 +27,13 @@ public final class EasyAnimator {
   private static IView iView;
   private static IAnimation model;
 
-  /**
-   * For test purpose.
-   *
-   * @param in a Readable (converted by user input -in or default as System.out)
-   * @param out a PrintStream (converted by user input -out or default as System.out)
-   * @param model the IAnimation model
-   * @param iView view created
-   */
-  protected EasyAnimator(Readable in, PrintStream out, IAnimation model, IView iView) {
-    EasyAnimator.in = in;
-    EasyAnimator.out = out;
-    EasyAnimator.iView = iView;
-    EasyAnimator.model = model;
-
-  }
 
   /**
    * This is the starting point of this project. Based on the content of the passed in args, the
    * project will show view in different format to display animation.
    * @param args  passed in parameter to give command, String type.
    */
-  public static void main(String[] args) {
+  public EasyAnimator(String[] args) {
     if (args == null) {
       throw new IllegalArgumentException("invalid null command");
     }

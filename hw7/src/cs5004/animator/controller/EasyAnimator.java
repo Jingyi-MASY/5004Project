@@ -33,7 +33,7 @@ public final class EasyAnimator {
    * project will show view in different format to display animation.
    * @param args  passed in parameter to give command, String type.
    */
-  public EasyAnimator(String[] args) {
+  public static void main(String[] args) {
     if (args == null) {
       throw new IllegalArgumentException("invalid null command");
     }

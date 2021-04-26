@@ -131,7 +131,7 @@ public class ViewPanel extends JPanel {
                   (int) (para1 + durPara1 * (tick % framesPerSecond)),
                   (int) (para2 + durPara2 * (tick % framesPerSecond)));
         } else if (shape.getType() == ShapeType.ELLIPSE) {
-          g.drawOval((int) (x + durX * (tick % framesPerSecond)),
+          g.fillOval((int) (x + durX * (tick % framesPerSecond)),
                   (int) (y + durY * (tick % framesPerSecond)),
                   (int) (para1 + durPara1 * (tick % framesPerSecond)),
                   (int) (para2 + durPara2 * (tick % framesPerSecond)));
